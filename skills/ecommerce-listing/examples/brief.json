@@ -1,0 +1,22 @@
+{
+  "project_id": "project-example",
+  "workflow": "ecommerce-listing",
+  "provider": "mock",
+  "budget_usd": 0,
+  "aspect_ratio": "1:1",
+  "intent": "listing-main-image",
+  "requirements": "Create a square catalog view with the complete real lamp on a white canvas.",
+  "product": {
+    "product_id": "SKU-LAMP",
+    "stage": "existing_sku",
+    "truth_snapshot_id": "truth-example"
+  },
+  "reference_asset_ids": [
+    "photo-example"
+  ],
+  "allowed_changes": [
+    "background"
+  ],
+  "delivery_target": "listing",
+  "variants": 1
+}

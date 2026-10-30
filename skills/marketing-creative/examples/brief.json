@@ -1,0 +1,16 @@
+{
+  "project_id": "project-example",
+  "workflow": "marketing-creative",
+  "provider": "mock",
+  "budget_usd": 0,
+  "aspect_ratio": "1:1",
+  "intent": "campaign-kv",
+  "requirements": "Explore a quiet desk-lighting campaign for home workers. Leave space for approved campaign copy.",
+  "product": {
+    "product_id": "CONCEPT-CAMPAIGN",
+    "stage": "concept"
+  },
+  "reference_asset_ids": [],
+  "delivery_target": "marketing",
+  "variants": 3
+}

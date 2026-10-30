@@ -1,0 +1,11 @@
+id: custom-square
+version: 1.0.0
+scope: user_defined
+source: rules/custom-square.md
+source_date: '2026-10-29'
+rules:
+  min_width: 512
+  min_height: 512
+  formats: [png]
+  max_bytes: 20971520
+  required_ratio: '1:1'

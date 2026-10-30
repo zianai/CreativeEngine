@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "checks": [
+    "strict_source_pixels",
+    "complete_silhouette",
+    "dimensions_match",
+    "claims_verified_external_allowed",
+    "platform_rules_explicit",
+    "no_unverified_accessories",
+    "human_review_required"
+  ]
+}

@@ -1,0 +1,7 @@
+pnpm-lock.yaml
+.creative-engine/
+node_modules/
+apps/studio/dist/
+test-results/
+docs/implementation-baseline.md
+AGENTS.md

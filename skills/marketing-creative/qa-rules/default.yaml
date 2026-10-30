@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "checks": [
+    "brand_consistency",
+    "text_readability",
+    "claims_verified",
+    "authorized_branding",
+    "dimensions_match",
+    "identity_label",
+    "human_review_required"
+  ]
+}

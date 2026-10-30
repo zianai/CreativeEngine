@@ -1,0 +1,24 @@
+{
+  "id": "product-concept",
+  "version": "1.0.0",
+  "name": "Product Concept",
+  "description": "Diverse early product directions, CMF studies and traceable design review revisions.",
+  "default_fidelity": "exploratory",
+  "default_strategy": "generate",
+  "input_schema": "schemas/input.schema.json",
+  "prompt_template": "prompts/production.txt",
+  "qa_rules": "qa-rules/default.yaml",
+  "external_human_approval": true,
+  "acceptance": [
+    "At least three requested directions differ in design principle",
+    "Explicit design constraints survive every prompt",
+    "No concept is promoted to a real SKU fact",
+    "Every result is marked Concept / For Review",
+    "Revision lineage preserves the selected design and feedback"
+  ],
+  "directions": [
+    "Monolithic minimal form: one continuous silhouette, restrained surface transitions",
+    "Modular functional architecture: visibly separable components, repairable construction",
+    "Soft organic ergonomics: rounded asymmetry, tactile natural material accents"
+  ]
+}

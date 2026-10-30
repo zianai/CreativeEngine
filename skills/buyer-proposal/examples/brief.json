@@ -1,0 +1,19 @@
+{
+  "project_id": "project-example",
+  "workflow": "buyer-proposal",
+  "provider": "mock",
+  "budget_usd": 0,
+  "aspect_ratio": "1:1",
+  "intent": "product-match",
+  "requirements": "Present the existing desk lamp for buyer review without changing the product.",
+  "product": {
+    "product_id": "SKU-LAMP",
+    "stage": "existing_sku",
+    "truth_snapshot_id": "truth-example"
+  },
+  "reference_asset_ids": [
+    "photo-example"
+  ],
+  "delivery_target": "buyer_review",
+  "variants": 1
+}

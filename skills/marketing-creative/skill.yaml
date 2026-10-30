@@ -1,0 +1,24 @@
+{
+  "id": "marketing-creative",
+  "version": "1.0.0",
+  "name": "Marketing Creative",
+  "description": "Brand-consistent campaign visuals with controlled facts and multi-scene delivery.",
+  "default_fidelity": "strict",
+  "default_strategy": "compose",
+  "input_schema": "schemas/input.schema.json",
+  "prompt_template": "prompts/production.txt",
+  "qa_rules": "qa-rules/default.yaml",
+  "external_human_approval": true,
+  "acceptance": [
+    "Campaign audience and visual intent are reflected in each scene",
+    "Real products preserve verified identity",
+    "Text and branding are deterministic and authorized",
+    "Deliverables match the requested aspect ratio",
+    "Concept and mock identities remain conspicuous"
+  ],
+  "directions": [
+    "Editorial campaign: strong hierarchy and generous negative space",
+    "Material narrative: close tactile context with a restrained palette",
+    "Graphic campaign: clear geometric composition and energetic contrast"
+  ]
+}

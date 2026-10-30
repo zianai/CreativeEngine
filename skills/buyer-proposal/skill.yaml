@@ -1,0 +1,24 @@
+{
+  "id": "buyer-proposal",
+  "version": "1.0.0",
+  "name": "Buyer Proposal",
+  "description": "Evidence-based B2B product matching and explicitly authorized OEM previews.",
+  "default_fidelity": "strict",
+  "default_strategy": "reuse",
+  "input_schema": "schemas/input.schema.json",
+  "prompt_template": "prompts/production.txt",
+  "qa_rules": "qa-rules/default.yaml",
+  "external_human_approval": true,
+  "acceptance": [
+    "Verified product pixels retain product identity",
+    "Every factual label matches the selected immutable truth snapshot",
+    "Only authorized buyer logos are used",
+    "Customization previews carry a deterministic Concept label",
+    "A human must approve each external asset"
+  ],
+  "directions": [
+    "Functional product and buyer requirement comparison",
+    "Warm material-focused OEM preview",
+    "Restrained premium packaging concept"
+  ]
+}

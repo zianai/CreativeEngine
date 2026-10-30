@@ -1,0 +1,16 @@
+schema_version: 3
+protocol_version: "3.0"
+id: T-004-private-contract-publication
+status: executing
+goal: Publish the approved private source snapshot and run actual GitHub contract CI.
+scope: [Private repository creation, Exact branch publication, Contract CI verification]
+non_goals: [Public visibility, Plan upgrade, Old tests or runtime data, Paid generation, Mail]
+acceptance: [Private remote, No legacy history or excluded data, Real contract Actions pass]
+risk: high
+risk_reasons: [publication]
+protected_paths: []
+context_refs: [docs/PRIVATE_PUBLICATION.md, docs/tradecase-contract-ci.md]
+decision_refs: [docs/decisions.md]
+evidence_refs: []
+updated: "2026-10-30"
+implementation_started: true

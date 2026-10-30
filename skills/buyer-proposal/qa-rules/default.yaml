@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "checks": [
+    "source_authorized",
+    "product_identity_preserved",
+    "truth_snapshot_matches",
+    "claims_verified_external_allowed",
+    "logo_authorized",
+    "concept_label_if_customized",
+    "human_review_required"
+  ]
+}

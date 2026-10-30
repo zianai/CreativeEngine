@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.creative-engine/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+*.log
+.DS_Store
+
+# Python protocol verification artifacts
+__pycache__/
+*.pyc
+.pytest_cache/

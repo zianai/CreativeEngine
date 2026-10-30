@@ -1,0 +1,51 @@
+name: Visual Task contract
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 8 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  provider:
+    name: visual-contract-provider-v1
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.26.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pnpm install --frozen-lockfile
+      - name: Check published application sources
+        run: pnpm typecheck && pnpm build
+      - run: python -m pip install pytest==9.1.1
+      - name: Protect released contract bytes
+        env:
+          CONTRACT_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python contracts/visual-task/verify.py --base "$CONTRACT_BASE"
+      - name: Verify contract checker
+        run: python -m pytest contracts/visual-task/test_verifier.py -q
+      - name: Verify real provider HTTP with zero-cost fixtures
+        run: |
+          set -o pipefail
+          pnpm test:contract:tradecase | tee contract-provider.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-contract-provider-v1
+          path: contract-provider.log
+          if-no-files-found: error

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Concept input",
+  "type": "object",
+  "required": [
+    "project_id",
+    "workflow",
+    "requirements",
+    "product"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workflow": {
+      "const": "product-concept"
+    },
+    "requirements": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12000
+    },
+    "product": {
+      "type": "object",
+      "required": [
+        "product_id",
+        "stage"
+      ],
+      "properties": {
+        "product_id": {
+          "type": "string"
+        },
+        "stage": {
+          "enum": [
+            "existing_sku",
+            "prototype",
+            "concept"
+          ]
+        },
+        "truth_snapshot_id": {
+          "type": "string"
+        }
+      }
+    },
+    "allowed_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reference_asset_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "variants": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    }
+  },
+  "$comment": "The full wire schema is exported by packages/contracts; deterministic policy validation is mandatory after schema validation."
+}

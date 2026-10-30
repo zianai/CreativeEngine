@@ -1,0 +1,24 @@
+{
+  "id": "ecommerce-listing",
+  "version": "1.0.0",
+  "name": "Ecommerce Listing",
+  "description": "Faithful commerce imagery composed from verified original SKU materials.",
+  "default_fidelity": "strict",
+  "default_strategy": "compose",
+  "input_schema": "schemas/input.schema.json",
+  "prompt_template": "prompts/production.txt",
+  "qa_rules": "qa-rules/default.yaml",
+  "external_human_approval": true,
+  "acceptance": [
+    "Existing SKU work is strict and never free-generates the product",
+    "Actual dimensions match requested delivery dimensions",
+    "The product silhouette remains complete and uncropped",
+    "Only verified external-allowed facts appear as labels",
+    "Platform rules are explicit dated configuration, not model inference"
+  ],
+  "directions": [
+    "Clean catalog framing with clear product separation",
+    "Contextual scene that preserves the complete product",
+    "Detail and evidence-led infographic composition"
+  ]
+}

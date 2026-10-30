@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "checks": [
+    "distinct_direction",
+    "requirements_covered",
+    "constraints_preserved",
+    "concept_identity",
+    "concept_label",
+    "feasibility_uncertainty_visible",
+    "human_review_required"
+  ]
+}
