@@ -6,4 +6,4 @@ This publication starts a new root commit from local source commit `f0ca0a437f93
 
 The original main branch and its working files are preserved. Continue GitHub-facing work on `codex/github-private` in the `creative-engine-github` worktree. Do not merge the legacy main history into this branch: cherry-pick reviewed source-only changes or reproduce them as scoped commits, otherwise excluded old data would enter the remote history.
 
-Remote target: `zianai/CreativeEngine`, private, initial branch `main`. Push only the named publication branch; never use --all, --mirror or force push. CI uses only zero-cost fixtures, without OpenAI secrets or mail transports. Actions execution evidence will be recorded after GitHub completes the checks.
+Remote target: `zianai/CreativeEngine`, private, initial branch `main`. Push only the named publication branch; never use --all, --mirror or force push. CI uses only zero-cost fixtures, without OpenAI secrets or mail transports. Initial GitHub Actions completed successfully; see [exact run evidence](GITHUB_CONTRACT_CI_PUBLICATION.md).
