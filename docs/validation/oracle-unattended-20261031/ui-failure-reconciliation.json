@@ -1,0 +1,12 @@
+{
+  "observation": "Read-only CUA snapshot of exact own conversation shows 图像生成失败 and 重试; screenshot also shows 无法加载此回复. No output image, no retry clicked.",
+  "session_id": "attempt-b40d2750-3996-450b-b5d6",
+  "conversation_id": "6ae5c3b9-a09c-83ea-b124-260d6282099e",
+  "source_sha": "8dbc02a6cbd6f4e3dc2fa24cf9985e921258fe6f",
+  "controller_pid": 12508,
+  "bounded_stop_signal": "SIGTERM",
+  "new_generation": false,
+  "retry_allowed": false,
+  "reconciliation": "UI terminal failure; subscription consumption unknown; original accounting reservation retained",
+  "time_unix": 1793442947.861883
+}

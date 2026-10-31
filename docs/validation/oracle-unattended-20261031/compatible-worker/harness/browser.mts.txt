@@ -1,0 +1,19 @@
+import assert from 'node:assert/strict';import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';import {join,resolve} from 'node:path';import {createRequire} from 'node:module';
+import {Core} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/service.ts';
+import {OracleProvider} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/providers/oracle/index.ts';
+import {buildApp} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/apps/server/app.ts';
+const require=createRequire('/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/package.json');const {chromium}=require('@playwright/test');
+const folder=resolve(process.argv[2]),t=JSON.parse(readFileSync(join(folder,'target.json'),'utf8')),out=join(folder,'browser');mkdirSync(out,{recursive:true});
+process.env.CREATIVE_API_TOKEN='SYNTHETIC-FOLLOWUP-LOCAL';
+const core=new Core(t.data_root,new Map([['oracle',new OracleProvider({stateDir:join(t.data_root,'provider-receipts/oracle')})]]));
+const {app}=await buildApp(core,false);let browser;
+try{const url=await app.listen({host:'127.0.0.1',port:0});browser=await chromium.launch();const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/*',route=>new URL(route.request().url()).origin===url?route.continue():route.abort());
+ await page.goto(url);await page.getByRole('button',{name:'连接本地服务',exact:true}).click();await page.getByLabel('本地访问令牌').fill('SYNTHETIC-FOLLOWUP-LOCAL');await page.getByRole('button',{name:'连接',exact:true}).click();await page.getByLabel('当前项目').selectOption(t.project_id);
+ await page.getByRole('button',{name:/审核与交付/}).click();await page.getByRole('button',{name:'检查与审核 ↗'}).first().click();assert(await page.getByRole('button',{name:'批准此资产'}).isDisabled());
+ for(const width of [1440,390]){await page.setViewportSize({width,height:900});await page.screenshot({path:join(out,`actual-api-review-${width}.png`),fullPage:true});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);}
+ await assert.rejects(core.export({batch_id:t.batch_id}),/No approved assets/);assert(core.store.list('review').every(r=>r.decision==='rejected'));assert.deepEqual(errors,[]);
+ const assets=core.store.list('asset',t.project_id).filter(a=>a.batch_id===t.batch_id);
+ if(process.argv[3]==='reject'){for(const a of assets.filter(a=>a.review_status!=='rejected'))core.review(a.id,{decision:'rejected',reviewer:'AI_ENGINEERING_TEST_NOT_HUMAN_APPROVAL',notes:'Synthetic concept quality failure: unprovided numeric dimensions and absent clear folding mechanism. Rejected by engineering inspection; no product truth or business approval.'});await assert.rejects(core.export({batch_id:t.batch_id}),/No approved assets/);}
+ writeFileSync(join(out,'result.json'),JSON.stringify({status:'passed',actual_browser_generated_asset:true,desktop_mobile:true,export_without_approval:'denied',review_status:process.argv[3]==='reject'?'rejected':'pending',human_approval:false,errors},null,2));console.log('Actual Oracle asset browser and export-boundary checks passed');
+}finally{await browser?.close();await app.close();}

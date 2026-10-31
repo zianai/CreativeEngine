@@ -1,0 +1,20 @@
+{
+  "native_collection": "passed",
+  "native_worker_result": "review_pending",
+  "local_regression": {
+    "creative_engine_passed": 72,
+    "helper_passed": 14,
+    "tsc_exit_code": 0,
+    "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e"
+  },
+  "browser_initial": "failed_missing_isolated_home_browser_cache; preserved in browser-initial-failed.txt",
+  "browser_retest": {
+    "status": "passed",
+    "duration_seconds": 5.729,
+    "desktop_mobile": true,
+    "public_network": "OS denied"
+  },
+  "action_status": "succeeded",
+  "external_calls_during_collection": 0,
+  "human_approval": false
+}

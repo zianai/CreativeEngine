@@ -1,0 +1,35 @@
+{
+  "command": [
+    "node",
+    "--import",
+    "tsx",
+    "--test",
+    "--test-concurrency=1",
+    "tests/p8-p10/oracle.test.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T11:01:01.192576+00:00",
+  "duration_seconds": 0.488,
+  "exit_code": 0,
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "tracked_diff_sha256": "a520525f415b4a751e24429d3edeeb4c88a316e9437941b5490a7b0bd23076c0",
+  "dirty_paths": [
+    " M packages/providers/oracle/index.ts",
+    " M scripts/oracle-paid-worker.ts",
+    " M tests/p8-p10/oracle.test.ts",
+    " M work/active/T-013-oracle-unattended/task.yaml",
+    "?? docs/validation/oracle-unattended-20261031/",
+    "?? work/active/T-013-oracle-unattended/action-cli-control.yaml",
+    "?? work/active/T-013-oracle-unattended/action-cli-final.yaml",
+    "?? work/active/T-013-oracle-unattended/action-flat-mcp.yaml",
+    "?? work/active/T-013-oracle-unattended/action-raw-mcp.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-final.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-medium.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-ratio.yaml",
+    "?? work/active/T-013-oracle-unattended/action.yaml"
+  ],
+  "log_sha256": "d62ba5e6a6b131b1c3b180e8088548d3f44bf54804de0acff743038b141ca5de",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

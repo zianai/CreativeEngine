@@ -1,0 +1,20 @@
+{
+  "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+  "files": {
+    "packages/providers/oracle/index.ts": "73ef5ee6f542973563f88c93ece861f5ee279be0cda33016a212fe5984e41a75",
+    "packages/core/validation.ts": "1eb5acaa6a344425f417dc7adc4b1a266ba2b113b8dca3e01c0d6a5e585b0969",
+    "scripts/oracle-paid-worker.ts": "aba53f246b6a9b26c1660ed784025fe81b9b087ea44a9be0ae80dac19f1a03d8",
+    "tools/oracle/entry.mjs": "93c4db822e9c8f8e498fe2642b4e656d98a6f785638639a5da3ca19ff448f599",
+    "tools/oracle/register.mjs": "58337fa569782269a87692fd0c3460e0d9e65eb0232bd097b78faccd99bd90dc",
+    "tools/oracle/patch.mjs": "5dc29b8f7a25743ce708d84211e2505c6d0487ce515f852dec683cfb99ac63cb",
+    "tools/oracle/image-dom.mjs": "21d88179eeeb83e4cd4f47ee71fd92b56e9bc9a21b09111dba33532756dcc37f",
+    "tools/oracle/upstream-pins.json": "523e7b6f1ab0ac10c11ead2e1dd13401b87adcd53e0e6e802575838b7f662181"
+  },
+  "input_hash": "47b0076c31ab4335ab1f2da0178d8915c2052fa832cc81fef546ab874b51b747",
+  "provider_config_hash": "22df9ef7f408c6b4ed9c4b53690f07c0348fda42d53fc2aad00296d6e0977a99",
+  "grant_sha256": "276bf0ffbc650402d11a563b7fd40b698c246014be8a6b3ad0e97eff462c4a08",
+  "batch_id": "batch_658db5a5-1c93-49a8-9ae2-21e12c4393d5",
+  "task_id": "task_cf07a32b-cbfa-4834-95d2-3bdc61fd3c31",
+  "api_credentials_inherited": false,
+  "human_approval": false
+}

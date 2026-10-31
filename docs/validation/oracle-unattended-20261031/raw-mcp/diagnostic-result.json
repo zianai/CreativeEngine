@@ -1,0 +1,26 @@
+{
+  "status": "diagnostic_passed",
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "attempt_id": "raw_mcp_ace5d262-9386-4916-8265-af9ffda0429b",
+  "session_id": "raw-mcp-ace5d262-9386-4916",
+  "tool_input_sha256": "49016f25cdf29ef1524bbd0e1dc546408bc6a70e26dffa72f397646d8968cd0e",
+  "image_path": "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-raw-mcp/oracle-home/generated/raw_mcp_ace5d262-9386-4916-8265-af9ffda0429b.png",
+  "artifact_sha256": "f5cc25993cdb8f3e23c77bde110032a3d7a0fcf7b1ea7e482d3a07cc9e7e0632",
+  "raster": {
+    "width": 1254,
+    "height": 1254,
+    "format": "png"
+  },
+  "mcp_response_sha256": "cb08e5f86f84df9f2937bf1e64b23e25dbbd632743384c992cc4cbdb93cd224c",
+  "duration_seconds": 81.173,
+  "api_cost_usd": 0,
+  "actual_subscription_cost_usd": null,
+  "subscription_cost": "unmetered",
+  "reservation_usd": 0.25,
+  "diagnostic_only": true,
+  "native_worker_success": false,
+  "provider_success": false,
+  "human_approval": false,
+  "material_review": "pending",
+  "retry_allowed": false
+}

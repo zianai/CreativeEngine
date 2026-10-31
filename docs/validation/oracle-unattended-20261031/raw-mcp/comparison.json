@@ -1,0 +1,40 @@
+{
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "raw_cli_prompt_sha256": "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c",
+  "observations": [
+    {
+      "route": "CLI control",
+      "result": "completed",
+      "duration_seconds": 84.04307095799595,
+      "prompt_bytes": 604,
+      "evidence": "../cli-control/session-summary.json"
+    },
+    {
+      "route": "actual OracleProvider flat brief via MCP",
+      "result": "CE_ORACLE_IMAGE_GENERATION_FAILED; unresolved accounting .25",
+      "duration_seconds": 21.083819208666682,
+      "base_prompt_bytes": 604,
+      "changes": [
+        "provider prefix",
+        "MCP aspectRatio=1:1 sentence",
+        "explicit thinking=medium",
+        "attachments=never"
+      ],
+      "evidence": "../flat-mcp/reconciliation.json"
+    },
+    {
+      "route": "direct raw chatgpt_image MCP",
+      "result": "completed",
+      "duration_seconds": 82.98881549946964,
+      "prompt_bytes": 604,
+      "changes": [
+        "no provider prefix",
+        "no aspectRatio field",
+        "no explicit thinking field",
+        "attachments omitted"
+      ],
+      "evidence": "session-summary.json"
+    }
+  ],
+  "interpretation": "The raw MCP transport succeeded for this invocation. The earlier prefix/ratio route remains a failed observation. Several parameters differ, so no single failure cause or general reliability claim is established. This is not native Worker success."
+}

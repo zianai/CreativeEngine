@@ -1,0 +1,32 @@
+{
+  "id": "attempt-bdf25145-21d4-4161-8426",
+  "status": "error",
+  "createdAt": "2026-10-31T10:47:32.011Z",
+  "startedAt": "2026-10-31T10:47:32.013Z",
+  "completedAt": "2026-10-31T10:47:56.309Z",
+  "error": {
+    "category": "browser-automation",
+    "message": "CE_ORACLE_IMAGE_GENERATION_FAILED",
+    "details": {
+      "stage": "execute-browser"
+    }
+  },
+  "model": "gpt-5.5-pro",
+  "runtime": {
+    "conversationId": "6ae5c74c-ffcc-83ea-b930-5940897deddc",
+    "chromeTargetId": "B5142C92626B7708DA4C062ADC8CC70E",
+    "promptSubmitted": true,
+    "submittedPromptHash": "94f6909ff431bd0f376a71ece6bcedc72da99982b80c34023f54e10a0f0749af"
+  },
+  "modelSelection": {
+    "requestedModel": "GPT-5.5",
+    "resolvedLabel": "Thinking effort\nMedium",
+    "strategy": "current",
+    "status": "already-selected",
+    "verified": false,
+    "source": "chatgpt-model-picker",
+    "capturedAt": "2026-10-31T10:47:39.385Z"
+  },
+  "thinkingSelection": null,
+  "model_verified": false
+}

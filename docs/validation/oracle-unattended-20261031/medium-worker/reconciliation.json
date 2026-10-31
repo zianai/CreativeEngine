@@ -1,0 +1,31 @@
+{
+  "time_utc": "2026-10-31T10:51:30.094637+00:00",
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "state": "unknown",
+  "observation": "Oracle returned CE_ORACLE_IMAGE_GENERATION_FAILED for exact owned session. No generated artifact is claimed.",
+  "session_id": "attempt-bdf25145-21d4-4161-8426",
+  "conversation_id": "6ae5c74c-ffcc-83ea-b930-5940897deddc",
+  "task_status": "reconciling",
+  "attempt_status": "unknown",
+  "attempt_count": 1,
+  "grant_revoked": true,
+  "revoked_preflight_reasons": [
+    "AUTH_REVOKED"
+  ],
+  "reserved_liability_usd": 0.25,
+  "actual_invoice_usd": null,
+  "subscription_cost": "unmetered",
+  "api_requests_added": 0,
+  "retry_allowed": false,
+  "human_approval": false,
+  "source_snapshot": "docs/validation/oracle-unattended-20261031/code-867b2-snapshot.json",
+  "regression": {
+    "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+    "exit_code": 0,
+    "ce_tests_passed": 64,
+    "helper_tests_passed": 14,
+    "typecheck": "passed"
+  },
+  "evidence_log_hashes_verified": true,
+  "original_credentials_profiles_and_private_config_exported": false
+}

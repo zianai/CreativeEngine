@@ -1,0 +1,19 @@
+node:internal/modules/run_main:111
+    triggerUncaughtException(
+    ^
+
+browserType.launch: Executable doesn't exist at /Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-unattended-compatible/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     npx playwright install                                 ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at <anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-unattended-compatible/browser.mts:10:82) {
+  log: [],
+  name: 'Error'
+}
+
+Node.js v26.12.1

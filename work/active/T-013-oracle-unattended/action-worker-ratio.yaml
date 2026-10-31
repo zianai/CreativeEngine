@@ -1,0 +1,24 @@
+environment: "live_sandbox"
+subject: "sha256:26cab20b3989af37910d783249f97fa2d8b1ccf0f33fa170babb1abdbff79439"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+expires_at: "2026-10-31T16:44:35.535Z"
+timeout_seconds: 650
+status: "unknown"
+observation: "Ratio normalized but native UI returned terminal image failure; no artifact, no retry, grant revoked, USD0.25 retained"
+compensation: "No automatic retry; reconcile exact session and preserve any unknown liability; no material approval or deployment"
+x_api_budget_cumulative_usd: 10
+x_new_api_requests: 0
+action_id: "oracle-worker-ratio-20261031"
+target: "chatgpt.com via CreativeEngine Worker and Oracle MCP"
+payload_scope: "Exactly one fictional mint desk-organizer concept; separate isolated native case"
+idempotency_key: "batch_89e6ce02-b90e-4613-b4c3-81d811f3f731"
+x_input_hash: "84b660320dde6f100c5fa9762f10f9ad955a7fa4965d2b61b1178abab44f0a94"
+x_grant_sha256: "f3fdddc3ad7211f84b594d88e0eb47b7593d49d403dc8ab70d0e2425a5491e47"
+x_provider_config_hash: "afe75078ddc1e7d2c7859b1676b9d105b1efab0edc8b0666c92ce47c650f764e"
+x_source_commit: "13ef7b8ebe594bec00147c6d090a174dad038027"
+subject_ref: "docs/validation/oracle-unattended-20261031/code-13ef7-snapshot.json"
+retry_allowed: false
+reconciliation_result: "Native failed session reconciled with no image; subscription usage unknown; observed UI thinking label Pro differs from successful CLI Medium; causality unproven"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/ratio-worker/session-summary.json"

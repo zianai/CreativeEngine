@@ -1,0 +1,19 @@
+{
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "input_hash": "84b660320dde6f100c5fa9762f10f9ad955a7fa4965d2b61b1178abab44f0a94",
+  "provider_config_hash": "5d5c0c784cbdcde3e6ce6ffdc79a2ea72f738eda2d009d76012a6ac105b849ce",
+  "grant_sha256": "60191062ac86c354d19f84db2ee5e4ab9c7d993ca1c839afea1d8724400e0e4a",
+  "target": {
+    "batch_id": "batch_62f1adc1-a213-4a32-97c0-ab9a6af4983a",
+    "project_id": "prj_a8c269b7-b77a-483d-8f0f-ca578b4c6849",
+    "plan_id": "plan-7c496949-5553-4b50-94fd-51e7d76df950",
+    "task_id": "task_9ffd15f1-3aa5-4c29-bd4d-799b535042c9"
+  },
+  "api_credentials_inherited": false,
+  "human_approval": false,
+  "reservation_usd": 0.25,
+  "prior_failed_reservations_usd": 0.75,
+  "aspect_ratio": "1:1",
+  "browser_thinking_time": "medium",
+  "actual_model": "unverified"
+}

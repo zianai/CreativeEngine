@@ -1,0 +1,31 @@
+action_id: "oracle-flat-mcp-diagnostic-20261031"
+target: "chatgpt.com via direct actual OracleProvider.generate and Oracle MCP"
+environment: "live_sandbox"
+payload_scope: "Exactly one fictional mint desk-organizer concept using the known-success CLI flat request text; no Core compilation, no native Worker success claim, no private data"
+subject: "sha256:e4d11ab76996192027e03d1d19423c0097fb94c9c3978033a1b872edaab3a86b"
+subject_ref: "docs/validation/oracle-unattended-20261031/flat-mcp/prepared-source.json"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+idempotency_key: "flat_mcp_5a597b24-4cd8-4742-8b49-c3df46afbd1b"
+expires_at: "2026-10-31T16:52:15.713Z"
+timeout_seconds: 650
+status: "unknown"
+observation: "Direct actual provider call exited 1 in 21.084 seconds; exact session terminal CE_ORACLE_IMAGE_GENERATION_FAILED after submission, no local image or result receipt. Grant revoked; ledger reconciling with USD0.25 retained. Flat-prompt MCP also failed; no cause is established."
+compensation: "Provider closed and one-shot grant revoked. Preserve USD0.25 unknown liability and exact-session evidence; no automatic retry, imported output, publication or material approval."
+retry_allowed: false
+x_source_commit: "867b231f6eea1df466fc370da854f66ce9e8b057"
+x_grant_sha256: "93a4a198f781a64153d51a1625aa43341cd4cda55962510eb47287747fb3e843"
+x_input_hash: "3067ea0678b20c05f64a7da53bf342ff1b633a79d8a763027c594cc050c96b1c"
+x_provider_config_hash: "4eab3898ddfed869fc48860b952420cf86fe2b0517c74a375a3d55fc476d4d7c"
+x_request_prompt_sha256: "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c"
+x_provider_rendered_prompt_sha256: "5b60c3fa65add45096eabbe9de0de799b33cbb03b085afd0aca37c8f3c1cd9b3"
+x_mcp_appended_prompt_sha256: "8a89042851f8f032897d39dfe4a18e54c3637a362cf9076446e99ec8e1aea524"
+x_accounting_reservation_usd: 0.25
+x_new_api_requests: 0
+x_api_cost_usd: 0
+x_subscription_cost: "unmetered"
+x_native_worker_success: false
+x_execute_command: "python3 /Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-flat-mcp/execute.py execute-once"
+reconciliation_result: "Known native terminal error and absent local output; external processing/cost remain unresolved; no retry"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/flat-mcp/reconciliation.json"

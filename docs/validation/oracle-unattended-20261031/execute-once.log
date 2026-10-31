@@ -1,0 +1,9 @@
+/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/scripts/oracle-paid-worker.ts:94
+      throw new Error(
+            ^
+
+Error: ORACLE_RESULT_REQUIRES_RECONCILIATION: {"status":"reconciling","error":{"code":"ORACLE_UNCERTAIN","message":"Execution failed; inspect the attempt and reconcile uncertain external outcomes before retrying.","uncertain":true}}
+    at <anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/scripts/oracle-paid-worker.ts:94:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v26.12.1

@@ -1,0 +1,19 @@
+{
+  "code_sha": "8dbc02a6cbd6f4e3dc2fa24cf9985e921258fe6f",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "input_hash": "d2a4896cbd79ffe69770713a5724a36100c1b133641c664c55e0c8a5ccbf58f3",
+  "provider_config_hash": "f53f713cf57f9651a6a0a24099c0a03bbb181480afa9422718930f23d0a511a6",
+  "grant_sha256": "2339aca686f94bb756afe04601b651dcb455f250fb444ba4e35e69716cf1b7ce",
+  "plan_hash": "640cb148b137379565723528fbf27ce4e92aa841d10b9d918fd4ce82703af73e",
+  "target": {
+    "batch_id": "batch_43b17d79-18b3-4a4c-bf47-2fd20fd3b256",
+    "task_id": "task_ba7465a1-a962-4aca-a7dd-ff0c364a392e",
+    "project_id": "prj_8839a9d0-b1f2-4171-ade0-6f2214ecc953",
+    "plan_id": "plan-407803ed-5ec1-448c-8b12-b46518b00923"
+  },
+  "synthetic": true,
+  "api_credentials_inherited": false,
+  "api_cap_cumulative_usd": 10,
+  "new_api_calls_planned": 0,
+  "subscription_cost": "unmetered"
+}

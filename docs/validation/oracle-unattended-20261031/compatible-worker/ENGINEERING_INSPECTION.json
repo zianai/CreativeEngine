@@ -1,0 +1,16 @@
+{
+  "observer": "root AI engineering inspection, independently corroborated by TradeCase agent",
+  "asset_sha256": "989528ad667bc78244eacb8d9996c88f0d3fb3c7d6716b1a5ef263c32dd2ed9c",
+  "visible": [
+    "mint three compartments",
+    "right compartment angled",
+    "barrel/piano-like hinges",
+    "multiple Concept / For Review labels"
+  ],
+  "numeric_or_certification_claims_seen": false,
+  "accordion_requirement": "not_fully_met",
+  "manufacturing_feasibility": "not_verified",
+  "all_visual_criteria_passed": false,
+  "human_approval": false,
+  "material_review": "pending"
+}

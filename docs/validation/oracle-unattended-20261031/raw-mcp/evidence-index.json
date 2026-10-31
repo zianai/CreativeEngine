@@ -1,0 +1,107 @@
+{
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "files": [
+    {
+      "path": "RESULT.md",
+      "sha256": "1aededae0f3d0876f412d8a27a19473d672686809aec6ba80e45b7b68d83dc6b",
+      "bytes": 1319
+    },
+    {
+      "path": "comparison.json",
+      "sha256": "f81df66acc827c9dac71797bcbcea5ecbc4992e2cb56b5a0e9b714959ea136ad",
+      "bytes": 1454
+    },
+    {
+      "path": "diagnostic-result.json",
+      "sha256": "8fbb46440443c3a667348e07a3518ad98181fb5f1a21b6aec1d630282a57edfd",
+      "bytes": 1067
+    },
+    {
+      "path": "execute-once-result.json",
+      "sha256": "c975f72196d205fb82c85aafa1fd43d0316d249d09ecf747429644ca9127acf7",
+      "bytes": 867
+    },
+    {
+      "path": "execute-once.log",
+      "sha256": "263431674eb175b9938e41c3dc9408d647e6e1424fc6315c1bba42bd70df17ec",
+      "bytes": 188
+    },
+    {
+      "path": "execution-started.json",
+      "sha256": "3e4cf7e0e4f4593c5443234c46e788bc1abcf964cddb2cac51e8401f43955df7",
+      "bytes": 133
+    },
+    {
+      "path": "ledger-state.json",
+      "sha256": "3deff949a6930bbce1f669723218f36b49c49683ff037d522c82ea4a64303aaf",
+      "bytes": 729
+    },
+    {
+      "path": "mcp-response-sanitized.json",
+      "sha256": "73dd0833931574d9b67803e76c8ae4cec5547d40e38e3d24a621a20f5fa4fd23",
+      "bytes": 4385
+    },
+    {
+      "path": "model-output.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-output.log",
+      "sha256": "db674f16a610f33689350373730cde1f7e8c74b11fbb507652a81550103f8ec6",
+      "bytes": 1417
+    },
+    {
+      "path": "oracle-raw-mcp.png",
+      "sha256": "f5cc25993cdb8f3e23c77bde110032a3d7a0fcf7b1ea7e482d3a07cc9e7e0632",
+      "bytes": 1800146
+    },
+    {
+      "path": "preflight-result.json",
+      "sha256": "c11bd9bcacd9c5d44bf8cddffc545eb0df8230a106d6f918068589b4b9a75e0e",
+      "bytes": 662
+    },
+    {
+      "path": "prepare.log",
+      "sha256": "e657695ce26a647489f4a89c6324ce8f2baded562891169a81f026eb8aa8edb5",
+      "bytes": 485
+    },
+    {
+      "path": "prepared-source.json",
+      "sha256": "89ad5b78b556859cbe6a12ad20579201a07e9b3d8c15aa9d09ad129ec8dc0da7",
+      "bytes": 197727
+    },
+    {
+      "path": "provider-invocation.json",
+      "sha256": "7d4cf684c846008a91c6bdd5720a8cb08d359cb6c1c030278b060365a121052b",
+      "bytes": 163
+    },
+    {
+      "path": "request-prompt.txt",
+      "sha256": "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c",
+      "bytes": 604
+    },
+    {
+      "path": "session-summary.json",
+      "sha256": "8472e0e254552b16ed4b14cef52a533198422d3f30cff0e7c337d4e7c32c8688",
+      "bytes": 2171
+    },
+    {
+      "path": "tool-input.json",
+      "sha256": "8c03ab581a428ad58f23984125dcdbe43ad87903cb5a2196a11667b53d4f3c32",
+      "bytes": 1018
+    },
+    {
+      "path": "transcript.md",
+      "sha256": "b2a638864898ac66a902ac71104f92930acbc799e2a3000a079748f92955d11d",
+      "bytes": 1140
+    }
+  ],
+  "external_calls_during_collection": 0,
+  "private_records_excluded": [
+    "operator grant/context/isolation",
+    "SQLite database",
+    "browser profile and debugging endpoint metadata"
+  ],
+  "human_approval": false
+}

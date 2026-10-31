@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/node_modules/.bin/tsx",
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-unattended/close-failed.mts",
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-unattended-medium"
+  ],
+  "exit_code": 0,
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "execution_source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "timestamp_utc": "2026-10-31T10:51:04.106153+00:00",
+  "log_sha256": "ed4da5e442b038258a6e521a6aa0874b8f5704ff67cb033ceefc78bba74b7885",
+  "api_requests_added": 0,
+  "browser_requests_added": 0
+}

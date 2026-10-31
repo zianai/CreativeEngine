@@ -1,0 +1,39 @@
+{
+  "id": "attempt_a987b61f-2be5-4d9f-baf8-7273974222e7",
+  "project_id": "prj_9827eb92-c2af-43aa-aa4a-7201afe3f360",
+  "task_id": "task_cf07a32b-cbfa-4834-95d2-3bdc61fd3c31",
+  "provider": "oracle",
+  "status": "succeeded",
+  "execution_protocol": 2,
+  "submission_state": "started",
+  "estimated_cost_usd": 0.25,
+  "created_at": "2026-10-31T11:01:31.483Z",
+  "result": {
+    "provider": "oracle",
+    "model": "oracle-browser-current-unverified",
+    "sessionId": "attempt-a987b61f-2be5-4d9f-baf8",
+    "costUsd": 0,
+    "mock": false,
+    "metadata": {
+      "mode": "generate",
+      "cost_basis": "api_zero_subscription_cost_not_metered",
+      "api_cost_usd": 0,
+      "actual_subscription_cost_usd": null,
+      "input_hash": "47b0076c31ab4335ab1f2da0178d8915c2052fa832cc81fef546ab874b51b747",
+      "submitted_prompt_sha256": "8ce07296d0978e4f49d234ef3fb62f1bc686cff7bcad5ddfd29c38c7b2ed9801",
+      "model_verified": false,
+      "human_approval": false,
+      "aspect_ratio_enforcement": "prompt_only",
+      "requested_size": [
+        1024,
+        1024
+      ],
+      "artifact_sha256": "691ea1b5f13b6992bc2be8eb0dade952b54a33b24f370622a944af4dd7048eb4",
+      "attempt_id": "attempt_a987b61f-2be5-4d9f-baf8-7273974222e7"
+    }
+  },
+  "image_cost_usd": 0,
+  "vision_cost_usd": 0,
+  "cost_usd": 0,
+  "finished_at": "2026-10-31T11:03:22.886Z"
+}

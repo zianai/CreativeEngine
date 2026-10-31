@@ -1,0 +1,19 @@
+{
+  "status": "unknown_reconcile_exact_session",
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "attempt_id": "flat_mcp_5a597b24-4cd8-4742-8b49-c3df46afbd1b",
+  "error": {
+    "name": "ProviderError",
+    "code": "ORACLE_UNCERTAIN",
+    "message": "Oracle did not return a verifiable completed image; reconcile its session.",
+    "uncertain": true
+  },
+  "reservation_usd": 0.25,
+  "api_cost_usd": 0,
+  "actual_subscription_cost_usd": null,
+  "diagnostic_only": true,
+  "native_worker_success": false,
+  "human_approval": false,
+  "retry_allowed": false,
+  "duration_seconds": 18.462
+}

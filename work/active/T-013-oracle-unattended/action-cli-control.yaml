@@ -1,0 +1,22 @@
+action_id: "oracle-cli-control-20261031"
+target: "chatgpt.com via pinned Oracle CLI browser engine"
+environment: "live_sandbox"
+payload_scope: "One synthetic CLI control with prior successful exact flat prompt; no Core Worker claim"
+subject: "sha256:52b1f3585ae9191da358c281d38299680905aa71ecdeebc4ada8bf34fd3a84d6"
+subject_ref: "docs/validation/oracle-unattended-20261031/cli-control/prepared-source.json"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+idempotency_key: "synthetic-oracle-cli-control-20261031"
+expires_at: "2026-10-31T11:53:27.682254+00:00"
+timeout_seconds: 420
+status: "succeeded"
+observation: "CLI exited 0 in 84.043 seconds; native session completed and automatically saved one PNG hash8d9a5a49e632b9085a9a22b2531c02e712bcae191cc06896502dae0490565bf6. Parent read-only observer saw owned completed image. No manual generation/download; no human approval or Worker success claim."
+compensation: "No retry on uncertainty; reconcile exact session. No material approval, no deployment."
+retry_allowed: false
+x_source_commit: "867b231f6eea1df466fc370da854f66ce9e8b057"
+x_input_hash: "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c"
+x_new_api_requests: 0
+x_api_budget_cumulative_usd: 10
+reconciliation_result: "effect-confirmed"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/cli-control/session-summary.json"

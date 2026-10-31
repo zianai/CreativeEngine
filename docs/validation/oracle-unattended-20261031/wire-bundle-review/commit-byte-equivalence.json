@@ -1,0 +1,35 @@
+{
+  "reviewer": "TradeCase independent engineering agent",
+  "subject_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+  "command_template": [
+    "git",
+    "show",
+    "<subject_sha>:<path>"
+  ],
+  "verification": "SHA256 of Git object bytes equals independently captured tested file SHA256",
+  "files": [
+    {
+      "path": "packages/providers/oracle/index.ts",
+      "tested_file_sha256": "73ef5ee6f542973563f88c93ece861f5ee279be0cda33016a212fe5984e41a75",
+      "committed_file_sha256": "73ef5ee6f542973563f88c93ece861f5ee279be0cda33016a212fe5984e41a75",
+      "equal": true
+    },
+    {
+      "path": "scripts/oracle-paid-worker.ts",
+      "tested_file_sha256": "aba53f246b6a9b26c1660ed784025fe81b9b087ea44a9be0ae80dac19f1a03d8",
+      "committed_file_sha256": "aba53f246b6a9b26c1660ed784025fe81b9b087ea44a9be0ae80dac19f1a03d8",
+      "equal": true
+    },
+    {
+      "path": "tests/p8-p10/oracle.test.ts",
+      "tested_file_sha256": "13e790ffe8c9ba91315556e5b10b9c9833c26f10dd11bcc54c106c4dccc04c45",
+      "committed_file_sha256": "13e790ffe8c9ba91315556e5b10b9c9833c26f10dd11bcc54c106c4dccc04c45",
+      "equal": true
+    }
+  ],
+  "public_network": "not used; local Git object read only",
+  "exit_code": 0,
+  "external_calls": 0,
+  "human_approval": false,
+  "native_worker_live_acceptance": "pending"
+}

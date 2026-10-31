@@ -1,0 +1,34 @@
+{
+  "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+  "attempt_id": "attempt_a987b61f-2be5-4d9f-baf8-7273974222e7",
+  "asset_id": "asset_485facf0-925a-4f7d-9c87-04a70ea75423",
+  "images": [
+    {
+      "file": "oracle-downloaded.png",
+      "sha256": "c2ea9fbe3e2b42dcd11584e445d366233503778fe37ebf091454fe0efa6460c8",
+      "bytes": 1751034,
+      "width": 1254,
+      "height": 1254,
+      "meaning": "Actual PNG downloaded by Oracle from owned completed browser image; before Provider decoding/re-encoding"
+    },
+    {
+      "file": "oracle-original.png",
+      "sha256": "691ea1b5f13b6992bc2be8eb0dade952b54a33b24f370622a944af4dd7048eb4",
+      "bytes": 2021811,
+      "width": 1254,
+      "height": 1254,
+      "meaning": "Provider-normalized PNG produced by writeRaster; historical native-result.raw_image_sha256 refers to this normalized image, not the Oracle download"
+    },
+    {
+      "file": "oracle-review.png",
+      "sha256": "989528ad667bc78244eacb8d9996c88f0d3fb3c7d6716b1a5ef263c32dd2ed9c",
+      "bytes": 887207,
+      "width": 1024,
+      "height": 1024,
+      "meaning": "Native review asset with deterministic Concept / For Review overlay; pending approval"
+    }
+  ],
+  "normalization_is_not_generation": true,
+  "review_status": "pending",
+  "human_approval": false
+}

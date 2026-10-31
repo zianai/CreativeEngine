@@ -1,0 +1,24 @@
+action_id: "oracle-worker-compatible-20261031"
+target: "chatgpt.com via native CreativeEngine Worker and Oracle MCP"
+environment: "live_sandbox"
+payload_scope: "Exactly one VIRTUAL-DESK-005 synthetic concept via compatible request bundle; original Core Skill and policy retained"
+subject: "git:4a02f05e1b81050ead9582f1593b602431f2e83e"
+subject_paths: ["packages/providers/oracle/index.ts", "packages/core/validation.ts", "scripts/oracle-paid-worker.ts", "tools/oracle/entry.mjs", "tools/oracle/register.mjs", "tools/oracle/patch.mjs", "tools/oracle/image-dom.mjs", "tools/oracle/upstream-pins.json"]
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+idempotency_key: "batch_658db5a5-1c93-49a8-9ae2-21e12c4393d5"
+expires_at: "2026-10-31T17:01:16.169Z"
+timeout_seconds: 650
+status: "succeeded"
+observation: "Native Worker exited0 in113.322s with one review_pending asset. Grant revoked; receipt replay same artifact, recovery one attempt and unapproved export denied.72CE+14helper+tsc and desktop/mobile local browser retest passed. Material pending; accordion-hinge visual criterion not fully met; model unverified, no human approval."
+compensation: "Known completed native receipt preserved; one-shot grant revoked, no automatic retry. Keep asset pending human review and export denied; no publication or deployment."
+retry_allowed: false
+x_source_commit: "4a02f05e1b81050ead9582f1593b602431f2e83e"
+x_input_hash: "47b0076c31ab4335ab1f2da0178d8915c2052fa832cc81fef546ab874b51b747"
+x_grant_sha256: "276bf0ffbc650402d11a563b7fd40b698c246014be8a6b3ad0e97eff462c4a08"
+x_provider_config_hash: "22df9ef7f408c6b4ed9c4b53690f07c0348fda42d53fc2aad00296d6e0977a99"
+x_api_budget_cumulative_usd: 10
+x_new_api_requests: 0
+reconciliation_result: "effect-confirmed"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/compatible-worker/session-summary.json"

@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/bin/zsh",
+    "-c",
+    "node_modules/.bin/tsx --test --test-concurrency=1 tests/p7/*.test.ts tests/p8-p10/*.test.ts && CE_ORACLE_PACKAGE_ROOT=/opt/homebrew/Cellar/oracle/0.22.2/libexec/lib/node_modules/@steipete/oracle node --import ./tools/oracle/register.mjs --test tools/oracle/patch.test.mjs && node_modules/.bin/tsc --noEmit"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T11:01:21.477262+00:00",
+  "duration_seconds": 123.803,
+  "exit_code": 0,
+  "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+  "tracked_diff_sha256": "d9c6d7de1de6fd4ca59e98bda65dfaa9e773299eb4a2d239a3bb0575552f2acd",
+  "dirty_paths": [
+    " M work/active/T-013-oracle-unattended/task.yaml",
+    "?? docs/validation/oracle-unattended-20261031/",
+    "?? work/active/T-013-oracle-unattended/action-cli-control.yaml",
+    "?? work/active/T-013-oracle-unattended/action-cli-final.yaml",
+    "?? work/active/T-013-oracle-unattended/action-flat-mcp.yaml",
+    "?? work/active/T-013-oracle-unattended/action-raw-mcp.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-final.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-medium.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-ratio.yaml",
+    "?? work/active/T-013-oracle-unattended/action.yaml"
+  ],
+  "log_sha256": "5c2bd4118311d1e5e80b88c95f424f48ce276973e7674c60d285a5271c9fb9ae",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

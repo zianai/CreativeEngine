@@ -1,0 +1,106 @@
+[
+  {
+    "path": "cli-prompt.txt",
+    "session_id": "synthetic-oracle-cli-final-20261031",
+    "status": "completed",
+    "original_meta_sha256": "a3f91d9574711706356bc4f58925dd90214f414f7be0275e8babf3ec047e377b",
+    "prompt_sha256": "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c",
+    "prompt_characters": 604,
+    "options": {
+      "model": "gpt-5.5-pro",
+      "models": [
+        "gpt-5.5-pro"
+      ],
+      "effectiveModelId": "gpt-5.5-pro",
+      "mode": "browser",
+      "browserAttachments": "auto",
+      "browserInlineFiles": false,
+      "browserBundleFiles": false,
+      "browserBundleFormat": "auto",
+      "search": null,
+      "waitPreference": true,
+      "writeArtifacts": true,
+      "browserFollowUps": []
+    },
+    "browser": {
+      "modelStrategy": "current",
+      "desiredModel": "GPT-5.5",
+      "thinkingTime": null,
+      "timeoutMs": 360000,
+      "inputTimeoutMs": 30000,
+      "manualLogin": true,
+      "manualLoginCookieSync": false,
+      "cookieSync": null,
+      "keepBrowser": true,
+      "captureProviderNative": false,
+      "researchMode": "off",
+      "archiveConversations": "never",
+      "noFocus": false,
+      "allowCookieErrors": true
+    },
+    "modelSelection": {
+      "requestedModel": "GPT-5.5",
+      "resolvedLabel": "Thinking effort\nMedium",
+      "strategy": "current",
+      "status": "already-selected",
+      "verified": false,
+      "source": "chatgpt-model-picker",
+      "capturedAt": "2026-10-31T10:40:19.102Z"
+    },
+    "same_authorized_profile": true,
+    "reference_files": [],
+    "generate_image_path_set": true
+  },
+  {
+    "path": "mcp-prompt.txt",
+    "session_id": "attempt-bdf25145-21d4-4161-8426",
+    "status": "error",
+    "original_meta_sha256": "73953bcc29fd03f5695036947bba30cc7cc3d0895c158e0e5a3ff49e26681d8f",
+    "prompt_sha256": "f881c313ee9c7b1bbc480c42f5a56fe174044889e0a4405a72623c7eb3060820",
+    "prompt_characters": 2115,
+    "options": {
+      "model": "gpt-5.5-pro",
+      "models": [
+        "gpt-5.5-pro"
+      ],
+      "effectiveModelId": "gpt-5.5-pro",
+      "mode": "browser",
+      "browserAttachments": "never",
+      "browserInlineFiles": null,
+      "browserBundleFiles": null,
+      "browserBundleFormat": null,
+      "search": true,
+      "waitPreference": true,
+      "writeArtifacts": null,
+      "browserFollowUps": null
+    },
+    "browser": {
+      "modelStrategy": "current",
+      "desiredModel": "GPT-5.5",
+      "thinkingTime": "standard",
+      "timeoutMs": 540000,
+      "inputTimeoutMs": 45000,
+      "manualLogin": true,
+      "manualLoginCookieSync": false,
+      "cookieSync": false,
+      "keepBrowser": true,
+      "captureProviderNative": false,
+      "researchMode": null,
+      "archiveConversations": "never",
+      "noFocus": false,
+      "allowCookieErrors": null
+    },
+    "modelSelection": {
+      "requestedModel": "GPT-5.5",
+      "resolvedLabel": "Thinking effort\nMedium",
+      "strategy": "current",
+      "status": "already-selected",
+      "verified": false,
+      "source": "chatgpt-model-picker",
+      "capturedAt": "2026-10-31T10:47:39.385Z"
+    },
+    "same_authorized_profile": true,
+    "reference_files": [],
+    "generate_image_path_set": true
+  }
+]

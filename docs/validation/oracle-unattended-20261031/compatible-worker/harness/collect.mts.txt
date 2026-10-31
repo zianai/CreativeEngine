@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,mkdirSync,copyFileSync} from 'node:fs';
+import {join,resolve} from 'node:path';
+import {Core,dimensions} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/service.ts';
+import {Worker} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/worker.ts';
+import {OracleProvider} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/providers/oracle/index.ts';
+import {ValidationRunPolicy,sha} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/validation.ts';
+const folder=resolve(process.argv[2]),target=JSON.parse(readFileSync(join(folder,'target.json'),'utf8'));
+const provider=new OracleProvider({stateDir:join(target.data_root,'provider-receipts/oracle')});
+const core=new Core(target.data_root,new Map([['oracle',provider]]));
+const safe=resolve('docs/validation/oracle-unattended-20261031/compatible-worker');mkdirSync(safe,{recursive:true});
+try {
+ const task=core.require('task',target.task_id),batch=core.batch(target.batch_id),plan=core.require('plan',target.plan_id);
+ assert.equal(task.status,'review_pending');assert.equal(task.attempt_count,1);
+ const asset=core.require('asset',task.asset_id),attempt=core.require('attempt',task.attempt_id),receipt=await provider.getResult(task.attempt_id);
+ assert(receipt);assert.equal(receipt.mock,false);assert.equal(asset.review_status,'pending');assert.equal(core.store.list('review').length,0);
+ await assert.rejects(core.export({batch_id:target.batch_id}),/No approved assets/);
+ writeFileSync(join(target.operator,'revoked'),'Closed after single known Oracle image result; no retry\n',{mode:0o600});
+ const policy=new ValidationRunPolicy(target.operator,target.pin,true),ctx=policy.context();
+ const denied=policy.preflight({...ctx,action:'generate_image'},.25,false);assert.deepEqual(denied.reasons,['AUTH_REVOKED']);
+ const replay=await provider.generate({taskId:task.id,attemptId:task.attempt_id,prompt:task.prompt.text,outputDir:join(target.data_root,'attempts',task.attempt_id),...dimensions(plan.aspect_ratio),referencePaths:[]});
+ assert.equal(replay.metadata?.artifact_sha256,receipt.metadata?.artifact_sha256);
+ await new Worker(core,1).recover();assert.equal(core.require('task',task.id).attempt_count,1);
+ const result={status:'passed',task_id:task.id,attempt_id:task.attempt_id,batch_id:batch.id,session_id:receipt.sessionId,provider:'oracle',model:receipt.model,model_verified:false,mock:false,input_classification:'synthetic',asset_id:asset.id,asset_sha256:asset.sha256,raw_image_sha256:sha(readFileSync(receipt.path)),task_status:task.status,review_status:asset.review_status,human_approval:false,export_unapproved:'denied',receipt_replay:'same_artifact_no_generation',worker_recovery_attempt_count:1,revoked_preflight:denied,api_requests_added:0,api_cost_usd:0,subscription_cost:'unmetered'};
+ for(const [name,value] of Object.entries({'native-result.json':result,'receipt.json':receipt,'asset.json':asset,'attempt.json':attempt,'batch.json':batch}))writeFileSync(join(safe,name),JSON.stringify(value,null,2)+'\n');
+ copyFileSync(receipt.path,join(safe,'oracle-original.png'));copyFileSync(asset.path,join(safe,'oracle-review.png'));
+ writeFileSync(join(folder,'collected.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+} finally {core.close();await provider.close();}

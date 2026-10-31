@@ -1,0 +1,30 @@
+action_id: "oracle-raw-mcp-diagnostic-20261031"
+target: "chatgpt.com via direct actual Oracle MCP chatgpt_image"
+environment: "live_sandbox"
+payload_scope: "Exactly one fictional mint desk-organizer image using the exact 604-byte successful CLI prompt; no Provider prefix, aspect ratio, explicit thinking, attachments field, Core or Worker"
+subject: "sha256:89ad5b78b556859cbe6a12ad20579201a07e9b3d8c15aa9d09ad129ec8dc0da7"
+subject_ref: "docs/validation/oracle-unattended-20261031/raw-mcp/prepared-source.json"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+idempotency_key: "raw_mcp_ace5d262-9386-4916-8265-af9ffda0429b"
+expires_at: "2026-10-31T16:56:29.700Z"
+timeout_seconds: 650
+status: "succeeded"
+observation: "Actual raw MCP chatgpt_image completed, wrapper exit0 in82.989s, one automatically saved PNG f5cc25993cdb8f3e23c77bde110032a3d7a0fcf7b1ea7e482d3a07cc9e7e0632. Grant revoked; ledger completed estimatedAPI0 with USD0.25 reservation. Model unverified, material pending, no Provider/Worker success or human approval claim."
+compensation: "MCP client closed and one-shot grant revoked after known completed output. No repeat, publication or material approval; preserve native receipt and accounting evidence."
+retry_allowed: false
+x_source_commit: "867b231f6eea1df466fc370da854f66ce9e8b057"
+x_grant_sha256: "5ab5a0af85f75db62a89b72a1dd2a3a983aad73a1ea26ff8c9ddcf59d7538a5b"
+x_input_hash: "49016f25cdf29ef1524bbd0e1dc546408bc6a70e26dffa72f397646d8968cd0e"
+x_provider_config_hash: "5485ca6e37d5aeeb65fc944233662079e343e838cb84bfe3ecdd361780f8e3fe"
+x_request_prompt_sha256: "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c"
+x_request_prompt_bytes: 604
+x_accounting_reservation_usd: 0.25
+x_new_api_requests: 0
+x_api_cost_usd: 0
+x_subscription_cost: "unmetered"
+x_native_worker_success: false
+x_execute_command: "python3 /Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-raw-mcp/execute.py execute-once"
+reconciliation_result: "effect-confirmed"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/raw-mcp/session-summary.json"

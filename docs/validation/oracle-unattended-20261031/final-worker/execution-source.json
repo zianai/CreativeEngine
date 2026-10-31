@@ -1,0 +1,13 @@
+{
+  "source_sha": "2a037e2ec512c53b2ffee10abe1f1e17aa4ba595",
+  "input_hash": "84b660320dde6f100c5fa9762f10f9ad955a7fa4965d2b61b1178abab44f0a94",
+  "provider_config_hash": "a43bbfb5a22351482403d5a32c9cced06746ff0b96b23852e7cddaa91516d950",
+  "grant_sha256": "bdea2e42303c043691079805b3f12063342dafc1752307e3a88c47f54e229e75",
+  "batch_id": "batch_ae1cf980-30d5-4530-9e29-a6e797780bb8",
+  "task_id": "task_26fd53fe-382c-4c3a-ab1d-9aa54d019b84",
+  "human_approval": false,
+  "synthetic": true,
+  "api_credentials_inherited": false,
+  "reservation_usd": 0.25,
+  "prior_oracle_failed_reservation_usd": 0.25
+}

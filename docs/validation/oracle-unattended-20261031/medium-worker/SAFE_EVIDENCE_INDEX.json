@@ -1,0 +1,76 @@
+{
+  "scope": "synthetic medium-worker failure evidence only",
+  "api_requests_added": 0,
+  "files": [
+    {
+      "path": "close-failed-result.json",
+      "sha256": "f4367a1ca6a1d66b5868933304615cd402a2511b5ee45c798fbba8b60a0fa4df",
+      "bytes": 706
+    },
+    {
+      "path": "close-failed.txt",
+      "sha256": "ed4da5e442b038258a6e521a6aa0874b8f5704ff67cb033ceefc78bba74b7885",
+      "bytes": 65
+    },
+    {
+      "path": "execute-once-result.json",
+      "sha256": "f5bf0dce26f0659afb9607c41e4826b50e78dda762f82e7e5ca600acebfe9fab",
+      "bytes": 682
+    },
+    {
+      "path": "execute-once.txt",
+      "sha256": "b77d4f01df8855e45457d9aa355a2a3a4451adca9b55b477d5aff916842df019",
+      "bytes": 630
+    },
+    {
+      "path": "execution-source.json",
+      "sha256": "bdeb00ccd23cba3b79ddb70338837cd189159781ecc6d228ad0fb3f0465af8c0",
+      "bytes": 815
+    },
+    {
+      "path": "failed-native-state.json",
+      "sha256": "49afa092a6d4327aa9a525ce1f75e91f14511940e3e858f34ee2f572aae4e7de",
+      "bytes": 4883
+    },
+    {
+      "path": "oracle-session.txt",
+      "sha256": "4aab29833b65f7d9fb84270eeb74b0881cdbdc9f9810247d176c724fbd621046",
+      "bytes": 1396
+    },
+    {
+      "path": "preflight-result.json",
+      "sha256": "01e12f23ddd44ea3ce614af495097a07f98f94a09c136f44a8143c0bb43d5bee",
+      "bytes": 679
+    },
+    {
+      "path": "preflight.txt",
+      "sha256": "b2722396392f7c449467a2793e6cbc6be519ec19a09d9d1fe71bfd29c61e1599",
+      "bytes": 493
+    },
+    {
+      "path": "prompt.txt",
+      "sha256": "c5a63856f5b5461c0a31554c175467011a2d40644cd38953ee66f68073fcf9bb",
+      "bytes": 1838
+    },
+    {
+      "path": "reconciliation.json",
+      "sha256": "8fe1a3e40a2e9ea9ad7234619e26a536acd1a588f331e4faa779117ef37f9422",
+      "bytes": 1114
+    },
+    {
+      "path": "regression/output.txt",
+      "sha256": "6afba0573b2f35bfcacca4ae16ce70d3438b68e4def27422dfeae3bab3c8e992",
+      "bytes": 6617
+    },
+    {
+      "path": "regression/result.json",
+      "sha256": "02b2ce84fccf56fd90d4e32d650cdb59fa1edea81776b7189a3bc7dfc4316fc7",
+      "bytes": 1399
+    },
+    {
+      "path": "session-summary.json",
+      "sha256": "adf0f941f9b57b7644a04e3697ef63beb2c026a3180230d8084c7cdd330cf001",
+      "bytes": 982
+    }
+  ]
+}

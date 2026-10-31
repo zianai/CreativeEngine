@@ -1,0 +1,13 @@
+{
+  "artifact_sha256": "ec59126e25ab3955663b1aaf96d200a01829a696109083f9da153a37fa4a1c32",
+  "observer": "root AI engineering inspection; not human business approval",
+  "visible": [
+    "mint three compartments",
+    "accordion hinges",
+    "right compartment angled",
+    "CONCEPT and For Review labels"
+  ],
+  "unprovided_numeric_claims_seen": false,
+  "manufacturing_feasibility": "not_verified",
+  "material_approval": false
+}

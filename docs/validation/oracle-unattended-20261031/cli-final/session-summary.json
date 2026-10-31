@@ -1,0 +1,17 @@
+{
+  "id": "synthetic-oracle-cli-final-20261031",
+  "status": "completed",
+  "createdAt": "2026-10-31T10:40:12.347Z",
+  "startedAt": "2026-10-31T10:40:12.673Z",
+  "completedAt": "2026-10-31T10:41:31.626Z",
+  "model": "gpt-5.5-pro",
+  "runtime": {
+    "conversationId": "6ae5c594-a538-83e9-8177-ea7f55e54978",
+    "chromeTargetId": "AF69830373E7274B1531922821FE4177",
+    "promptSubmitted": true,
+    "submittedPromptHash": "d072f5ce68997810c1600db444dab345c50bb1557991ec6607fee2667b03083d"
+  },
+  "model_verified": false,
+  "human_approval": false,
+  "manual_generation_or_download": false
+}

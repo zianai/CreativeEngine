@@ -1,0 +1,198 @@
+{
+  "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+  "files": [
+    {
+      "path": "RESULT.md",
+      "sha256": "4ddcfb7590578b0dfa035e5b388b34a67fc8e3a9bbac7d68f4e1d0fe5c7c8890",
+      "bytes": 1669
+    },
+    {
+      "path": "VISUAL_LIMITATIONS.json",
+      "sha256": "86c8f2ae5d590e8943ebb694f5a48c0258f4f5b08df9185373931fdcf647770a",
+      "bytes": 459
+    },
+    {
+      "path": "asset.json",
+      "sha256": "4eff7487ce536ecfb3da3d618c54197448bf4ba8b98ad70281537d602a14e531",
+      "bytes": 3371
+    },
+    {
+      "path": "attempt.json",
+      "sha256": "8ed4b9ab6fd6b58a195805cb37faeca72125e9d4fee46711882556e8e4d1f6c7",
+      "bytes": 1356
+    },
+    {
+      "path": "batch.json",
+      "sha256": "d4ce7f9f6434c56901b2a165b41a4ac36be2d18805054cb7b52f1bf5a1dffc66",
+      "bytes": 5097
+    },
+    {
+      "path": "browser/actual-api-review-1440.png",
+      "sha256": "32ed7a3a7ee732a05b026140048bb1fe07305403625d5854e7f7775c43d44fcf",
+      "bytes": 339019
+    },
+    {
+      "path": "browser/actual-api-review-390.png",
+      "sha256": "819f29b8d29d45cfb67800f7de0f66f984553b839c768303d36365f20a76f8ee",
+      "bytes": 121990
+    },
+    {
+      "path": "browser/result.json",
+      "sha256": "6c6845e9b3e2366e7e4588f8fa87a0fdee607e8fd54a5b2bf836f431cc15278b",
+      "bytes": 204
+    },
+    {
+      "path": "browser-initial-failed.txt",
+      "sha256": "5f5e3371feb66e37914b7848c8cb836fac239974a09b93b24e091ffff95a0b8b",
+      "bytes": 1306
+    },
+    {
+      "path": "browser-retest/output.log",
+      "sha256": "e54e5f980f015aedc9eed4a0ed82a7a37af261d9e7f9a5a0720d95cc53a9ab73",
+      "bytes": 62
+    },
+    {
+      "path": "browser-retest/result.json",
+      "sha256": "2722dcf24cc905a50456fdba95af2bedb6755a9c1ed79b736d304bc530e71336",
+      "bytes": 1687
+    },
+    {
+      "path": "collect-result.json",
+      "sha256": "1b3f2c8c70f44a9720325e89c32b62027aff94d3906f44d9ab9fe0c73ee96fcc",
+      "bytes": 1494
+    },
+    {
+      "path": "collect.log",
+      "sha256": "451b8fb8207debf6aa01e7f2d755c912b6a98a19ed2e7637532521a903ad6c93",
+      "bytes": 1278
+    },
+    {
+      "path": "collection-stage.json",
+      "sha256": "d8618e841a8f7ec839097767637e096e7c2019347f9f234176abdcd819276fa6",
+      "bytes": 605
+    },
+    {
+      "path": "execute-once-result.json",
+      "sha256": "937a678c81e8e1563e03aac9af2a4626bfd3e279540a6e07794b24cb44e5a94b",
+      "bytes": 686
+    },
+    {
+      "path": "execute-once.log",
+      "sha256": "8a934fda8e38b2824ddf03ea74632410064dd431cfc44bd3a2585ed1635a3564",
+      "bytes": 669
+    },
+    {
+      "path": "execution-source.json",
+      "sha256": "a7c6ed4f739093faa0d132e92a69755a5a112e22b75daa17d2e356e1f7d0c035",
+      "bytes": 1351
+    },
+    {
+      "path": "execution-started.json",
+      "sha256": "395c45c837c2a9a30a441ef4848453dc8815bfbaba9b04f3bc64dfb61cf453a5",
+      "bytes": 128
+    },
+    {
+      "path": "harness/browser.mts.txt",
+      "sha256": "0b1a72890cfaa5ea29a2c6fa69c326fdf933612320b5cde1c54cf4c4fc0901ca",
+      "bytes": 3362
+    },
+    {
+      "path": "harness/collect.mts.txt",
+      "sha256": "e80536f74d8a19b0ed211c0cf7267580ebcfaf38d36fd7d00184e84225bb39dd",
+      "bytes": 3545
+    },
+    {
+      "path": "image-lineage.json",
+      "sha256": "7f1e91166ddf7e8b5a9b471ebe7a43817326bc7f3ed5550e88ad85969c2239f9",
+      "bytes": 1303
+    },
+    {
+      "path": "ledger-state.json",
+      "sha256": "81381baf6230a9a4b15f7a69e5a62c604d25e09dd45f1d54c55579ee57dec864",
+      "bytes": 695
+    },
+    {
+      "path": "model-output.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "native-result.json",
+      "sha256": "07aea53a8f9178f2389506d1c9d607b49d7fbbb5fd37da5958207de7c079bdad",
+      "bytes": 1495
+    },
+    {
+      "path": "oracle-downloaded.png",
+      "sha256": "c2ea9fbe3e2b42dcd11584e445d366233503778fe37ebf091454fe0efa6460c8",
+      "bytes": 1751034
+    },
+    {
+      "path": "oracle-original.png",
+      "sha256": "691ea1b5f13b6992bc2be8eb0dade952b54a33b24f370622a944af4dd7048eb4",
+      "bytes": 2021811
+    },
+    {
+      "path": "oracle-output.log",
+      "sha256": "1cd2a57c53fc9bbd3d28fc6727dd57b8ef33ea9f549e5606105ca5542ddb7972",
+      "bytes": 1428
+    },
+    {
+      "path": "oracle-review.png",
+      "sha256": "989528ad667bc78244eacb8d9996c88f0d3fb3c7d6716b1a5ef263c32dd2ed9c",
+      "bytes": 887207
+    },
+    {
+      "path": "preflight-result.json",
+      "sha256": "9266882e31bf1a6d7e2406962327630dc052c01fab7722a91c5a56d622078a0a",
+      "bytes": 683
+    },
+    {
+      "path": "preflight.log",
+      "sha256": "b2722396392f7c449467a2793e6cbc6be519ec19a09d9d1fe71bfd29c61e1599",
+      "bytes": 493
+    },
+    {
+      "path": "prepare.log",
+      "sha256": "fe60ed7c1e08b4182fe7f45ea769c896d17d10145b4eb53e867b77650b7353ec",
+      "bytes": 430
+    },
+    {
+      "path": "prompt.txt",
+      "sha256": "c5a63856f5b5461c0a31554c175467011a2d40644cd38953ee66f68073fcf9bb",
+      "bytes": 1838
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "76445653b5921f41246aa91364d859fea22619ba64602c7c6b9bbadc19020820",
+      "bytes": 1054
+    },
+    {
+      "path": "regression/output.log",
+      "sha256": "5c2bd4118311d1e5e80b88c95f424f48ce276973e7674c60d285a5271c9fb9ae",
+      "bytes": 7530
+    },
+    {
+      "path": "regression/result.json",
+      "sha256": "ac469326c686abb19c581f166f89f6909bf3667653e015dd4d6297862302146c",
+      "bytes": 1603
+    },
+    {
+      "path": "session-summary.json",
+      "sha256": "889e722e3f724915361183b9d63b14edd325b1090976e1d4c9e679f76917d736",
+      "bytes": 2240
+    },
+    {
+      "path": "transcript.md",
+      "sha256": "d28f25f532fc8cbc48c22cb45e14249693e86c516b8036dfab611ec216c43d18",
+      "bytes": 2471
+    }
+  ],
+  "external_calls_during_collection": 0,
+  "private_records_excluded": [
+    "configuration files",
+    "browser profile and debugging endpoint metadata",
+    "operator grant/context/isolation files",
+    "SQLite databases"
+  ],
+  "human_approval": false
+}

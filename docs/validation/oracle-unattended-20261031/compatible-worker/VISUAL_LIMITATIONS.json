@@ -1,0 +1,12 @@
+{
+  "material_review_status": "pending",
+  "human_approval": false,
+  "automatic_visual_acceptance": false,
+  "engineering_observation_by": [
+    "root",
+    "tradecase"
+  ],
+  "finding": "Actual generated hinges look piano/barrel-like rather than the requested accordion hinges. Native pipeline completion does not establish full visual brief compliance.",
+  "actual_model_verified": false,
+  "no_additional_generation_or_download_during_collection": true
+}

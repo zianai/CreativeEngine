@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/node_modules/.bin/tsx",
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-raw-mcp/diagnose.mts",
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-raw-mcp",
+    "--execute-once"
+  ],
+  "exit_code": 0,
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "duration_seconds": 82.98881549946964,
+  "timed_out": false,
+  "log_sha256": "263431674eb175b9938e41c3dc9408d647e6e1424fc6315c1bba42bd70df17ec",
+  "api_credentials_inherited": false,
+  "api_requests_added": 0,
+  "api_cost_usd": 0,
+  "actual_subscription_cost_usd": null,
+  "subscription_cost": "unmetered",
+  "diagnostic_only": true,
+  "native_worker_success": false,
+  "human_approval": false,
+  "retry_allowed": false
+}

@@ -1,0 +1,27 @@
+✔ Oracle blocks direct external calls without a pinned grant, and prompt drift before MCP (7.32925ms)
+✔ Oracle completed receipt replays without new generation; changed input cannot reuse attempt (25.208542ms)
+✔ Oracle timeout stays uncertain and cannot resubmit (4.444416ms)
+✔ Oracle running stays uncertain and cannot resubmit (4.778583ms)
+✔ Oracle wrong-path stays uncertain and cannot resubmit (5.356084ms)
+✔ Oracle revoked during probe prevents submission (3.103375ms)
+✔ Oracle config-drift during probe prevents submission (2.952083ms)
+✔ Oracle mutated-reference during probe prevents submission (2.84225ms)
+✔ Oracle rejects a preexisting output before submitting (2.797875ms)
+✔ Oracle warmed connection cannot execute a newly authorized transport configuration (2.877959ms)
+✔ Oracle aspect ratio uses ratio units rather than pixel counts (0.058542ms)
+✔ Oracle preserves the complete compiled Core policy, Skill, business JSON and revision bytes (0.237ms)
+✔ Oracle raw square intent is unchanged only for an anchored generation instruction without references (0.047625ms)
+✔ Oracle MCP raw square preserves intent and omits only redundant square/options overrides (9.868916ms)
+✔ Oracle MCP non-square preserves intent and omits only redundant square/options overrides (9.247708ms)
+✔ Oracle MCP widescreen preserves intent and omits only redundant square/options overrides (10.251291ms)
+✔ Oracle MCP square references preserves intent and omits only redundant square/options overrides (18.246416ms)
+✔ Oracle MCP square edit preserves intent and omits only redundant square/options overrides (16.999291ms)
+✔ Oracle MCP non-square edit preserves intent and omits only redundant square/options overrides (16.943333ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 418.015208

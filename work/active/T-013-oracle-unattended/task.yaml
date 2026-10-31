@@ -1,7 +1,7 @@
 schema_version: 3
 protocol_version: "3.0"
 id: T-013-oracle-unattended
-status: implementing
+status: ready_for_review
 goal: Repair Oracle completed-image detection and validate one-shot unattended synthetic Worker flow
 scope: [packages/core/validation.ts, packages/providers/oracle/, tools/oracle/, tests/p8-p10/, scripts/, docs/validation/oracle-unattended-20261031/, work/active/T-013-oracle-unattended/, project/]
 non_goals: [Production deployment, Material approval, Real private business data, Cookie extraction, Remote Git writes]
@@ -11,7 +11,8 @@ risk_reasons: [payment-or-message]
 protected_paths: [docs/validation/p7/, docs/validation/p8-p10/, docs/validation/followup-20261031/]
 context_refs: [work/active/T-013-oracle-unattended/AUTHORITY.md]
 decision_refs: [docs/validation/post-p7/ADR.md]
-evidence_refs: []
+evidence_refs: [docs/validation/oracle-unattended-20261031/REPORT.md, docs/validation/oracle-unattended-20261031/KNOWN_ISSUES.md]
 updated: "2026-10-31"
 implementation_started: true
-external_effects: none
+external_effects: bounded_browser_generation
+action_refs: [work/active/T-013-oracle-unattended/action-worker-compatible.yaml, work/active/T-013-oracle-unattended/action-cli-control.yaml, work/active/T-013-oracle-unattended/action.yaml, work/active/T-013-oracle-unattended/action-cli-final.yaml, work/active/T-013-oracle-unattended/action-worker-final.yaml, work/active/T-013-oracle-unattended/action-worker-ratio.yaml, work/active/T-013-oracle-unattended/action-worker-medium.yaml, work/active/T-013-oracle-unattended/action-flat-mcp.yaml, work/active/T-013-oracle-unattended/action-raw-mcp.yaml]

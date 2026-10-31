@@ -1,0 +1,57 @@
+{
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "code_snapshot": "docs/validation/oracle-unattended-20261031/code-867b2-snapshot.json",
+  "code_snapshot_sha256": "c71488910ce9ee77ac6fe253d757a83b501cc4c42a6d2da9cee0a2295a472182",
+  "command": {
+    "command": [
+      "/opt/homebrew/Cellar/node/26.12.1_1/bin/node",
+      "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tools/oracle/entry.mjs",
+      "--package-root",
+      "/opt/homebrew/Cellar/oracle/0.22.2/libexec/lib/node_modules/@steipete/oracle",
+      "--cli",
+      "--engine",
+      "browser",
+      "--browser-manual-login",
+      "--browser-manual-login-profile-dir",
+      "/Users/a/.oracle/browser-profile",
+      "--browser-model-strategy",
+      "current",
+      "--no-browser-capture-provider-native",
+      "--browser-archive",
+      "never",
+      "--browser-keep-browser",
+      "--retain-hours",
+      "0",
+      "--no-notify",
+      "--prompt",
+      "Generate exactly ONE square image FROM SCRATCH using text-to-image. There is no reference image or existing image target; do not attempt an image edit. VIRTUAL SYNTHETIC PRODUCT TEST ONLY: concept rendering of a fictional mint foldable desktop organizer with three rounded compartments, visible accordion hinges, one compartment slightly folded, neutral studio background. Single perspective only. No dimensions, numeric annotations, diagrams, specifications, certification, brand, performance or manufacturing claims. The only text permitted is CONCEPT and For Review. This is not a real SKU photograph.",
+      "--slug",
+      "synthetic-oracle-cli-control-20261031",
+      "--generate-image",
+      "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-cli-control/oracle-home/generated/cli-mint-concept.png",
+      "--write-output",
+      "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-cli-control/cli-response.md",
+      "--write-artifacts",
+      "--browser-timeout",
+      "6m",
+      "--browser-input-timeout",
+      "30s",
+      "--wait"
+    ],
+    "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+    "input_sha256": "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c",
+    "api_credentials_inherited": false,
+    "api_cost_usd": 0,
+    "subscription_cost": "unmetered",
+    "human_approval": false,
+    "retry_allowed": false
+  },
+  "harness": {
+    "environment.py": "from pathlib import Path\nimport os,json\nruntime=Path(__file__).resolve().parent\nrepo=runtime.parents[1]/'worktrees/creative-engine'\npackage=Path('/opt/homebrew/Cellar/oracle/0.22.2/libexec/lib/node_modules/@steipete/oracle')\nhelper=repo/'tools/oracle'\nnode=Path('/opt/homebrew/bin/node').resolve()\npins=json.loads((helper/'upstream-pins.json').read_text())\nfiles=[helper/n for n in ['entry.mjs','register.mjs','patch.mjs','image-dom.mjs','upstream-pins.json']]+[package/n for n in pins['files']]+[node,runtime/'oracle-home/config.json']\nenv={'PATH':os.environ['PATH'],'HOME':str(runtime),'NO_PROXY':'*','no_proxy':'*','NO_COLOR':'1','ORACLE_ENABLED':'true','ORACLE_HOME_DIR':str(runtime/'oracle-home'),'ORACLE_BROWSER_PROFILE_DIR':'/Users/a/.oracle/browser-profile','ORACLE_MCP_COMMAND':str(node),'ORACLE_MCP_ARGS':json.dumps([str(helper/'entry.mjs'),'--package-root',str(package),'--mcp']),'ORACLE_RUNTIME_FILES':json.dumps([str(p) for p in files]),'CREATIVE_PROVIDER_TIMEOUT_MS':'600000','OPENAI_AGENTS_DISABLE_TRACING':'1'}\nassert not any('KEY' in k or 'TOKEN' in k for k in env)\n",
+    "cli-execute.py": "from environment import runtime,repo,env,node,package,helper\nfrom pathlib import Path\nimport json,hashlib,subprocess,time\nmarker=runtime/'cli-started.json'; image=runtime/'oracle-home/generated/cli-mint-concept.png'; response=runtime/'cli-response.md'\nprompt='Generate exactly ONE square image FROM SCRATCH using text-to-image. There is no reference image or existing image target; do not attempt an image edit. VIRTUAL SYNTHETIC PRODUCT TEST ONLY: concept rendering of a fictional mint foldable desktop organizer with three rounded compartments, visible accordion hinges, one compartment slightly folded, neutral studio background. Single perspective only. No dimensions, numeric annotations, diagrams, specifications, certification, brand, performance or manufacturing claims. The only text permitted is CONCEPT and For Review. This is not a real SKU photograph.'\ncmd=[str(node),str(helper/'entry.mjs'),'--package-root',str(package),'--cli','--engine','browser','--browser-manual-login','--browser-manual-login-profile-dir',env['ORACLE_BROWSER_PROFILE_DIR'],'--browser-model-strategy','current','--no-browser-capture-provider-native','--browser-archive','never','--browser-keep-browser','--retain-hours','0','--no-notify','--prompt',prompt,'--slug','synthetic-oracle-cli-control-20261031','--generate-image',str(image),'--write-output',str(response),'--write-artifacts','--browser-timeout','6m','--browser-input-timeout','30s','--wait']\nsource=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()\nrecord={'command':cmd,'source_sha':source,'input_sha256':hashlib.sha256(prompt.encode()).hexdigest(),'api_credentials_inherited':False,'api_cost_usd':0,'subscription_cost':'unmetered','human_approval':False,'retry_allowed':False}\n(runtime/'cli-command.json').write_text(json.dumps(record,indent=2))\nif __import__('sys').argv[1]=='prepare': print(json.dumps({'status':'prepared','input_sha256':record['input_sha256'],'source_sha':source}));raise SystemExit(0)\nassert not image.exists(),'Existing output; reconcile instead of regenerating'\nwith marker.open('x') as f:json.dump({'state':'executing','time_unix':time.time(),'retry_allowed':False},f)\nstart=time.monotonic();log=runtime/'cli-output.log'\nwith log.open('wb') as f:\n try:code=subprocess.run(cmd,cwd=repo,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=420).returncode\n except subprocess.TimeoutExpired:code=124\nresult={**record,'exit_code':code,'duration_seconds':time.monotonic()-start,'log_sha256':hashlib.sha256(log.read_bytes()).hexdigest(),'image_present':image.is_file(),'image_sha256':hashlib.sha256(image.read_bytes()).hexdigest() if image.is_file() else None}\n(runtime/'cli-result.json').write_text(json.dumps(result,indent=2));print(json.dumps({k:result[k] for k in ['exit_code','duration_seconds','image_present','image_sha256','api_cost_usd']}))\nraise SystemExit(code)\n"
+  },
+  "harness_sha256": {
+    "environment.py": "c2a32d5b4fc4aef7c035085be2cb683a9b42c14bead2a38a36ed5598c1899dc8",
+    "cli-execute.py": "0e3e90d26bd31985a355e3530cc347b4b7d3a447aba89c3a7c2068f4ec484886"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "files": [
+    {
+      "path": "RESULT.md",
+      "sha256": "b81a0e173951d64dd3d431a02dc5c71a6bcbc122ae4eba0a5b59fa5b292105e8",
+      "bytes": 745
+    },
+    {
+      "path": "cli-output.log",
+      "sha256": "fb609a76170beeda517e9ec933b6040f891ceca941b9df61ba86845f755f6c72",
+      "bytes": 1647
+    },
+    {
+      "path": "cli-response.md",
+      "sha256": "757ba2ff22ff3cc594792c591203deb405694b98d01c99742c327a3997fe3fb3",
+      "bytes": 189
+    },
+    {
+      "path": "cli-result.json",
+      "sha256": "7478d42b453ad6d7393b08eda952372ab35bae1773edfacdb411fc95add97f47",
+      "bytes": 2318
+    },
+    {
+      "path": "command.json",
+      "sha256": "a75ef5561e28aeb93efd36ccea2f39981ceb102b8f53b8d403ee421eb0fc6ef5",
+      "bytes": 2064
+    },
+    {
+      "path": "model-output.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-cli.png",
+      "sha256": "8d9a5a49e632b9085a9a22b2531c02e712bcae191cc06896502dae0490565bf6",
+      "bytes": 1905247
+    },
+    {
+      "path": "oracle-output.log",
+      "sha256": "52b9394136674cecbf9ab8ff97ea2f0c2d534a46d6ea86d62befe42c9668d6a8",
+      "bytes": 1527
+    },
+    {
+      "path": "prepared-source.json",
+      "sha256": "52b1f3585ae9191da358c281d38299680905aa71ecdeebc4ada8bf34fd3a84d6",
+      "bytes": 6668
+    },
+    {
+      "path": "session-summary.json",
+      "sha256": "2875e18d7988ae730b8984d635f9dea23f63754c1cdcd1e9e36a78e04513d5bd",
+      "bytes": 1666
+    },
+    {
+      "path": "transcript.md",
+      "sha256": "db6ac1349228b2b4d41ce8c42e914f671cd2018afccf739a8f797e0a91993db0",
+      "bytes": 1092
+    }
+  ],
+  "external_calls_during_collection": 0,
+  "private_records_excluded": [
+    "full browser runtime/debug endpoint metadata",
+    "browser profile/cookies"
+  ],
+  "human_approval": false
+}

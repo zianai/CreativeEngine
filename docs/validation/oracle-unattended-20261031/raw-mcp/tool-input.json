@@ -1,0 +1,11 @@
+{
+  "name": "chatgpt_image",
+  "arguments": {
+    "prompt": "Generate exactly ONE square image FROM SCRATCH using text-to-image. There is no reference image or existing image target; do not attempt an image edit. VIRTUAL SYNTHETIC PRODUCT TEST ONLY: concept rendering of a fictional mint foldable desktop organizer with three rounded compartments, visible accordion hinges, one compartment slightly folded, neutral studio background. Single perspective only. No dimensions, numeric annotations, diagrams, specifications, certification, brand, performance or manufacturing claims. The only text permitted is CONCEPT and For Review. This is not a real SKU photograph.",
+    "slug": "raw_mcp_ace5d262-9386-4916-8265-af9ffda0429b",
+    "outputPath": "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-raw-mcp/oracle-home/generated/raw_mcp_ace5d262-9386-4916-8265-af9ffda0429b.png",
+    "browserModelStrategy": "current",
+    "browserArchive": "never",
+    "browserKeepBrowser": true
+  }
+}

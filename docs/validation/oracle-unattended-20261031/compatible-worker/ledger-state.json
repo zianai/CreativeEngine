@@ -1,0 +1,24 @@
+{
+  "read_only_snapshot": true,
+  "amount_unit": "USD microdollars",
+  "rows": [
+    {
+      "id": "attempt_a987b61f-2be5-4d9f-baf8-7273974222e7",
+      "grant_hash": "276bf0ffbc650402d11a563b7fd40b698c246014be8a6b3ad0e97eff462c4a08",
+      "action": "generate_image",
+      "status": "completed",
+      "reserved": 250000,
+      "observed": 0,
+      "images": 1,
+      "basis": "estimated"
+    }
+  ],
+  "conservative_accounting_usd": 0.25,
+  "api_cost_usd": 0,
+  "observed_settlement_basis": "estimated API-zero; not a subscription invoice",
+  "actual_subscription_cost_usd": null,
+  "subscription_cost": "unmetered",
+  "unresolved_rows": 0,
+  "grant_revoked": true,
+  "retry_allowed": false
+}

@@ -1,0 +1,61 @@
+{
+  "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+  "session_id": "attempt-a987b61f-2be5-4d9f-baf8",
+  "session_status": "completed",
+  "created_at": "2026-10-31T11:01:33.452Z",
+  "started_at": "2026-10-31T11:01:33.459Z",
+  "completed_at": "2026-10-31T11:03:21.267Z",
+  "wrapper_exit_code": 0,
+  "wrapper_duration_seconds": 113.32151837553829,
+  "task_id": "task_cf07a32b-cbfa-4834-95d2-3bdc61fd3c31",
+  "attempt_id": "attempt_a987b61f-2be5-4d9f-baf8-7273974222e7",
+  "asset_id": "asset_485facf0-925a-4f7d-9c87-04a70ea75423",
+  "task_status": "review_pending",
+  "review_status": "pending",
+  "prompt_submitted": true,
+  "session_prompt_sha256": "8ce07296d0978e4f49d234ef3fb62f1bc686cff7bcad5ddfd29c38c7b2ed9801",
+  "session_prompt_bytes": 1907,
+  "upstream_submitted_prompt_hash": "9e7f5ea9a8f016d29b494d970500691e6fe0f29530d6bc05bc4827ac36a82a65",
+  "upstream_prompt_hash_protocol": "DOM message identity plus normalized text; distinct from raw prompt SHA-256",
+  "model_identity": "oracle-browser-current-unverified",
+  "model_verified": false,
+  "requested_model_label": "gpt-5.5-pro",
+  "model_selection": {
+    "requestedModel": "GPT-5.5",
+    "resolvedLabel": "Thinking effort\nPro",
+    "strategy": "current",
+    "status": "already-selected",
+    "verified": false,
+    "source": "chatgpt-model-picker",
+    "capturedAt": "2026-10-31T11:01:47.837Z"
+  },
+  "usage_raw": {
+    "inputTokens": 378,
+    "outputTokens": 57,
+    "reasoningTokens": 0,
+    "totalTokens": 435
+  },
+  "raw_session_meta_sha256": "daef826c7bb46925f3cc9ba2c1d732343ed014ea5c0e8a12725b80dadaf096b6",
+  "api_requests_added": 0,
+  "api_cost_usd": 0,
+  "actual_subscription_cost_usd": null,
+  "subscription_cost": "unmetered",
+  "grant_revoked": true,
+  "receipt_replay": "same_artifact_no_generation",
+  "worker_recovery_attempt_count": 1,
+  "export_unapproved": "denied",
+  "revoked_preflight": [
+    "AUTH_REVOKED"
+  ],
+  "human_approval": false,
+  "browser_ui_validation": {
+    "status": "passed",
+    "source_sha": "4a02f05e1b81050ead9582f1593b602431f2e83e",
+    "duration_seconds": 5.729,
+    "desktop_width": 1440,
+    "mobile_width": 390,
+    "export_unapproved": "denied",
+    "human_approval": false,
+    "public_network": "OS denied"
+  }
+}

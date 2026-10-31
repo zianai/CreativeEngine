@@ -1,0 +1,26 @@
+{
+  "system": "creative_engine",
+  "configuration": {
+    "provider": "redacted",
+    "model": "redacted_or_unselected",
+    "required_domain": "operator_allowlist",
+    "capability_verified_live": false,
+    "environment": "live_sandbox",
+    "data_classification": "synthetic",
+    "action": "generate_image"
+  },
+  "approved_limits": {
+    "max_requests": 1,
+    "max_images": 1,
+    "max_attempts": 1,
+    "max_usd": 0.25
+  },
+  "status": "allowed",
+  "reasons": [],
+  "token_present": false,
+  "external_writes": false,
+  "live_executed": false,
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "external_calls": 0,
+  "diagnostic_only": true
+}

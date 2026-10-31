@@ -1,0 +1,5 @@
+Generate exactly one NEW image FROM SCRATCH. There is NO reference image and NO existing image target. Use text-to-image generation, not image editing. Follow the fictional concept brief below; do not invent product facts or approval.
+
+Generate exactly ONE square image FROM SCRATCH using text-to-image. There is no reference image or existing image target; do not attempt an image edit. VIRTUAL SYNTHETIC PRODUCT TEST ONLY: concept rendering of a fictional mint foldable desktop organizer with three rounded compartments, visible accordion hinges, one compartment slightly folded, neutral studio background. Single perspective only. No dimensions, numeric annotations, diagrams, specifications, certification, brand, performance or manufacturing claims. The only text permitted is CONCEPT and For Review. This is not a real SKU photograph.
+
+Create the image with aspect ratio 1:1.

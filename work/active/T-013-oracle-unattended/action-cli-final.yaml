@@ -1,0 +1,21 @@
+environment: "live_sandbox"
+subject: "sha256:488e5912adebc9a9882a97f2e80470c1b238d88f97bb5d0dcf6f5b682d830d17"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+expires_at: "2026-10-31T12:40:00.385811+00:00"
+timeout_seconds: 420
+status: "succeeded"
+observation: "CLI exited 0 in 81.12 seconds, native completed session and one PNG saved automatically; no manual generation or download; no human approval"
+compensation: "No automatic retry; reconcile exact session and preserve any unknown liability; no material approval or deployment"
+x_api_budget_cumulative_usd: 10
+x_new_api_requests: 0
+action_id: "oracle-cli-final-20261031"
+target: "chatgpt.com via Oracle CLI browser engine"
+payload_scope: "Exactly one fictional mint desk-organizer concept; no private data"
+idempotency_key: "synthetic-oracle-cli-final-20261031"
+x_input_hash: "5468d64fc161afc6c249ddf004a03833ee5ee1e4dae82772e885b07e3ebee91c"
+reconciliation_result: "Known completed native session and image file; no retry needed"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/cli-final/cli-result.json"
+subject_ref: "docs/validation/oracle-unattended-20261031/code-2a037-snapshot.json"
+x_source_commit: "2a037e2ec512c53b2ffee10abe1f1e17aa4ba595"

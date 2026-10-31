@@ -1,0 +1,24 @@
+{
+  "status": "unknown_reconcile_exact_session",
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "attempt_id": "flat_mcp_5a597b24-4cd8-4742-8b49-c3df46afbd1b",
+  "session_id": "flat-mcp-5a597b24-4cd8-4742",
+  "terminal_observation": "Local Oracle session status error with CE_ORACLE_IMAGE_GENERATION_FAILED; promptSubmitted true; no generated artifact or provider result receipt",
+  "exit_code": 1,
+  "duration_seconds": 21.083819208666682,
+  "timed_out": false,
+  "ledger_status": "reconciling",
+  "retained_liability_usd": 0.25,
+  "observed_subscription_cost_usd": null,
+  "grant_revoked": true,
+  "retry_allowed": false,
+  "diagnostic_only": true,
+  "native_worker_success": false,
+  "human_approval": false,
+  "conclusion": "The direct flat-prompt MCP diagnostic also failed. This does not establish Core structured prompt compilation as the cause; the provider prefix, MCP aspect sentence and transport path differ from the known successful CLI invocation.",
+  "limitations": [
+    "This collection reads existing local files and ledger only; no browser, MCP or external call was made.",
+    "Known terminal error and absent local output do not establish zero external processing or subscription cost.",
+    "Provider browser model identity remains unverified."
+  ]
+}

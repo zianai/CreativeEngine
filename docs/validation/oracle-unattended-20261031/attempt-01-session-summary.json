@@ -1,0 +1,16 @@
+{
+  "id": "attempt-b40d2750-3996-450b-b5d6",
+  "status": "running",
+  "createdAt": "2026-10-31T10:32:15.076Z",
+  "startedAt": "2026-10-31T10:32:15.078Z",
+  "completedAt": null,
+  "error": null,
+  "model": "gpt-5.5-pro",
+  "runtime": {
+    "conversationId": "6ae5c3b9-a09c-83ea-b124-260d6282099e",
+    "chromeTargetId": "7BDC6642DA7F936856BA1168AC0F78D3",
+    "promptSubmitted": true,
+    "submittedPromptHash": "9886e5eab15d90c9b619deefeb70ab8092265f874c5fd44ae9521f1b41666f98"
+  },
+  "model_verified": false
+}

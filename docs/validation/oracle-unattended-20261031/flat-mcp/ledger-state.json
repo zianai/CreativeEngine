@@ -1,0 +1,24 @@
+{
+  "read_only_snapshot": true,
+  "amount_unit": "USD microdollars",
+  "rows": [
+    {
+      "id": "flat_mcp_5a597b24-4cd8-4742-8b49-c3df46afbd1b",
+      "grant_hash": "93a4a198f781a64153d51a1625aa43341cd4cda55962510eb47287747fb3e843",
+      "action": "generate_image",
+      "status": "reconciling",
+      "reserved": 250000,
+      "observed": null,
+      "images": 1,
+      "basis": "unknown"
+    }
+  ],
+  "retained_liability_usd": 0.25,
+  "observed_subscription_cost_usd": null,
+  "api_cost_usd": 0,
+  "api_requests_added": 0,
+  "subscription_cost": "unmetered",
+  "grant_revoked": true,
+  "grant_sha256": "93a4a198f781a64153d51a1625aa43341cd4cda55962510eb47287747fb3e843",
+  "retry_allowed": false
+}

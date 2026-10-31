@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/node_modules/.bin/tsx",
+    "scripts/oracle-paid-worker.ts",
+    "--execute-once",
+    "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-unattended-ratio/data",
+    "batch_89e6ce02-b90e-4613-b4c3-81d811f3f731"
+  ],
+  "exit_code": 1,
+  "source_sha": "13ef7b8ebe594bec00147c6d090a174dad038027",
+  "duration_seconds": 29.473424666561186,
+  "log_sha256": "b77d4f01df8855e45457d9aa355a2a3a4451adca9b55b477d5aff916842df019",
+  "api_credentials_inherited": false,
+  "api_cost_usd": 0,
+  "subscription_cost": "unmetered",
+  "human_approval": false
+}

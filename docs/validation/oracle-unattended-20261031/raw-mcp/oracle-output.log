@@ -1,0 +1,19 @@
+Launching browser mode (picker=current; requested=gpt-5.5-pro) with ~117 tokens.
+This run can take up to an hour (usually ~10 minutes).
+[browser] Browser control: launch visible Chrome; may focus/control the browser UI.
+[browser] Browser guidance: Manual-login mode may show the persistent Oracle Chrome profile for sign-in or automation.
+[browser] Browser guidance: Use --browser-hide-window, --browser-attach-running, or --remote-chrome to reduce desktop disruption.
+[browser] Browser guidance: Chrome will remain open after the run because --browser-keep-browser is enabled.
+[browser] Acquired ChatGPT browser slot 074351a0 (3 max).
+[browser] Waiting for ChatGPT generated image response.
+[browser] ChatGPT archive skipped (disabled).
+[browser] ChatGPT browser slot 074351a0 release decision: isLastLease=true; remaining=0; remainingSessions=none.
+[browser] Released ChatGPT browser slot 074351a0.
+[browser] Model selection evidence: requestedKey=gpt-5.5-pro; target=GPT-5.5; resolvedLabel=Thinking effort
+Medium; status=already-selected; strategy=current; verified=no; source=chatgpt-model-picker; capturedAt=2026-10-31T10:57:07.750Z
+Answer:
+Generated image
+
+*Generated 1 image(s). Saved to: /Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-raw-mcp/oracle-home/generated/raw_mcp_ace5d262-9386-4916-8265-af9ffda0429b.png*
+
+1m19s · gpt-5.5-pro[browser] · ↑117 ↓53 ↻0 Δ170

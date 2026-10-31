@@ -1,0 +1,27 @@
+{
+  "command": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import {readFileSync} from \"node:fs\"; import {createHash} from \"node:crypto\"; import {assembleBrowserPrompt} from \"/opt/homebrew/Cellar/oracle/0.22.2/libexec/lib/node_modules/@steipete/oracle/dist/src/browser/prompt.js\"; const base=\"/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/\"; const names=[\"oracle-unattended-final/oracle-home/sessions/synthetic-oracle-cli-final-20261031/meta.json\",\"oracle-unattended-medium/oracle-home/sessions/attempt-bdf25145-21d4-4161-8426/meta.json\"]; const sha=v=>createHash(\"sha256\").update(v).digest(\"hex\"); const opts=names.map(n=>JSON.parse(readFileSync(base+n)).options); for(const [index,o] of opts.entries()){ const p=await assembleBrowserPrompt(o); console.log(JSON.stringify({source:names[index],prompt_characters:o.prompt.length,prompt_sha256:sha(o.prompt),composer_sha256:sha(p.composerText),exact_prompt_preserved:o.prompt===p.composerText,attachments:p.attachments.length,attachment_mode:p.attachmentMode,fallback:p.fallback})); } const a=await assembleBrowserPrompt({...opts[1],browserAttachments:\"auto\"}); const b=await assembleBrowserPrompt({...opts[1],browserAttachments:\"never\"});console.log(JSON.stringify({no_files_auto_vs_never_identical:a.composerText===b.composerText&&a.attachments.length===b.attachments.length}));"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T10:52:08.249673+00:00",
+  "duration_seconds": 0.632,
+  "exit_code": 0,
+  "source_sha": "867b231f6eea1df466fc370da854f66ce9e8b057",
+  "tracked_diff_sha256": "e2356b0bb41c15270075933b5f98a6072da9d0957e2741fd45578527909334fe",
+  "dirty_paths": [
+    " M work/active/T-013-oracle-unattended/task.yaml",
+    "?? docs/validation/oracle-unattended-20261031/",
+    "?? work/active/T-013-oracle-unattended/action-cli-final.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-final.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-medium.yaml",
+    "?? work/active/T-013-oracle-unattended/action-worker-ratio.yaml",
+    "?? work/active/T-013-oracle-unattended/action.yaml"
+  ],
+  "log_sha256": "d11625b999054a844b56f34defa74a6df9120ed3645bede990a15c630ad10ecc",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

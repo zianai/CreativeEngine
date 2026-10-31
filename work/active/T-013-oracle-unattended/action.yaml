@@ -1,0 +1,24 @@
+action_id: "oracle-unattended-image-20261031-01"
+target: "chatgpt.com browser image generation through native Oracle MCP"
+environment: "live_sandbox"
+payload_scope: "One clearly marked virtual coral desk-organizer concept; no real private data, material approval or publishing"
+subject: "sha256:aed855c487eab0ccc4185149cae84c558f6b06e20f6cceb3ad7773f5f2e74e09"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-013-oracle-unattended/AUTHORITY.md"
+one_shot: true
+idempotency_key: "batch_43b17d79-18b3-4a4c-bf47-2fd20fd3b256"
+expires_at: "2026-10-31T16:31:52.788Z"
+timeout_seconds: 650
+status: "unknown"
+observation: "UI reports image generation failure; no artifact; native MCP stopped and Worker is reconciling; USD0.25 reservation retained; grant revoked"
+compensation: "Retain session and result on uncertainty; no automatic regeneration; no approval or publication"
+x_grant_sha256: "2339aca686f94bb756afe04601b651dcb455f250fb444ba4e35e69716cf1b7ce"
+x_input_hash: "d2a4896cbd79ffe69770713a5724a36100c1b133641c664c55e0c8a5ccbf58f3"
+x_provider_config_hash: "f53f713cf57f9651a6a0a24099c0a03bbb181480afa9422718930f23d0a511a6"
+x_api_budget_cumulative_usd: 10
+x_new_api_cost_usd: 0
+retry_allowed: false
+reconciliation_result: "Exact conversation terminal UI failure recorded; no image accepted, no retry of this logical attempt; subscription billing unknown"
+reconciliation_ref: "docs/validation/oracle-unattended-20261031/ui-failure-reconciliation.json"
+subject_ref: "docs/validation/oracle-unattended-20261031/attempt-01-code-snapshot.json"
+x_source_commit: "8dbc02a6cbd6f4e3dc2fa24cf9985e921258fe6f"

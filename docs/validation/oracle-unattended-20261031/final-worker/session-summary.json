@@ -1,0 +1,22 @@
+{
+  "id": "attempt-cef01a9c-657f-4945-90a1",
+  "status": "error",
+  "createdAt": "2026-10-31T10:42:02.857Z",
+  "startedAt": "2026-10-31T10:42:02.860Z",
+  "completedAt": "2026-10-31T10:42:18.165Z",
+  "error": {
+    "category": "browser-automation",
+    "message": "CE_ORACLE_IMAGE_GENERATION_FAILED",
+    "details": {
+      "stage": "execute-browser"
+    }
+  },
+  "model": "gpt-5.5-pro",
+  "runtime": {
+    "conversationId": "6ae5c601-2b7c-83ea-9369-107cdac69b45",
+    "chromeTargetId": "EA9E0BD11AFB34FC2A05171F463F0F75",
+    "promptSubmitted": true,
+    "submittedPromptHash": "3b9feff7e3d5c0a6d87264af1cca199c7394133f4729d159ff2763b3f65d318b"
+  },
+  "model_verified": false
+}
