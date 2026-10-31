@@ -1,0 +1,9 @@
+{
+  "package": "@steipete/oracle",
+  "version": "0.22.2",
+  "files": {
+    "package.json": "f8277134522d03374fda2f248ceab1230c7f9abac3361864f13f00aaa00a38b2",
+    "dist/src/browser/index.js": "f6d2fce87a2ff8aeffffea24c7d43047f17f5fe6947678a4ac8b1bf0af1aee60",
+    "dist/src/browser/chatgptImages.js": "0c4ffaab52c54ad15bdc61ff92f503b395a50bbd9aa00bfe162cf0937353eaeb"
+  }
+}

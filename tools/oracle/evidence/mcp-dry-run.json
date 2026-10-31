@@ -1,0 +1,47 @@
+{
+  "state": "passed",
+  "api_requests": 0,
+  "browser_requests": 0,
+  "tools": [
+    "consult",
+    "chatgpt_image",
+    "project_sources",
+    "sessions",
+    "wait"
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[dry-run] Oracle (0.22.2) would launch browser mode (picker=current; requested=gpt-5.5-pro) with ~22 tokens.\n[dry-run] Browser control: launch visible Chrome; may focus/control the browser UI.\n[dry-run] Browser guidance: A visible automation Chrome window may take focus while Oracle controls ChatGPT.\n[dry-run] Browser guidance: Use --browser-hide-window, --browser-attach-running, or --remote-chrome to reduce desktop disruption.\n[dry-run] Browser guidance: Chrome will remain open after the run because --browser-keep-browser is enabled.\n[dry-run] Cookies: Chrome copy disabled (use --browser-manual-login, inline cookies, or --browser-cookie-sync).\n[dry-run] ChatGPT archive policy: never.\n[dry-run] No files attached.\n[dry-run] MCP resolved request:\n  engine: browser\n  model: gpt-5.5-pro\n  files: 0\n  browser desired model: GPT-5.5\n  browser thinking time: (default)\n  browser model strategy: current\n  browser research mode: off\n  browser attachments: auto\n  browser bundle files: no\n  browser bundle format: auto\n  browser keep browser: yes\n  browser manual login: no\n  ChatGPT URL: https://chatgpt.com/\n  image output: /private/tmp/ce-oracle-probe-d8nvzG/state/generated/dry-run.png\n  follow-ups: 0\n  guidance: Browser engine uses the signed-in ChatGPT profile; run dryRun:true before live use.\n  guidance: ChatGPT generated images will use the image-aware wait/download path and return saved files in structuredContent.images."
+      }
+    ],
+    "structuredContent": {
+      "status": "dry-run",
+      "output": "[dry-run] Oracle (0.22.2) would launch browser mode (picker=current; requested=gpt-5.5-pro) with ~22 tokens.\n[dry-run] Browser control: launch visible Chrome; may focus/control the browser UI.\n[dry-run] Browser guidance: A visible automation Chrome window may take focus while Oracle controls ChatGPT.\n[dry-run] Browser guidance: Use --browser-hide-window, --browser-attach-running, or --remote-chrome to reduce desktop disruption.\n[dry-run] Browser guidance: Chrome will remain open after the run because --browser-keep-browser is enabled.\n[dry-run] Cookies: Chrome copy disabled (use --browser-manual-login, inline cookies, or --browser-cookie-sync).\n[dry-run] ChatGPT archive policy: never.\n[dry-run] No files attached.\n[dry-run] MCP resolved request:\n  engine: browser\n  model: gpt-5.5-pro\n  files: 0\n  browser desired model: GPT-5.5\n  browser thinking time: (default)\n  browser model strategy: current\n  browser research mode: off\n  browser attachments: auto\n  browser bundle files: no\n  browser bundle format: auto\n  browser keep browser: yes\n  browser manual login: no\n  ChatGPT URL: https://chatgpt.com/\n  image output: /private/tmp/ce-oracle-probe-d8nvzG/state/generated/dry-run.png\n  follow-ups: 0\n  guidance: Browser engine uses the signed-in ChatGPT profile; run dryRun:true before live use.\n  guidance: ChatGPT generated images will use the image-aware wait/download path and return saved files in structuredContent.images.",
+      "dryRun": true,
+      "resolved": {
+        "resolvedEngine": "browser",
+        "model": "gpt-5.5-pro",
+        "files": [],
+        "followUpCount": 0,
+        "browser": {
+          "desiredModel": "GPT-5.5",
+          "thinkingTime": null,
+          "modelStrategy": "current",
+          "researchMode": null,
+          "keepBrowser": true,
+          "manualLogin": false,
+          "profileDir": null,
+          "chatgptUrl": "https://chatgpt.com/",
+          "imageOutputPath": "/private/tmp/ce-oracle-probe-d8nvzG/state/generated/dry-run.png"
+        },
+        "guidance": [
+          "Browser engine uses the signed-in ChatGPT profile; run dryRun:true before live use.",
+          "ChatGPT generated images will use the image-aware wait/download path and return saved files in structuredContent.images."
+        ]
+      },
+      "requestedOutputPath": "/tmp/ce-oracle-probe-d8nvzG/state/generated/dry-run.png"
+    }
+  }
+}
