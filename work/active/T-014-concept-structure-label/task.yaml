@@ -16,3 +16,5 @@ action_refs: [work/active/T-014-concept-structure-label/action-native-retest.yam
 implementation_started: true
 external_effects: bounded_browser_generation
 updated: "2026-10-31"
+review_ref: work/active/T-014-concept-structure-label/review.md
+review_current: true
