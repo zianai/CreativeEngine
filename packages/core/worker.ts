@@ -136,6 +136,7 @@ export class Worker {
           provider: current.provider,
           status: 'started',
           execution_protocol: 2,
+          local_composition_protocol: 1,
           submission_state: 'not_started',
           estimated_cost_usd: current.estimated_cost_usd,
           created_at: now(),
@@ -250,6 +251,15 @@ export class Worker {
                 ? ['#9e372e', '#315e4e', '#375679'][task.variant % 3]
                 : undefined),
           });
+        if (plan.fidelity !== 'strict')
+          await atomicWrite(
+            join(outputDir, 'local-concept-composition.json'),
+            JSON.stringify({
+              attempt_id: task.attempt_id,
+              artifact_sha256: hash(await readFile(path)),
+              path: 'composed.png',
+            }),
+          );
         result = { path, provider: 'deterministic', model: 'sharp', costUsd: 0, mock: false };
       } else {
         const provider = core.providers.get(task.provider)!,
@@ -367,13 +377,41 @@ export class Worker {
       const assetId = id('asset'),
         path = join(core.root, 'assets', `${assetId}.png`);
       await mkdir(join(core.root, 'assets'), { recursive: true });
-      if (identity === 'concept' || identity === 'mock')
+      // Only our local compose branch writes this receipt. Provider identity/metadata alone
+      // cannot suppress the mandatory label, including after lease/crash recovery.
+      const compositionReceipt = join(outputDir, 'local-concept-composition.json');
+      let alreadyLabeled = false;
+      if (identity === 'concept' && ['reuse', 'compose'].includes(plan.strategy)) {
+        const hasLocalReceipt = await exists(compositionReceipt);
+        if (!hasLocalReceipt && attempt.local_composition_protocol === 1)
+          throw new ProviderError('RECEIPT_MISMATCH', 'Local composition label receipt is missing.', {
+            uncertain: true,
+          });
+        if (hasLocalReceipt) {
+          const local = JSON.parse(await readFile(compositionReceipt, 'utf8'));
+          if (
+            local.attempt_id !== task.attempt_id ||
+            local.path !== 'composed.png' ||
+            result.path !== join(outputDir, local.path) ||
+            local.artifact_sha256 !== receivedMetadata.sha256
+          )
+            throw new ProviderError(
+              'RECEIPT_MISMATCH',
+              'Local composition receipt does not match this image.',
+              {
+                uncertain: true,
+              },
+            );
+          alreadyLabeled = true;
+        }
+      }
+      if ((identity === 'concept' || identity === 'mock') && !alreadyLabeled)
         await composeImage({
           sourcePath: result.path,
           outputPath: path,
           ...size,
           concept: true,
-          label: identity === 'mock' ? 'MOCK — NOT PRODUCTION' : 'CONCEPT / FOR REVIEW',
+          label: identity === 'mock' ? 'MOCK — NOT PRODUCTION' : undefined,
         });
       else await normalizeImage(result.path, path, size.width, size.height);
       prepared = { assetId, path, metadata: await inspectStored(core.root, path) };

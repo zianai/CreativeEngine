@@ -1,0 +1,18 @@
+schema_version: 3
+protocol_version: "3.0"
+id: T-014-concept-structure-label
+status: implementing
+goal: Preserve explicit folding structure in concept direction and apply one authoritative deterministic concept label
+scope: [packages/composer/, packages/core/worker.ts, packages/planner/, skills/product-concept/, tests/p8-p10/concept-structure-label.test.ts, project/, work/active/T-014-concept-structure-label/, docs/validation/concept-structure-label-20261031/]
+non_goals: [Production deployment, Material approval, Private business data, Remote Git writes, Unaffected full-suite reruns]
+acceptance: [Explicit product-concept direction survives compilation and revisions, Mandatory business constraints override optional aesthetics, One deterministic identity label in native generation and composition, Provider metadata cannot suppress identity labeling, Only affected new regressions run, Bounded synthetic live retest with accurate evidence]
+risk: high
+risk_reasons: [payment-or-message]
+protected_paths: [docs/validation/p7/, docs/validation/p8-p10/, docs/validation/followup-20261031/, docs/validation/oracle-unattended-20261031/, work/active/T-013-oracle-unattended/review.md]
+context_refs: [work/active/T-014-concept-structure-label/AUTHORITY.md]
+decision_refs: [docs/validation/post-p7/ADR.md]
+evidence_refs: []
+action_refs: []
+implementation_started: true
+external_effects: none
+updated: "2026-10-31"

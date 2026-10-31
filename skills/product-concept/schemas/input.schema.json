@@ -55,6 +55,17 @@
         "type": "string"
       }
     },
+    "skill_input": {
+      "type": "object",
+      "properties": {
+        "design_direction": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        }
+      }
+    },
     "variants": {
       "type": "integer",
       "minimum": 1,

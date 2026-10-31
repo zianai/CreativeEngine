@@ -35,17 +35,12 @@ function hex(value: string) {
   return value;
 }
 export async function composeImage(options: ComposeOptions): Promise<void> {
-  const {
-    sourcePath,
-    outputPath,
-    width,
-    height,
-    logoPath,
-    backgroundPath,
-    concept = false,
-    label,
-    color,
-  } = options;
+  const { sourcePath, outputPath, width, height, logoPath, backgroundPath, concept = false, color } = options;
+  // The footer owns this identity text; a caller must not create a second text row for it.
+  const label =
+    concept && options.label?.trim().replace(/\s+/g, ' ').toUpperCase() === 'CONCEPT / FOR REVIEW'
+      ? undefined
+      : options.label;
   dimensions(width, height);
   const source = await validatedRaster(sourcePath);
   const background = hex(options.background ?? '#f5f2eb');
