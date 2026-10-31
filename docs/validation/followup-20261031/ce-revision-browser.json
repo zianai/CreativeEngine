@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "actual_paid_asset": true,
+  "desktop_mobile": true,
+  "export_without_approval": "denied",
+  "review_status": "pending",
+  "human_approval": false,
+  "errors": []
+}

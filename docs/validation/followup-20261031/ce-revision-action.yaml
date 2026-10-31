@@ -1,0 +1,16 @@
+action_id: "ce-revision"
+target: "https://api.openai.com/v1/images/generations"
+environment: "live_sandbox_synthetic"
+payload_scope: "Exact synthetic subject and usage receipt in CE_ACTIONS.json, action ce-revision"
+subject: "git:718f7d67d48cf21fdabfbdcc415358be110fa47f"
+subject_paths: ["scripts/p9-paid-worker.ts", "packages/providers/openai-image/index.ts"]
+authorization_basis: "direct-human-instruction"
+authority_ref: "docs/validation/followup-20261031/AUTHORITY.md"
+one_shot: true
+idempotency_key: "attempt_14c9bcc5-e126-4d16-9222-7b26c57d7720"
+expires_at: "2026-10-31T18:00:00Z"
+timeout_seconds: 240
+status: "succeeded"
+observation: "Provider request req_2c5e651756084b87acab11dbd4aeff45 returned; exact usage/output records retained in CE_ACTIONS.json. No human approval."
+compensation: "API usage cannot be undone; preserve receipt, prevent repeat, do not export unapproved candidates."
+retry_allowed: false

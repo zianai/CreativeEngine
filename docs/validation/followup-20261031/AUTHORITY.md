@@ -1,0 +1,3 @@
+# Direct user authority, 2026-10-31
+
+The user requested complete synthetic inquiry/product testing, explicitly allowed API calls and Oracle text/image generation, set a total API ceiling of USD10, and explicitly chose reuse of the existing CreativeEngine credential. The coordinator allocated TC USD2, LC USD2, CE initial USD3 and one image-revision USD3. Vision USD0.25 fits within the initial CE envelope after the first known successful usage receipt; no additional global budget was granted. This authorizes synthetic testing, not real product truth, business approvals, outbound customer contact or publication. No credential bytes are recorded here.

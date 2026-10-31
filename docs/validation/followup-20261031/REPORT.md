@@ -1,0 +1,9 @@
+# Authorized synthetic live follow-up — 2026-10-31
+
+Two native paid Worker image executions and one separately scoped VisionReviewer call completed on implementation 718f7d67d48cf21fdabfbdcc415358be110fa47f. First image was rejected for invented dimensions and absent folding evidence; a fresh constrained request visibly corrected those issues and remains pending human approval. Actual asset desktop/mobile browser flows and denial of unapproved export passed. Image estimates: USD0.014835 + USD0.015085. Vision's historical base-rate estimate USD0.003693 omitted unknown cache-write tariffs; preserve that record and use corrected USD0.25 liability until reconciled. Actual invoices remain null.
+
+Fix commit 25ec8671d7e6712b0af9226e5fc656bd5eca14f9 retains the Vision reservation when raw usage cannot be fully priced. All 53 native regression tests pass on that fixed commit, with typecheck and targeted cost negatives. No paid repeat was needed to verify the estimator against the observed usage structure. Test and action records distinguish the actual paid implementation from the later fix.
+
+CE_ACTIONS.json, action YAMLs and AUTHORITY.md bind user permission, payload scope, request/attempt identities and receipts. GRANT_CLOSURE.json proves all three fresh grants were subsequently revoked and preflight now blocks. INDEPENDENT_REVIEW.json records another engineering agent's exact-source and artifact review, not a human approval. Original P7 and P8-P10 files remain unchanged.
+
+Oracle was tested separately through attended browser sessions; its actual text and image outputs and automation limitations are in the coordinator's docs/followup-20261031/oracle. The existing CE Oracle adapter still rejects unattended use. This follow-up does not claim a passed unattended Oracle Worker path, real-product validation, a paid billing invoice, business acceptance or deployment permission.

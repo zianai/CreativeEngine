@@ -1,0 +1,20 @@
+schema_version: 3
+protocol_version: "3.0"
+id: T-012-live-followup
+status: ready_for_review
+goal: Execute explicitly authorized synthetic API and Oracle tests and repair observed defects
+scope: [packages/quality/, tests/p8-p10/, docs/validation/followup-20261031/, work/active/T-012-live-followup/, project/]
+non_goals: [Real private business data, Human business approval, External business writes, Production deployment]
+acceptance: [Bounded actual API evidence, Immutable request and output identity, Local regression evidence, Honest unknown invoice status]
+risk: high
+risk_reasons: [payment-or-message]
+protected_paths: [docs/validation/p7/, docs/validation/p8-p10/]
+context_refs: [docs/validation/followup-20261031/AUTHORITY.md]
+decision_refs: [docs/validation/post-p7/ADR.md]
+evidence_refs: [docs/validation/followup-20261031/CE_ACTIONS.json, docs/validation/followup-20261031/CE_FINDINGS.md, docs/validation/followup-20261031/regressions/result.json]
+updated: "2026-10-31"
+implementation_started: true
+external_effects: bounded_api_calls
+conformance_status: pending
+baseline_decision_ref: docs/validation/post-p7/ADR.md
+action_refs: ["docs/validation/followup-20261031/ce-live-action.yaml", "docs/validation/followup-20261031/ce-revision-action.yaml", "docs/validation/followup-20261031/ce-vision-action.yaml"]

@@ -1,0 +1,17 @@
+action_id: "ce-vision"
+target: "https://api.openai.com/v1/responses"
+environment: "live_sandbox_synthetic"
+payload_scope: "Exact synthetic subject and usage receipt in CE_ACTIONS.json, action ce-vision"
+subject: "sha256:c0f05ab9aec8270f62eb895479a73e1c8a96bef416cbb1adaa394a3c1aa738ce"
+subject_ref: docs/validation/followup-20261031/vision-at-call.ts
+x_source_commit: 718f7d67d48cf21fdabfbdcc415358be110fa47f
+authorization_basis: "direct-human-instruction"
+authority_ref: "docs/validation/followup-20261031/AUTHORITY.md"
+one_shot: true
+idempotency_key: "req_e82687c45b4f4e8e821a85e5d340df98"
+expires_at: "2026-10-31T18:00:00Z"
+timeout_seconds: 240
+status: "succeeded"
+observation: "Provider request req_e82687c45b4f4e8e821a85e5d340df98 returned; exact usage/output records retained in CE_ACTIONS.json. No human approval."
+compensation: "API usage cannot be undone; preserve receipt, prevent repeat, do not export unapproved candidates."
+retry_allowed: false

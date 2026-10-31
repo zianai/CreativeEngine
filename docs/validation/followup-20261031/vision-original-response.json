@@ -1,0 +1,65 @@
+{
+  "status": "completed",
+  "report": {
+    "issues": [
+      {
+        "category": "fact_risk",
+        "severity": "block",
+        "description": "The dimensions panel introduces unapproved measurements: 220 mm, 80 mm, 70 mm and 40 mm.",
+        "suggested_revision": "Remove the numerical dimensions and measurement labels unless approved specifications are supplied."
+      },
+      {
+        "category": "product_identity",
+        "severity": "block",
+        "description": "Foldability is not visibly supported. The organizer appears continuous and rigid, with no visible folding mechanism or folded state.",
+        "suggested_revision": "Show a concept folding mechanism and a folded view, clearly labeled as unapproved, or flag foldability as unresolved."
+      },
+      {
+        "category": "fact_risk",
+        "severity": "warning",
+        "description": "The feature label 'Monolithic form' is an unapproved product claim and may conflict with the required foldable concept.",
+        "suggested_revision": "Remove the label or replace it with a non-factual concept note pending design approval."
+      },
+      {
+        "category": "uncertainty",
+        "severity": "info",
+        "description": "No approved reference images or human approval were supplied.",
+        "suggested_revision": "Retain the concept-review status and obtain approval before treating the design or its details as final."
+      }
+    ],
+    "uncertainty": "medium",
+    "summary": "The image depicts a teal organizer with three compartments and rounded corners, but does not demonstrate foldability. It also introduces unapproved dimensions and a monolithic-form claim."
+  },
+  "response_id": "resp_0c3733ffe4a4e26b006ae5bd6699a887d28cf45ef0f0a8737d",
+  "request_id": "req_e82687c45b4f4e8e821a85e5d340df98",
+  "usage": {
+    "input_tokens": 1463,
+    "input_tokens_details": {
+      "cache_write_tokens": 1460,
+      "cached_tokens": 0
+    },
+    "output_tokens": 446,
+    "output_tokens_details": {
+      "reasoning_tokens": 100
+    },
+    "total_tokens": 1909
+  },
+  "cost": {
+    "cost_usd": 0.003693,
+    "basis": "reported_usage",
+    "usage": {
+      "input_tokens": 1463,
+      "input_tokens_details": {
+        "cache_write_tokens": 1460,
+        "cached_tokens": 0
+      },
+      "output_tokens": 446,
+      "output_tokens_details": {
+        "reasoning_tokens": 100
+      },
+      "total_tokens": 1909
+    }
+  },
+  "actual_invoice_usd": null,
+  "human_approval": false
+}

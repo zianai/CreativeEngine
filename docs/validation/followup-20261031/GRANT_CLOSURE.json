@@ -1,0 +1,83 @@
+[
+  {
+    "scope": "ce-live/operator",
+    "original_grant_sha256": "9624c7512d65b7194785a53c9a45738e2dfe734603794ce6e187bd2b659c1090",
+    "revoked_grant_sha256": "73af09c4d634f601873136c2ff2393489e53f4720e2d671bcae958f6e89ffec8",
+    "revoked_at": "2026-10-31T10:11:15.850Z",
+    "preflight": {
+      "system": "creative_engine",
+      "configuration": {
+        "provider": "openai",
+        "model": "gpt-image-2.5-flare-2026-09-08",
+        "required_domain": "api.openai.com",
+        "capability_verified_live": false,
+        "environment": "live_sandbox",
+        "data_classification": "synthetic",
+        "action": "generate_image"
+      },
+      "approved_limits": null,
+      "status": "blocked",
+      "reasons": [
+        "AUTH_REVOKED"
+      ],
+      "token_present": true,
+      "external_writes": false,
+      "live_executed": false
+    },
+    "network_calls": 0
+  },
+  {
+    "scope": "ce-revision/operator",
+    "original_grant_sha256": "e9997ed6c53d0213ea7bfee70defb8c2b154b6a14d761093bb98feedffeb5588",
+    "revoked_grant_sha256": "f6a9a984e5f6e28c9459a05bad1261b140926de82ecb9f4d2d2b12ec0c8f6d55",
+    "revoked_at": "2026-10-31T10:11:15.863Z",
+    "preflight": {
+      "system": "creative_engine",
+      "configuration": {
+        "provider": "openai",
+        "model": "gpt-image-2.5-flare-2026-09-08",
+        "required_domain": "api.openai.com",
+        "capability_verified_live": false,
+        "environment": "live_sandbox",
+        "data_classification": "synthetic",
+        "action": "generate_image"
+      },
+      "approved_limits": null,
+      "status": "blocked",
+      "reasons": [
+        "AUTH_REVOKED"
+      ],
+      "token_present": true,
+      "external_writes": false,
+      "live_executed": false
+    },
+    "network_calls": 0
+  },
+  {
+    "scope": "ce-live/vision",
+    "original_grant_sha256": "508e1a454eb4a7551c28c13dc458c90cad171c43cda36630d5cf6034ea2fa5be",
+    "revoked_grant_sha256": "a0c8eea5ceabad5b33dea63dca0b6e604c0051ffeef13b3eb6fb9ba3dd74468e",
+    "revoked_at": "2026-10-31T10:11:15.869Z",
+    "preflight": {
+      "system": "creative_engine",
+      "configuration": {
+        "provider": "openai",
+        "model": "gpt-6.1-terra",
+        "required_domain": "api.openai.com",
+        "capability_verified_live": false,
+        "environment": "live_sandbox",
+        "data_classification": "synthetic",
+        "action": "vision_review"
+      },
+      "approved_limits": null,
+      "status": "blocked",
+      "reasons": [
+        "AUTH_REVOKED"
+      ],
+      "token_present": true,
+      "external_writes": false,
+      "live_executed": false
+    },
+    "network_calls": 0
+  }
+]

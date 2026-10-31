@@ -1,0 +1,105 @@
+[
+  {
+    "action_id": "ce-live",
+    "source_sha": "718f7d67d48cf21fdabfbdcc415358be110fa47f",
+    "authorization_basis": "User 2026-10-31 expressly authorized real API calls, synthetic inputs, total USD10 and reuse existing CE key",
+    "environment": "isolated local synthetic test -> api.openai.com",
+    "provider": "openai",
+    "model": "gpt-image-2.5-flare-2026-09-08",
+    "target": {
+      "batch_id": "batch_24a3055e-74fa-4264-a205-062cd43af35b",
+      "project_id": "prj_b58a06ea-2b8c-464c-ac87-ccb1444d3ef2",
+      "plan_id": "plan-805f445d-afa5-4954-a0dc-9ad5ac07a20c",
+      "task_id": "task_53e56d85-2680-4510-ad00-7f54926cad78"
+    },
+    "attempt_id": "attempt_e025cdb6-d9a2-485e-aa44-862c61b72a87",
+    "request_id": "req_7752767eb6cc4ab28ab38fe82abaeb52",
+    "input_prompt_sha256": "69beceeb211126e142f1081a067c7f9ebd7dc59ec33773f172ef2531d5aded5d",
+    "output_sha256": "57c41e6536e90a4684c9175bbbe5b00a364c74437e0b0869db91b7149943ede4",
+    "grant_sha256": "9624c7512d65b7194785a53c9a45738e2dfe734603794ce6e187bd2b659c1090",
+    "status": "succeeded",
+    "retry_allowed": false,
+    "cost_estimated_usd": 0.014835,
+    "actual_invoice_usd": null,
+    "usage": {
+      "input_tokens": 333,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 333
+      },
+      "output_tokens": 439,
+      "output_tokens_details": {
+        "image_tokens": 439,
+        "text_tokens": 0
+      },
+      "total_tokens": 772
+    },
+    "review_status": "engineering_rejected",
+    "business_approval": false,
+    "execution_seconds": 16.825763332657516
+  },
+  {
+    "action_id": "ce-revision",
+    "source_sha": "718f7d67d48cf21fdabfbdcc415358be110fa47f",
+    "authorization_basis": "User 2026-10-31 expressly authorized real API calls, synthetic inputs, total USD10 and reuse existing CE key",
+    "environment": "isolated local synthetic test -> api.openai.com",
+    "provider": "openai",
+    "model": "gpt-image-2.5-flare-2026-09-08",
+    "target": {
+      "batch_id": "batch_c4f9268f-1f60-4932-9376-d6cb4c47124a",
+      "project_id": "prj_351438b9-fce5-4fce-b8c7-9cb265071e99",
+      "plan_id": "plan-b85bcda2-6944-4422-9e5c-22b289cf1663",
+      "task_id": "task_c97e56c5-831f-4547-a2ed-112472efac03"
+    },
+    "attempt_id": "attempt_14c9bcc5-e126-4d16-9222-7b26c57d7720",
+    "request_id": "req_2c5e651756084b87acab11dbd4aeff45",
+    "input_prompt_sha256": "d993255e76eca7fa62d990ca4e8cbcc2a9fe0e54a60ad7c8d0033e73ce4cfe2d",
+    "output_sha256": "b5fa412e5eb22bec5c83cd499cafcf46126b12c4867e2b925f5659e69b664e75",
+    "grant_sha256": "e9997ed6c53d0213ea7bfee70defb8c2b154b6a14d761093bb98feedffeb5588",
+    "status": "succeeded",
+    "retry_allowed": false,
+    "cost_estimated_usd": 0.015085,
+    "actual_invoice_usd": null,
+    "usage": {
+      "input_tokens": 383,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 383
+      },
+      "output_tokens": 439,
+      "output_tokens_details": {
+        "image_tokens": 439,
+        "text_tokens": 0
+      },
+      "total_tokens": 822
+    },
+    "review_status": "human_review_pending",
+    "business_approval": false,
+    "execution_seconds": 13.89456924982369
+  },
+  {
+    "action_id": "ce-vision",
+    "authorization_basis": "Same explicit user API testing scope; USD0.25 inside first CE USD3 envelope",
+    "status": "succeeded",
+    "source_sha": "718f7d67d48cf21fdabfbdcc415358be110fa47f",
+    "request_id": "req_e82687c45b4f4e8e821a85e5d340df98",
+    "response_id": "resp_0c3733ffe4a4e26b006ae5bd6699a887d28cf45ef0f0a8737d",
+    "usage": {
+      "input_tokens": 1463,
+      "input_tokens_details": {
+        "cache_write_tokens": 1460,
+        "cached_tokens": 0
+      },
+      "output_tokens": 446,
+      "output_tokens_details": {
+        "reasoning_tokens": 100
+      },
+      "total_tokens": 1909
+    },
+    "observed_legacy_base_rate_estimate_usd": 0.003693,
+    "corrected_conservative_reservation_usd": 0.25,
+    "actual_invoice_usd": null,
+    "pricing_issue": "Cache-write tokens require separate tariff; code now retains reservation instead of claiming complete reported-usage pricing. No paid repeat needed to replay cost parser.",
+    "human_approval": false
+  }
+]
