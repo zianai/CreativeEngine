@@ -1,0 +1,16 @@
+{
+  "source_sha": "5ab29d209a3b1b5023d567d6403fd482c1411632",
+  "observer": "launchcase engineering agent; local view_image inspection of actual outputs",
+  "downloaded_sha256": "e44da3695bbfc7b19bec2d96419c158c789a3f2c5a4ce7e1c131bdd321ae0dac",
+  "review_sha256": "9031dec940619d9dd2657a47d4044882d4418bc3cef307039f37e529a0b384a0",
+  "checks": {
+    "both_connections_at_least_five_continuous_pleats": "observed_pass",
+    "no_visible_barrel_piano_pin_hinges": "observed_pass",
+    "rightmost_compartment_tilted": "observed_pass",
+    "downloaded_image_contains_no_text": "observed_pass",
+    "review_image_contains_one_CONCEPT_FOR_REVIEW_footer": "observed_pass"
+  },
+  "scope": "Visible fictional concept appearance only; not mechanical feasibility or material/business approval",
+  "human_approval": false,
+  "review_status": "pending"
+}

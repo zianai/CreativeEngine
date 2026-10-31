@@ -1,0 +1,22 @@
+{
+  "read_only_snapshot": true,
+  "amount_unit": "USD microdollars",
+  "rows": [
+    {
+      "id": "attempt_04bd9108-490f-45f1-af9a-5f3393e0eeb8",
+      "grant_hash": "f2a5115fedbaab2b604d57dc931faf3a74213d1ba456220af3c3d8c868804ad2",
+      "action": "generate_image",
+      "status": "completed",
+      "reserved": 250000,
+      "observed": 0,
+      "images": 1,
+      "basis": "estimated"
+    }
+  ],
+  "reservation_usd": 0.25,
+  "observed_settlement_basis": "estimated API-zero; not subscription invoice",
+  "actual_subscription_cost_usd": null,
+  "subscription_cost": "unmetered",
+  "grant_revoked": true,
+  "retry_allowed": false
+}

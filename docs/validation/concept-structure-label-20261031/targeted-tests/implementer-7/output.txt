@@ -1,0 +1,15 @@
+✔ T014 native local composition retains its existing single label on finish/recovery (recovery=false) (288.137375ms)
+✔ T014 native local composition retains its existing single label on finish/recovery (recovery=true) (204.238ms)
+✔ T014 mismatched local label receipt attempt_id blocks recovery without provider execution (132.761875ms)
+✔ T014 mismatched local label receipt artifact_sha256 blocks recovery without provider execution (110.137875ms)
+✔ T014 mismatched local label receipt path blocks recovery without provider execution (59.298334ms)
+✔ T014 mismatched local label receipt missing blocks recovery without provider execution (101.871042ms)
+✔ T014 mismatched local label receipt invalid-json blocks recovery without provider execution (55.234084ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1537.253833

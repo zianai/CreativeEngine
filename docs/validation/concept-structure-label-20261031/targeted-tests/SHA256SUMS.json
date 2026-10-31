@@ -1,0 +1,56 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "85a63cbc9e9982f6aef441ae4f466fb1f619fc205e14a2351e72242d507d7186"
+    },
+    {
+      "path": "final-source-verification.json",
+      "sha256": "1a04822534282b80b67eb1ec67aa9687d6135f6cae751993bd895ccf89c9a95b"
+    },
+    {
+      "path": "implementer-12/output.txt",
+      "sha256": "921b42d8ea8e63cfae01b1538a44ec87f4beb89247b2e42ed4d15c2c2e7b00e6"
+    },
+    {
+      "path": "implementer-12/result.json",
+      "sha256": "7d822e11ce7c12206135b4f8b5c10d50f71d8f9c63e1066d8d39558eb9d89487"
+    },
+    {
+      "path": "implementer-7/output.txt",
+      "sha256": "34a6ea4e23c4c01a4bb6eef60940ae59f38adb5d0c28a38381edca2d90093997"
+    },
+    {
+      "path": "implementer-7/result.json",
+      "sha256": "4a6fbefaecb83d760dfcdb978fc11efbce7bf73c8c45846bb3ccb3c25382ecfe"
+    },
+    {
+      "path": "independent-12/output.log",
+      "sha256": "aede198c5951ed7915f014c484baf4c63f865e825beb64ffc5cb8952cc5329b7"
+    },
+    {
+      "path": "independent-12/output.txt",
+      "sha256": "aede198c5951ed7915f014c484baf4c63f865e825beb64ffc5cb8952cc5329b7"
+    },
+    {
+      "path": "independent-12/result.json",
+      "sha256": "eccbf735b64723953ce9abc8d83f1c4d47a8e2db08910a74032de3ba636b8997"
+    },
+    {
+      "path": "independent-7/output.log",
+      "sha256": "066095da8dfd5b969babcd370a885235cecbe9e24eb9d8910d4acf279686abf5"
+    },
+    {
+      "path": "independent-7/output.txt",
+      "sha256": "066095da8dfd5b969babcd370a885235cecbe9e24eb9d8910d4acf279686abf5"
+    },
+    {
+      "path": "independent-7/result.json",
+      "sha256": "3d947b2a23d36f3e9a9af26db971ba1910f473d77f2376f725657a79a6ec52b1"
+    },
+    {
+      "path": "typecheck-tool-record.json",
+      "sha256": "e2345ff789fb6d289fc5d7fc343db576bbbf1dbcc0ff327e935613953f8a7ccd"
+    }
+  ]
+}

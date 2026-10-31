@@ -1,0 +1,13 @@
+{
+  "status": "new_asset_ui_captured",
+  "source_sha": "5ab29d209a3b1b5023d567d6403fd482c1411632",
+  "asset_id": "asset_668e5961-ad05-4eed-aecb-9ade460ab700",
+  "review_status": "pending",
+  "screenshot": "new-hinge-label.png",
+  "responsive_regression_rerun": false,
+  "image_label_count": "requires_png_inspection_not_inferred_from_DOM",
+  "hinge_quality": "requires_png_inspection",
+  "human_approval": false,
+  "errors": [],
+  "scope": "New asset and label appearance only; no prior regression rerun"
+}

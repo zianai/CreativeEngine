@@ -1,7 +1,7 @@
 schema_version: 3
 protocol_version: "3.0"
 id: T-014-concept-structure-label
-status: implementing
+status: ready_for_review
 goal: Preserve explicit folding structure in concept direction and apply one authoritative deterministic concept label
 scope: [packages/composer/, packages/core/worker.ts, packages/planner/, skills/product-concept/, tests/p8-p10/concept-structure-label.test.ts, project/, work/active/T-014-concept-structure-label/, docs/validation/concept-structure-label-20261031/]
 non_goals: [Production deployment, Material approval, Private business data, Remote Git writes, Unaffected full-suite reruns]
@@ -11,8 +11,8 @@ risk_reasons: [payment-or-message]
 protected_paths: [docs/validation/p7/, docs/validation/p8-p10/, docs/validation/followup-20261031/, docs/validation/oracle-unattended-20261031/, work/active/T-013-oracle-unattended/review.md]
 context_refs: [work/active/T-014-concept-structure-label/AUTHORITY.md]
 decision_refs: [docs/validation/post-p7/ADR.md]
-evidence_refs: []
-action_refs: []
+evidence_refs: [docs/validation/concept-structure-label-20261031/REPORT.md, docs/validation/concept-structure-label-20261031/COST.json, docs/validation/concept-structure-label-20261031/live/evidence-index.json]
+action_refs: [work/active/T-014-concept-structure-label/action-native-retest.yaml]
 implementation_started: true
-external_effects: none
+external_effects: bounded_browser_generation
 updated: "2026-10-31"

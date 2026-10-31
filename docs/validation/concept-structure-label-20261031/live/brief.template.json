@@ -1,0 +1,14 @@
+{
+  "workflow": "product-concept",
+  "product": {
+    "product_id": "VIRTUAL-DESK-006",
+    "stage": "concept"
+  },
+  "skill_input": {
+    "design_direction": "Three articulated trays joined at BOTH adjacent connections by wide flexible accordion/bellows sheets, each with at least FIVE continuous repeated pleats; the right tray tilts upward to expose unfolding pleats. No continuous monolithic silhouette or pin-jointed hardware."
+  },
+  "requirements": "VIRTUAL SYNTHETIC PRODUCT TEST ONLY. Generate exactly ONE square concept image of a fictional mint desk organizer with three rounded tray compartments and a neutral studio background. Show a single perspective view. At BOTH connections between adjacent compartments, use a wide flexible accordion/bellows sheet with at least FIVE clearly visible, continuous, repeated zig-zag pleats across each connector. The flexible folds should be visibly connected to both neighboring trays. Raise and tilt ONLY the rightmost compartment to show its connector partly unfolded, with the inner pleats compressing and outer pleats opening; leave the other two trays flat. Make both pleated connectors large and unobstructed enough to distinguish the flexible folding structure. Absolutely no barrel hinges, piano hinges, hinge pins, rods, metal hinges, cylindrical knuckles, segmented cylinders or rigid pin-jointed hardware. Do not replace the repeated flexible pleats with a smooth seam. Render NO text anywhere: no concept caption, review caption, footer, labels, logos, letters, numerals, dimensions, arrows, diagrams, specification sheet, certification, brand, performance or manufacturing claims. The application will add exactly one deterministic concept-review footer after generation; leave that label out of the generated image. This is fictional design exploration, not a real SKU photograph or feasibility claim.",
+  "variants": 1,
+  "provider": "oracle",
+  "aspect_ratio": "1:1"
+}

@@ -1,0 +1,20 @@
+{
+  "this_retest": {
+    "new_api_requests": 0,
+    "api_cost_usd": 0,
+    "oracle_subscription_cost": "unmetered",
+    "actual_subscription_cost_usd": null,
+    "accounting_reservation_usd": 0.25,
+    "ledger_status": "completed",
+    "settlement_basis": "estimated API-zero"
+  },
+  "cumulative_api_budget_usd": 10,
+  "cumulative_api_estimate_usd": 0.097495,
+  "cumulative_api_actual_invoice_usd": null,
+  "estimate_caveat": "Conservative usage estimate; base-rate estimate is USD0.064227. Neither is an actual invoice.",
+  "prior_unknown_liability_usd": 1.25,
+  "prior_unknown_liability_changed": false,
+  "cumulative_basis": "Coordinator-provided cumulative ledger; this browser-only retest adds zero API requests/cost. No new budget allocation inferred.",
+  "human_approval": false,
+  "cumulative_api_base_rate_estimate_usd": 0.064227
+}

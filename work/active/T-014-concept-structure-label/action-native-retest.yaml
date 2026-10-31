@@ -1,0 +1,30 @@
+action_id: "oracle-hinge-label-fix-20261031"
+target: "chatgpt.com via native CreativeEngine Worker and pinned Oracle MCP"
+environment: "live_sandbox"
+payload_scope: "One VIRTUAL-DESK-006 synthetic image with both connectors showing at least five flexible accordion pleats, right tray tilted, no generated text; native single concept label; no approval or production"
+subject: "sha256:a6a8853bf536bcb35dbb91b4735df085ee3d319c16272ce54cb72b004f7ff334"
+subject_ref: "docs/validation/concept-structure-label-20261031/live/execution-source.json"
+authorization_basis: "direct-human-instruction"
+authority_ref: "work/active/T-014-concept-structure-label/AUTHORITY.md"
+one_shot: true
+idempotency_key: "batch_21f3eb09-ddb7-4f6d-9c70-1b2b20f028ef"
+expires_at: "2026-10-31T19:23:43.142Z"
+timeout_seconds: 650
+status: "succeeded"
+observation: "Fresh native Worker completed in98.433s; focused new-image/UI check passed6.455s. Actual downloaded image shows both accordion connectors without pin hinges and no text; native asset shows one footer. Grant revoked, asset pending human review; no automatic approval."
+compensation: "One-shot grant revoked after known completed result; preserve exact receipt, three image hashes and pending material status. No retry, publication or deployment."
+retry_allowed: false
+x_source_commit: "5ab29d209a3b1b5023d567d6403fd482c1411632"
+x_input_hash: "19c54ffcc4f477f77b7735a88feab6e5ebd67b0793f0a52ecc3ece140809f825"
+x_grant_sha256: "f2a5115fedbaab2b604d57dc931faf3a74213d1ba456220af3c3d8c868804ad2"
+x_provider_config_hash: "e501f3eceff757659950b8cb881c6a221d7e869bbf3f21acefed898654e0e7da"
+x_batch_id: "batch_21f3eb09-ddb7-4f6d-9c70-1b2b20f028ef"
+x_task_id: "task_9364c2fe-85af-4bee-959c-15f26ec3bd1a"
+x_api_budget_cumulative_usd: 10
+x_new_api_requests: 0
+x_accounting_reservation_usd: 0.25
+x_subscription_cost: "unmetered"
+x_human_approval: false
+x_execute_command: "python3 '/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-hinge-label-fix/execute.py' execute-once"
+reconciliation_result: "effect-confirmed"
+reconciliation_ref: "docs/validation/concept-structure-label-20261031/live/session-summary.json"

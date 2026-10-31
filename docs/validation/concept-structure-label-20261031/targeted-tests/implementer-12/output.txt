@@ -1,0 +1,20 @@
+✔ T014 explicit concept direction displaces default structural aesthetics and preserves requirements/revision (138.998375ms)
+✔ T014 invalid direction is blocked; omission retains existing default and cannot override strict fidelity (179.556167ms)
+✔ T014 composer emits one authoritative identity band while retaining a distinct mock warning (417.385458ms)
+✔ T014 generated image gets exactly one deterministic label despite provider label claims (spoof=false) (243.487333ms)
+✔ T014 generated image gets exactly one deterministic label despite provider label claims (spoof=true) (352.502ms)
+✔ T014 native local composition retains its existing single label on finish/recovery (recovery=false) (173.3785ms)
+✔ T014 native local composition retains its existing single label on finish/recovery (recovery=true) (204.774875ms)
+✔ T014 mismatched local label receipt attempt_id blocks recovery without provider execution (208.585709ms)
+✔ T014 mismatched local label receipt artifact_sha256 blocks recovery without provider execution (167.05625ms)
+✔ T014 mismatched local label receipt path blocks recovery without provider execution (127.221916ms)
+✔ T014 mismatched local label receipt missing blocks recovery without provider execution (155.938875ms)
+✔ T014 mismatched local label receipt invalid-json blocks recovery without provider execution (83.818667ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3972.231333

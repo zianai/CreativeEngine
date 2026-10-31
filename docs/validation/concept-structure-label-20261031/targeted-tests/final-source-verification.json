@@ -1,0 +1,30 @@
+{
+  "commit": "5ab29d209a3b1b5023d567d6403fd482c1411632",
+  "verification_kind": "read-only current bytes compared with committed bytes during archival; not a test rerun",
+  "files": [
+    {
+      "path": "packages/composer/index.ts",
+      "sha256": "2878bc26b2cb9caa4e36224653514bc4e70a587344029e45a01c32a5ca787045"
+    },
+    {
+      "path": "packages/core/worker.ts",
+      "sha256": "602674e3143bcaa75741c4376deee2b7333c6d458a239ae114ed354df666e190"
+    },
+    {
+      "path": "packages/planner/index.ts",
+      "sha256": "6aaaea084d6e8d70f95b25990abb487cf41cd87a9a31c878a2e2bfce9f258f39"
+    },
+    {
+      "path": "skills/product-concept/schemas/input.schema.json",
+      "sha256": "230f650d8f01a7c80b7a7449ec623d1c3be64ca1a4447f15ba22698c395f6edd"
+    },
+    {
+      "path": "skills/product-concept/skill.yaml",
+      "sha256": "7b4382d6fab0080ddd41b0c850eddc236dc4f344f952847778953f9235c4e716"
+    },
+    {
+      "path": "tests/p8-p10/concept-structure-label.test.ts",
+      "sha256": "a270de25c00c74ae41f1f6bed919ac54b1d529c4e101480487270aa0283cc54a"
+    }
+  ]
+}

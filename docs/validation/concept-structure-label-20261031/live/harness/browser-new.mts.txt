@@ -1,0 +1,23 @@
+/** Local UI capture of only the new asset; image text/hinge semantics require image inspection. */
+import assert from 'node:assert/strict';
+import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
+import {join,resolve} from 'node:path';
+import {createRequire} from 'node:module';
+import {Core} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/service.ts';
+import {OracleProvider} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/providers/oracle/index.ts';
+import {buildApp} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/apps/server/app.ts';
+const require=createRequire('/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/package.json'),{chromium}=require('@playwright/test');
+const folder=resolve(process.argv[2]),t=JSON.parse(readFileSync(join(folder,'target.json'),'utf8')),out=join(folder,'browser-new');mkdirSync(out,{recursive:true});
+process.env.CREATIVE_API_TOKEN='SYNTHETIC-HINGE-LABEL-LOCAL';
+const core=new Core(t.data_root,new Map([['oracle',new OracleProvider({stateDir:join(t.data_root,'provider-receipts/oracle')})]]));
+const {app}=await buildApp(core,false);let browser;
+try{
+ const task=core.require('task',t.task_id),asset=core.require('asset',task.asset_id);assert.equal(asset.review_status,'pending');
+ const url=await app.listen({host:'127.0.0.1',port:0});browser=await chromium.launch();const page=await browser.newPage(),errors:string[]=[];page.on('pageerror',(e:any)=>errors.push(e.message));
+ await page.route('**/*',(route:any)=>new URL(route.request().url()).origin===url?route.continue():route.abort());
+ await page.goto(url);await page.getByRole('button',{name:'连接本地服务',exact:true}).click();await page.getByLabel('本地访问令牌').fill('SYNTHETIC-HINGE-LABEL-LOCAL');await page.getByRole('button',{name:'连接',exact:true}).click();await page.getByLabel('当前项目').selectOption(t.project_id);
+ await page.getByRole('button',{name:/审核与交付/}).click();await page.getByRole('button',{name:'检查与审核 ↗'}).first().click();
+ await page.setViewportSize({width:1440,height:900});await page.screenshot({path:join(out,'new-hinge-label.png'),fullPage:true});
+ assert.deepEqual(errors,[]);
+ writeFileSync(join(out,'result.json'),JSON.stringify({status:'new_asset_ui_captured',source_sha:t.source_sha,asset_id:asset.id,review_status:'pending',screenshot:'new-hinge-label.png',responsive_regression_rerun:false,image_label_count:'requires_png_inspection_not_inferred_from_DOM',hinge_quality:'requires_png_inspection',human_approval:false,errors,scope:'New asset and label appearance only; no prior regression rerun'},null,2)+'\n');
+}finally{await browser?.close();await app.close();}

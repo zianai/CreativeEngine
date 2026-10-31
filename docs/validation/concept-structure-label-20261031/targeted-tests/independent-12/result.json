@@ -1,0 +1,31 @@
+{
+  "command": [
+    "node",
+    "--import",
+    "tsx",
+    "--test",
+    "--test-concurrency=1",
+    "tests/p8-p10/concept-structure-label.test.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T13:20:39.989538+00:00",
+  "duration_seconds": 2.687,
+  "exit_code": 0,
+  "source_sha": "58beeddc662bac4d7dd7e378ff8e7d8097e54965",
+  "tracked_diff_sha256": "144922c26f15c3fb5f637baece4ab17e58a29ee504e69984a7819cf106b91420",
+  "dirty_paths": [
+    " M packages/composer/index.ts",
+    " M packages/core/worker.ts",
+    " M packages/planner/index.ts",
+    " M project/state.yaml",
+    " M skills/product-concept/schemas/input.schema.json",
+    " M skills/product-concept/skill.yaml",
+    " M work/active/T-013-oracle-unattended/task.yaml",
+    "?? tests/p8-p10/concept-structure-label.test.ts",
+    "?? work/active/T-014-concept-structure-label/"
+  ],
+  "log_sha256": "aede198c5951ed7915f014c484baf4c63f865e825beb64ffc5cb8952cc5329b7",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

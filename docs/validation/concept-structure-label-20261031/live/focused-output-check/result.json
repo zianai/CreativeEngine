@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/bin/zsh",
+    "-c",
+    "node_modules/.bin/tsx \"/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-hinge-label-fix/collect-new.mts\" \"/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-hinge-label-fix\" && node_modules/.bin/tsx \"/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-hinge-label-fix/browser-new.mts\" \"/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-hinge-label-fix\""
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T13:26:20.380560+00:00",
+  "duration_seconds": 6.455,
+  "exit_code": 0,
+  "source_sha": "5ab29d209a3b1b5023d567d6403fd482c1411632",
+  "tracked_diff_sha256": "11cd230c6bfdc1a0f636b07f11e6c5b5b12e9afc1b98f539d145dfbf9326681b",
+  "dirty_paths": [
+    " M work/active/T-014-concept-structure-label/task.yaml",
+    "?? docs/validation/concept-structure-label-20261031/",
+    "?? work/active/T-014-concept-structure-label/action-native-retest.yaml"
+  ],
+  "log_sha256": "074009b8b54d60a4ad797ec9e2b8350dc093f3a444fea5478868f690249abf7e",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

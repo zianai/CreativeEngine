@@ -1,0 +1,182 @@
+{
+  "source_sha": "5ab29d209a3b1b5023d567d6403fd482c1411632",
+  "files": {
+    "package.json": "869ded2008598262d749ac0ad41f46f7edaf58c75107101f84291ecec2397caa",
+    "packages/composer/index.ts": "2878bc26b2cb9caa4e36224653514bc4e70a587344029e45a01c32a5ca787045",
+    "packages/contracts/index.ts": "a72fb5e35677e602226444d74348f00ac2e30a464626adb8ce300813f85328a4",
+    "packages/core/evaluation-export.ts": "4a4a762f452ca4e8ef243531e88575f6726d4ddb11bcaaec28c3e7e3461b768d",
+    "packages/core/evaluation.ts": "6371450f73e9d8064c5a21bf4e5eb98935d3352f451ee4e037b2387d07611739",
+    "packages/core/files.ts": "a9696efd92f57e7bf43cdc3e4a1754f8c3c5111fe33d1431262d6b82d88a1ee9",
+    "packages/core/operations.ts": "fd054f66cc5e6142e099e3925b710571f862c339f25fbadd0fd2c42738cec259",
+    "packages/core/service.ts": "b48c4434e957e7d434bc88bcd3a9148fc800519f2e3fe7991873dfa4a91f1c58",
+    "packages/core/state.ts": "77390062ff0a591869b4eebbd439da0d1c76e9aafd50e6a82913c0ede638f601",
+    "packages/core/store.ts": "e533800bce50eb4007ed0aeab6a4458e3b46a25d470e091f242d087a00012821",
+    "packages/core/validation.ts": "1eb5acaa6a344425f417dc7adc4b1a266ba2b113b8dca3e01c0d6a5e585b0969",
+    "packages/core/worker.ts": "602674e3143bcaa75741c4376deee2b7333c6d458a239ae114ed354df666e190",
+    "packages/integrations/tradecase/index.ts": "e8505f502127c6d7fc8384cca2eed3a9985ddb4713cd6932d0f7975ac6da52eb",
+    "packages/planner/delivery-rules.ts": "3de2b6dce849eacd53d8b799348aa9176391a05fb5ff58c0378d7b163affce52",
+    "packages/planner/index.ts": "6aaaea084d6e8d70f95b25990abb487cf41cd87a9a31c878a2e2bfce9f258f39",
+    "packages/providers/files.ts": "e60a91228930ebef65e0cbd6c5029fa1063f3639736408e88a6452730ed58482",
+    "packages/providers/index.ts": "cdcaf2a134c9f3aff2f6716aba7d9096c089191487b2c02da5e9f6cf66d8afef",
+    "packages/providers/mock/index.ts": "bbd8f118ac1b27f3b5faea3d9b5cc9a899b5a344fdebabd834ddcae2d23be859",
+    "packages/providers/openai-image/index.ts": "27090dcdb9fa9fa044aaddb45857fc6f95a968b4328e306fba5555c493202000",
+    "packages/providers/oracle/index.ts": "73ef5ee6f542973563f88c93ece861f5ee279be0cda33016a212fe5984e41a75",
+    "packages/providers/types.ts": "e58d78419909b10bf3bc7d02b5776a6c2a43aed1885eccdc14128f14bcb2abeb",
+    "packages/quality/index.ts": "942c12af0798cef6a5085895d6cd1f839cdf72436f88715efd9ab7233c61c8cb",
+    "pnpm-lock.yaml": "1d6c74302c691b9ce020bc9f8a7a0720c225d4b1eb592df3077f7fdad861cfa7",
+    "scripts/oracle-paid-worker.ts": "aba53f246b6a9b26c1660ed784025fe81b9b087ea44a9be0ae80dac19f1a03d8",
+    "skills/buyer-proposal/SKILL.md": "be99c882595ca310ab2ea90ed73889e573f6961c9afb2dcf0f817c70a53d315c",
+    "skills/buyer-proposal/examples/brief.json": "ace3696018930f75595b7b7a59bb2ec69ccb931d48a72d63f731295595c03beb",
+    "skills/buyer-proposal/prompts/production.txt": "50af5c00a579fe663d2f9323d7df4c77ef048fa9b2c92eb7679c6f4d17e552b7",
+    "skills/buyer-proposal/qa-rules/default.yaml": "53f079c0a1591f1c7a48549dbf2969e513d9f105b45440713f3aa31cd7fccec6",
+    "skills/buyer-proposal/schemas/input.schema.json": "f0c9f3d131ae5391acbb8f0947cc9e0c15bd10fd26eee9f402e070ff1b098aa1",
+    "skills/buyer-proposal/skill.yaml": "00a09305174144859d2712447cd449ba4ab29780df1b4fc3efc6c43d6416dd65",
+    "skills/ecommerce-listing/SKILL.md": "78bd40445d043e6368132de9ea2f1310b36e630700301121d110ed684fc33129",
+    "skills/ecommerce-listing/examples/brief.json": "d9b83f691d4a2e3050c80a914698a2bb98f6670c2ba61d8b9f1e603c781c353d",
+    "skills/ecommerce-listing/prompts/production.txt": "61079715f72dae8498853fb4304c23ad5a9b8d0a7efff0e858fba4d4b2db4867",
+    "skills/ecommerce-listing/qa-rules/default.yaml": "96b37103f2b8bc8d8523c0e6cfde770ad9be7844af3d838eda10cb4ba60830c1",
+    "skills/ecommerce-listing/schemas/input.schema.json": "40782a5aa9c917036c1857f1bf7280125501b46377680b6653e5f79605a391a6",
+    "skills/ecommerce-listing/skill.yaml": "4950439967c02fdaa73863e8cbd776c363012e1420e9e1a07f7ae32ce73f9879",
+    "skills/marketing-creative/SKILL.md": "5f049647caf4c75c3d7f769e15e0de41dbd9d1bd515661a84b9335656570fe5c",
+    "skills/marketing-creative/examples/brief.json": "b3efe9a3306cc6def7323816f5ae068644518fce0be7c053eb65061a615e1978",
+    "skills/marketing-creative/prompts/production.txt": "4b07425489db533849763d8686547c1fc024174afce81a1beff916dd2be95ca5",
+    "skills/marketing-creative/qa-rules/default.yaml": "a8ea28689870181984e3ca12d86cac0e4fe69d309706ab0a873381e5c66def6d",
+    "skills/marketing-creative/schemas/input.schema.json": "e2fdcd5b5aa31d65e9ad5740f372fa3eb19b1bbcb9ed1389df099fd4d63e204f",
+    "skills/marketing-creative/skill.yaml": "d78852908416cc88497ec6eda8a3d11330464fb2f6c308a7c37eee6e6a963139",
+    "skills/product-concept/SKILL.md": "b63ec42fb3c13f50d379de542363cb8cdf17986726a61a57ed1f4e5dce87f200",
+    "skills/product-concept/examples/brief.json": "088aab511c91e922307861a57f4c9ef32f80288206f3bfca403409ad43c3c055",
+    "skills/product-concept/prompts/production.txt": "da4406e6229e3fa52fa67b2406efe71203647bcb8a85d387bbd162bd30cbecec",
+    "skills/product-concept/qa-rules/default.yaml": "f112371dfe259eeafbae9d8646dcb808b8d3e20ddc415ef098edb45213682907",
+    "skills/product-concept/schemas/input.schema.json": "230f650d8f01a7c80b7a7449ec623d1c3be64ca1a4447f15ba22698c395f6edd",
+    "skills/product-concept/skill.yaml": "7b4382d6fab0080ddd41b0c850eddc236dc4f344f952847778953f9235c4e716",
+    "tools/oracle/README.md": "3b0162dc05f279d032bc89df5989ea4cc02f83b229567ad88ddd984d90b0348e",
+    "tools/oracle/dom-fixture.mjs": "1ebc3127bf7966d52549cfe5dd0fd370c831d3121574889ddfeb909133498956",
+    "tools/oracle/entry.mjs": "93c4db822e9c8f8e498fe2642b4e656d98a6f785638639a5da3ca19ff448f599",
+    "tools/oracle/evidence/mcp-dry-run-v2.json": "c5092864f507b93c9e691da85772206e70f2f607baae6a5a29eb3c87124bb9ea",
+    "tools/oracle/evidence/mcp-dry-run.json": "1a70b927882e301b672c21e049e1ed12f5087328e1f7048ca4d47ad6d938de61",
+    "tools/oracle/evidence/offline-tests-v2.txt": "6678895176e72b5913c32b33e833326ce6b94fe188b8ad9946c970968653de45",
+    "tools/oracle/evidence/offline-tests.txt": "3c72055ce322e12f0fb55f7833d73779281d466a5956cf2e987410cc1a5bf301",
+    "tools/oracle/image-dom.mjs": "21d88179eeeb83e4cd4f47ee71fd92b56e9bc9a21b09111dba33532756dcc37f",
+    "tools/oracle/mcp-probe.mjs": "99f96ee85b25846020316822bd436570b30ea4ee1cb28bb450cafba5fb0ecaed",
+    "tools/oracle/patch.mjs": "5dc29b8f7a25743ce708d84211e2505c6d0487ce515f852dec683cfb99ac63cb",
+    "tools/oracle/patch.test.mjs": "1368e28f88d139a0b5aad08660b3b5d3c972f5ff0af251e110dd0734cde04811",
+    "tools/oracle/register.mjs": "58337fa569782269a87692fd0c3460e0d9e65eb0232bd097b78faccd99bd90dc",
+    "tools/oracle/upstream-pins.json": "523e7b6f1ab0ac10c11ead2e1dd13401b87adcd53e0e6e802575838b7f662181"
+  },
+  "harness": {
+    "prepare.mts": "4d4fee762f539222ce07ec7563e42499cdb2d1a23382026ab12145c53a389d88",
+    "execute.py": "ef2d6dfeb192d6622631a8913f742495fa1ce945c757718b9c559473045bec22",
+    "environment.py": "c2a32d5b4fc4aef7c035085be2cb683a9b42c14bead2a38a36ed5598c1899dc8",
+    "brief.template.json": "8454773121bad5316bbbf7709e249cbca5313178de1095b430ef78915b0769f2",
+    "oracle-config.template.json": "9f3145943aa3f2064eb94bea9d1432dbe98bdc23429efa19b4151ceb693a5e51",
+    "collect-new.mts": "28bfe4cdb429e6a6ca8ff9d9ad0368e5fb066450899d23552d6c176f5e7d8767",
+    "browser-new.mts": "c69c43f3e377626887285021f94d81ac72b713be5c28bf30c4b12d5428394f43"
+  },
+  "input_hash": "19c54ffcc4f477f77b7735a88feab6e5ebd67b0793f0a52ecc3ece140809f825",
+  "provider_config_hash": "e501f3eceff757659950b8cb881c6a221d7e869bbf3f21acefed898654e0e7da",
+  "grant_sha256": "f2a5115fedbaab2b604d57dc931faf3a74213d1ba456220af3c3d8c868804ad2",
+  "batch_id": "batch_21f3eb09-ddb7-4f6d-9c70-1b2b20f028ef",
+  "task_id": "task_9364c2fe-85af-4bee-959c-15f26ec3bd1a",
+  "skill_snapshot": {
+    "id": "product-concept",
+    "version": "1.1.0",
+    "digest": "1f2ff6a6bdcd014001b49d53073ceda85e45343cd7909bc22503b7dea3535438",
+    "prompt_template": "Explore a product design direction for an internal design review. Make the stated direction visually distinct from alternatives. Address the provided user pain points and retain explicit dimensional, cost and manufacturing constraints as design goals. Do not claim technical feasibility, safety approval or manufacturing readiness. Distinguish proposed functionality from confirmed product facts.\n",
+    "qa_profile": [
+      "distinct_direction",
+      "requirements_covered",
+      "constraints_preserved",
+      "concept_identity",
+      "concept_label",
+      "feasibility_uncertainty_visible",
+      "human_review_required"
+    ],
+    "input_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Product Concept input",
+      "type": "object",
+      "required": [
+        "project_id",
+        "workflow",
+        "requirements",
+        "product"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workflow": {
+          "const": "product-concept"
+        },
+        "requirements": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "product": {
+          "type": "object",
+          "required": [
+            "product_id",
+            "stage"
+          ],
+          "properties": {
+            "product_id": {
+              "type": "string"
+            },
+            "stage": {
+              "enum": [
+                "existing_sku",
+                "prototype",
+                "concept"
+              ]
+            },
+            "truth_snapshot_id": {
+              "type": "string"
+            }
+          }
+        },
+        "allowed_changes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reference_asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "skill_input": {
+          "type": "object",
+          "properties": {
+            "design_direction": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000,
+              "pattern": "\\S"
+            }
+          }
+        },
+        "variants": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        }
+      },
+      "$comment": "The full wire schema is exported by packages/contracts; deterministic policy validation is mandatory after schema validation."
+    },
+    "defaults": {
+      "fidelity": "exploratory",
+      "strategy": "generate"
+    }
+  },
+  "plan_directions": [
+    "Three articulated trays joined at BOTH adjacent connections by wide flexible accordion/bellows sheets, each with at least FIVE continuous repeated pleats; the right tray tilts upward to expose unfolding pleats. No continuous monolithic silhouette or pin-jointed hardware."
+  ],
+  "api_credentials_inherited": false,
+  "api_cost_usd": 0,
+  "subscription_cost": "unmetered",
+  "human_approval": false
+}

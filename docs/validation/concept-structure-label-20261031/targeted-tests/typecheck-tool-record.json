@@ -1,0 +1,12 @@
+{
+  "evidence_kind": "existing_exec_command_tool_response_summary",
+  "tool_chunk_id": "e8d247",
+  "command": "env -i PATH=/opt/homebrew/bin:/usr/bin:/bin HOME=/tmp NO_COLOR=1 ./node_modules/.bin/tsc --noEmit; git diff --check; git diff --stat",
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "observed_shell_exit_code": 0,
+  "typecheck_diagnostics_observed": false,
+  "standalone_tsc_exit_code": null,
+  "limitation": "The original shell did not separately capture the tsc status or enable errexit. Its exit code is the composite command exit, not a separately measured tsc exit. No diagnostics were printed. No rerun was performed.",
+  "source_note": "Before the final local-composition marker path/existence-only adjustment; the original check was performed on the working tree.",
+  "new_execution_performed_for_archive": false
+}

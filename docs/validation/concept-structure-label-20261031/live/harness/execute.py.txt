@@ -1,0 +1,75 @@
+"""Template: requires an explicit new source freeze; preparation never executes a provider."""
+from environment import runtime, repo, env
+from pathlib import Path
+import hashlib
+import json
+import os
+import signal
+import subprocess
+import sys
+import time
+
+assert len(sys.argv) == 2 and sys.argv[1] in ('prepare', 'preflight', 'execute-once')
+stage = sys.argv[1]
+freeze = json.loads((runtime / 'source-freeze.json').read_text())
+source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip()
+assert source == freeze['source_sha'] and source != '58beeddc662bac4d7dd7e378ff8e7d8097e54965'
+base = [str(repo / 'node_modules/.bin/tsx')]
+if stage == 'prepare':
+    config = runtime / 'oracle-home/config.json'
+    assert not config.exists(), 'Already initialized; do not overwrite a prior preparation'
+    config.parent.mkdir(mode=0o700)
+    config.write_bytes((runtime / 'oracle-config.template.json').read_bytes())
+    config.chmod(0o600)
+    proc = subprocess.run(base + [str(runtime / 'prepare.mts'), str(runtime)], cwd=repo,
+                          env=env, capture_output=True, text=True, timeout=45)
+    (runtime / 'prepare.log').write_text(proc.stdout + proc.stderr)
+    print(proc.stdout, end='')
+    if proc.returncode:
+        print(proc.stderr, file=sys.stderr)
+    raise SystemExit(proc.returncode)
+
+target = json.loads((runtime / 'target.json').read_text())
+snapshot = json.loads((runtime / 'execution-source.json').read_text())
+assert source == target['source_sha'] == snapshot['source_sha']
+for relative, expected in snapshot['files'].items():
+    assert hashlib.sha256((repo / relative).read_bytes()).hexdigest() == expected
+for relative, expected in snapshot['harness'].items():
+    assert hashlib.sha256((runtime / relative).read_bytes()).hexdigest() == expected
+env.update({'ALLOW_TEST_LIVE': 'on', 'CREATIVE_ENGINE_P7_ROOT': target['operator'],
+            'CREATIVE_ENGINE_P7_APPROVED_GRANT_SHA256': target['pin']})
+if stage == 'execute-once':
+    with (runtime / 'execution-started.json').open('x') as marker:
+        json.dump({'state': 'started', 'api_budget_new': 0, 'reservation_usd': .25,
+                   'retry_allowed': False, 'started_at_unix': time.time()}, marker)
+cmd = base + ['scripts/oracle-paid-worker.ts', '--' + stage, target['data_root'], target['batch_id']]
+out = runtime / (stage + '.log')
+started = time.monotonic()
+with out.open('xb') as log:
+    proc = subprocess.Popen(cmd, cwd=repo, env=env, stdout=log, stderr=subprocess.STDOUT,
+                            start_new_session=True)
+    try:
+        code = proc.wait(timeout=650)
+    except subprocess.TimeoutExpired:
+        os.killpg(proc.pid, signal.SIGTERM)
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            os.killpg(proc.pid, signal.SIGKILL)
+            proc.wait()
+        code = 124
+    finally:
+        if stage == 'execute-once':
+            revoked = Path(target['operator']) / 'revoked'
+            if not revoked.exists():
+                revoked.write_text('Single hinge-label correction invocation closed; reconcile uncertainty, never auto-retry.\n')
+                revoked.chmod(0o600)
+result = {'command': cmd, 'exit_code': code, 'source_sha': source,
+          'duration_seconds': time.monotonic() - started,
+          'log_sha256': hashlib.sha256(out.read_bytes()).hexdigest(),
+          'api_credentials_inherited': False, 'api_cost_usd': 0, 'api_requests_added': 0,
+          'subscription_cost': 'unmetered', 'actual_subscription_cost_usd': None,
+          'human_approval': False, 'retry_allowed': False}
+(runtime / (stage + '-result.json')).write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps(result))
+raise SystemExit(code)

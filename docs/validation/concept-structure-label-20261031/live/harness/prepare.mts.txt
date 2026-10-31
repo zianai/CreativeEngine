@@ -1,0 +1,48 @@
+/** TEMPLATE: local preparation is blocked until coordinator writes source-freeze.json. */
+import assert from 'node:assert/strict';
+import {mkdirSync,writeFileSync,readFileSync,existsSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {join,resolve} from 'node:path';
+import {Core,dimensions} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/service.ts';
+import {OracleProvider,oracleImagePrompt} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/providers/oracle/index.ts';
+import {evaluationSubject} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/evaluation-export.ts';
+import {ValidationRunPolicy,sha} from '/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/validation.ts';
+const parent=resolve(process.argv[2]),repo=resolve(process.cwd());
+const freeze=JSON.parse(readFileSync(join(parent,'source-freeze.json'),'utf8'));
+assert(/^[0-9a-f]{40}$/.test(freeze.source_sha),'FIX_SOURCE_NOT_FROZEN');
+assert.notEqual(freeze.source_sha,'58beeddc662bac4d7dd7e378ff8e7d8097e54965','PRE_FIX_SOURCE_DENIED');
+assert.equal(execFileSync('git',['rev-parse','HEAD'],{cwd:repo,encoding:'utf8'}).trim(),freeze.source_sha);
+assert(freeze.human_reason&&freeze.action_id&&freeze.authority_ref,'FRESH_AUTHORITY_CONTEXT_REQUIRED');
+assert(!existsSync(join(parent,'target.json')),'ALREADY_PREPARED_NO_REPEAT');
+const root=join(parent,'data'),records=join(parent,'operator');
+const provider=new OracleProvider({stateDir:join(root,'provider-receipts/oracle')});
+const core=new Core(root,new Map([['oracle',provider]]));
+try{
+ const project=core.project({name:'VIRTUAL TEST ONLY — accordion hinge and single-label correction'});
+ const input=JSON.parse(readFileSync(join(parent,'brief.template.json'),'utf8'));
+ const brief=core.brief({...input,project_id:project.id});
+ const plan=core.plan(brief.id);
+ // Fail before creating authority if the native concept direction still contradicts the requested folds.
+ assert(!plan.directions.some((d:string)=>/monolithic minimal form|one continuous silhouette/i.test(d)),'CONFLICTING_DEFAULT_DIRECTION');
+ assert(plan.directions.some((d:string)=>/accordion|bellows|pleat/i.test(d)),'EXPLICIT_DESIGN_DIRECTION_NOT_HONORED');
+ assert(plan.requires_human_approval===true&&plan.skill_snapshot,'NATIVE_POLICY_AND_SKILL_REQUIRED');
+ const batch=core.createBatch({plan_id:plan.id,budget_usd:.25,authorize_paid:true,vision_review:false}),task=core.store.tasks(batch.id)[0];
+ assert.equal(core.store.tasks(batch.id).length,1);
+ const context={...evaluationSubject(core,batch.id),run_id:'oracle-hinge-label-fix-20261031',system:'creative_engine',tenant_id:'synthetic-followup',environment:'live_sandbox',dataset_id:'VIRTUAL-DESK-006',data_classification:'synthetic',provider:'oracle',model:provider.model,domain:'chatgpt.com',provider_config_hash:sha(JSON.stringify(provider.configuration())),input_hash:sha(JSON.stringify({prompt:oracleImagePrompt(task.prompt.text,false,false),...dimensions(plan.aspect_ratio),refs:[],mode:'generate'}))};
+ const cap={provider:'oracle',model:provider.model,domain:'chatgpt.com',max_requests:1,max_images:1,max_attempts:1,max_usd:.25};
+ const target={data_root:root,batch_id:batch.id,project_id:project.id,plan_id:plan.id,task_id:task.id};
+ const grant={...context,actor_id:'user-explicit-hinge-label-fix-20261031',actor_origin:'operator',human_reason:freeze.human_reason,approved_at_utc:new Date().toISOString(),expires_at_utc:new Date(Date.now()+6*3600000).toISOString(),revoked_at_utc:null,allow_external_writes:false,export_allowed:true,data_classifications:['synthetic'],capabilities:{generate_image:cap,inspect_customer_data:cap},worker_subject:target};
+ const sourcePaths=execFileSync('git',['ls-files','packages','skills','tools/oracle','scripts/oracle-paid-worker.ts','package.json','pnpm-lock.yaml'],{cwd:repo,encoding:'utf8'}).trim().split('\n').filter(Boolean);
+ const files=Object.fromEntries(sourcePaths.map(p=>{const bytes=readFileSync(join(repo,p));assert.equal(sha(bytes),sha(execFileSync('git',['show',freeze.source_sha+':'+p],{cwd:repo})),'UNCOMMITTED_SOURCE:'+p);return[p,sha(bytes)];}));
+ const harness=Object.fromEntries(['prepare.mts','execute.py','environment.py','brief.template.json','oracle-config.template.json','collect-new.mts','browser-new.mts'].map(p=>[p,sha(readFileSync(join(parent,p)))]));
+ mkdirSync(records,{recursive:true,mode:0o700});
+ for(const[name,value]of Object.entries({'grant.json':grant,'context.json':context,'isolation.json':{...context,data_root:records}}))writeFileSync(join(records,name),JSON.stringify(value),{flag:'wx',mode:0o600});
+ const pin=sha(readFileSync(join(records,'grant.json')));
+ const snapshot={source_sha:freeze.source_sha,files,harness,input_hash:context.input_hash,provider_config_hash:context.provider_config_hash,grant_sha256:pin,batch_id:batch.id,task_id:task.id,skill_snapshot:plan.skill_snapshot,plan_directions:plan.directions,api_credentials_inherited:false,api_cost_usd:0,subscription_cost:'unmetered',human_approval:false};
+ writeFileSync(join(parent,'target.json'),JSON.stringify({...target,pin,operator:records,model:provider.model,prompt:task.prompt.text,source_sha:freeze.source_sha,expires_at:grant.expires_at_utc,action_id:freeze.action_id,authority_ref:freeze.authority_ref},null,2),{flag:'wx',mode:0o600});
+ writeFileSync(join(parent,'execution-source.json'),JSON.stringify(snapshot,null,2)+'\n',{flag:'wx',mode:0o600});
+ writeFileSync(join(parent,'prompt.txt'),task.prompt.text,{flag:'wx',mode:0o600});
+ const preflight=new ValidationRunPolicy(records,pin,true).preflight({...context,action:'generate_image'},.25,false);assert.equal(preflight.status,'allowed');
+ writeFileSync(join(parent,'local-preflight.json'),JSON.stringify(preflight,null,2)+'\n',{flag:'wx',mode:0o600});
+ console.log(JSON.stringify({status:'prepared_not_executed',source_sha:freeze.source_sha,...target,model:provider.model,reserved_usd:.25,external_calls:0}));
+}finally{core.close();await provider.close();}

@@ -1,0 +1,13 @@
+{
+  "evidence_kind": "transcribed_existing_exec_command_tool_response",
+  "tool_chunk_id": "83f983",
+  "command": "env -i PATH=/opt/homebrew/bin:/usr/bin:/bin HOME=/tmp NO_COLOR=1 ./node_modules/.bin/tsx --test --test-concurrency=1 tests/p8-p10/concept-structure-label.test.ts",
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "observed_shell_exit_code": 0,
+  "reported_tests": 12,
+  "reported_pass": 12,
+  "reported_fail": 0,
+  "output_sha256": "921b42d8ea8e63cfae01b1538a44ec87f4beb89247b2e42ed4d15c2c2e7b00e6",
+  "new_execution_performed_for_archive": false,
+  "source_note": "Pre-commit worktree. Seven-case final run followed only the local-composition relative-path and single-exists-read change; no unchanged tests rerun. Do not reinterpret the earlier 12-case run as execution at the final commit."
+}

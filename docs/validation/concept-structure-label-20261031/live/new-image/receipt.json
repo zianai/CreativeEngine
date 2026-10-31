@@ -1,0 +1,25 @@
+{
+  "path": "/Users/a/workspaces/AForeign Trade/validation-coordinator/followup-20261031/oracle-hinge-label-fix/data/attempts/attempt_04bd9108-490f-45f1-af9a-5f3393e0eeb8/attempt_04bd9108-490f-45f1-af9a-5f3393e0eeb8.png",
+  "provider": "oracle",
+  "model": "oracle-browser-current-unverified",
+  "sessionId": "attempt-04bd9108-490f-45f1-af9a",
+  "costUsd": 0,
+  "mock": false,
+  "metadata": {
+    "mode": "generate",
+    "cost_basis": "api_zero_subscription_cost_not_metered",
+    "api_cost_usd": 0,
+    "actual_subscription_cost_usd": null,
+    "input_hash": "19c54ffcc4f477f77b7735a88feab6e5ebd67b0793f0a52ecc3ece140809f825",
+    "submitted_prompt_sha256": "f435672729f7b089054a144045181e49bc6ae4f600733ba0ddb7837e1c2c0c46",
+    "model_verified": false,
+    "human_approval": false,
+    "aspect_ratio_enforcement": "prompt_only",
+    "requested_size": [
+      1024,
+      1024
+    ],
+    "artifact_sha256": "15b7d3fdeccf317c22de8e2afff7809d67e1800bfd1671346003462259e3d0a9",
+    "attempt_id": "attempt_04bd9108-490f-45f1-af9a-5f3393e0eeb8"
+  }
+}
