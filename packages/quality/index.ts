@@ -26,6 +26,30 @@ export interface VisionUsage {
   basis: 'reported_usage' | 'reservation_estimate';
   usage?: unknown;
 }
+
+/** Unknown cache-write tariffs cannot be silently priced as ordinary input. */
+export function visionUsageCost(usage: unknown, inputRate: number, outputRate: number): number | null {
+  if (!usage || typeof usage !== 'object') return null;
+  const value = usage as {
+    input_tokens?: number;
+    output_tokens?: number;
+    input_tokens_details?: { cache_write_tokens?: number };
+  };
+  if (
+    ![value.input_tokens, value.output_tokens, inputRate, outputRate].every(
+      (n) => typeof n === 'number' && Number.isFinite(n) && n >= 0,
+    )
+  )
+    return null;
+  if (
+    value.input_tokens_details?.cache_write_tokens !== undefined &&
+    value.input_tokens_details.cache_write_tokens !== 0
+  )
+    return null;
+  return Number(
+    ((value.input_tokens! * inputRate + value.output_tokens! * outputRate) / 1_000_000).toFixed(8),
+  );
+}
 export interface VisionReviewer {
   review(file: string, options: QAOptions): Promise<VisionReport>;
   estimateCost?(): number;
@@ -221,7 +245,12 @@ export class OpenAIVisionReviewer implements VisionReviewer {
         throw new Error('Vision token rates must be nonnegative.');
     this.client =
       options.client ??
-      new OpenAI({ baseURL: 'https://api.openai.com/v1', apiKey: options.apiKey ?? process.env.OPENAI_API_KEY, maxRetries: 0, timeout: 60000 });
+      new OpenAI({
+        baseURL: 'https://api.openai.com/v1',
+        apiKey: options.apiKey ?? process.env.OPENAI_API_KEY,
+        maxRetries: 0,
+        timeout: 60000,
+      });
   }
   estimateCost() {
     return this.options.reservationUsd ?? 0.25;
@@ -230,14 +259,42 @@ export class OpenAIVisionReviewer implements VisionReviewer {
     return this.lastUsage;
   }
   async review(file: string, options: QAOptions): Promise<VisionReport> {
-    const hashes = await Promise.all([file, ...(options.referencePaths ?? []).slice(0, 3)].map(async path => sha(await readFile(path))));
-    const inputHash = sha(JSON.stringify({ hashes, identity: options.identity, fidelity: options.fidelity, prompt: options.prompt ?? '' }));
-    const configHash = sha(JSON.stringify({ model: this.options.model, reservation: this.estimateCost(),
-      input_rate: this.options.inputUsdPerMillion, output_rate: this.options.outputUsdPerMillion }));
-    const permit = livePermission('vision_review', 'openai', this.options.model, inputHash, configHash,
-      this.estimateCost(), 'vision-' + inputHash);
-    try { const result = await this.reviewAuthorized(file, options); permit.complete(this.lastUsage?.cost_usd ?? this.estimateCost(), 'estimated'); return result; }
-    catch (e) { permit.unknown(); throw e; }
+    const hashes = await Promise.all(
+      [file, ...(options.referencePaths ?? []).slice(0, 3)].map(async (path) => sha(await readFile(path))),
+    );
+    const inputHash = sha(
+      JSON.stringify({
+        hashes,
+        identity: options.identity,
+        fidelity: options.fidelity,
+        prompt: options.prompt ?? '',
+      }),
+    );
+    const configHash = sha(
+      JSON.stringify({
+        model: this.options.model,
+        reservation: this.estimateCost(),
+        input_rate: this.options.inputUsdPerMillion,
+        output_rate: this.options.outputUsdPerMillion,
+      }),
+    );
+    const permit = livePermission(
+      'vision_review',
+      'openai',
+      this.options.model,
+      inputHash,
+      configHash,
+      this.estimateCost(),
+      'vision-' + inputHash,
+    );
+    try {
+      const result = await this.reviewAuthorized(file, options);
+      permit.complete(this.lastUsage?.cost_usd ?? this.estimateCost(), 'estimated');
+      return result;
+    } catch (e) {
+      permit.unknown();
+      throw e;
+    }
   }
   private async reviewAuthorized(file: string, options: QAOptions): Promise<VisionReport> {
     this.lastUsage = { cost_usd: this.estimateCost(), basis: 'reservation_estimate' };
@@ -283,14 +340,14 @@ export class OpenAIVisionReviewer implements VisionReviewer {
       this.options.outputUsdPerMillion !== undefined
     ) {
       this.lastUsage = {
-        cost_usd: Number(
-          (
-            (result.usage.input_tokens * this.options.inputUsdPerMillion +
-              result.usage.output_tokens * this.options.outputUsdPerMillion) /
-            1_000_000
-          ).toFixed(8),
-        ),
-        basis: 'reported_usage',
+        cost_usd:
+          visionUsageCost(result.usage, this.options.inputUsdPerMillion, this.options.outputUsdPerMillion) ??
+          this.estimateCost(),
+        basis:
+          visionUsageCost(result.usage, this.options.inputUsdPerMillion, this.options.outputUsdPerMillion) ===
+          null
+            ? 'reservation_estimate'
+            : 'reported_usage',
         usage: result.usage,
       };
     }
