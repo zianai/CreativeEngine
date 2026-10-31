@@ -44,8 +44,9 @@ try {
   )
     throw new Error('PRISTINE_SINGLE_IMAGE_ATTEMPT_REQUIRED');
   validatePlan(plan, core.context(plan.project_id, plan.product.truth_snapshot_id));
-  const subject = evaluationSubject(core, batchId),
-    size = dimensions(plan.aspect_ratio),
+  const subject = evaluationSubject(core, batchId);
+  if (!subject.rights_current) throw new Error('RIGHTS_REVOKED_OR_UNSAFE_SOURCE');
+  const size = dimensions(plan.aspect_ratio),
     refs = plan.reference_asset_ids
       .map((id: string) => core.require('asset', id))
       .filter((a: any) => a.kind !== 'document')
