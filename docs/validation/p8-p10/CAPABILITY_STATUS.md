@@ -1,6 +1,6 @@
 # Capability status
 
-Implementation subject: `git:bf18ba8b919e33f08a68749380c474c40a21c621`.
+Implementation subject: `git:bbd207c9547e230c822c87926676c37e847566b3`.
 
 | Capability | State | Evidence / boundary |
 |---|---|---|

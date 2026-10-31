@@ -1,0 +1,26 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "--test",
+    "--test-concurrency=1",
+    "tests/p7/authorization.test.ts",
+    "tests/p7/recovery.test.ts",
+    "tests/p8-p10/crash.test.ts",
+    "tests/p8-p10/evaluation.test.ts",
+    "tests/p8-p10/http.test.ts",
+    "tests/p8-p10/operations.test.ts",
+    "tests/p8-p10/paid-harness.test.ts",
+    "tests/p8-p10/safety.test.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T09:09:53.739392+00:00",
+  "duration_seconds": 74.378,
+  "exit_code": 0,
+  "source_sha": "bbd207c9547e230c822c87926676c37e847566b3",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dirty_paths": [],
+  "log_sha256": "d558e026bd2a27d6f031654494ed16a88849fc3b022cd394ea74195f02d26406",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

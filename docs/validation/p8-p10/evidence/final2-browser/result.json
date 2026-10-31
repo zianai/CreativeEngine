@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "scripts/p10-studio-e2e.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T09:10:14.190941+00:00",
+  "duration_seconds": 11.058,
+  "exit_code": 0,
+  "source_sha": "bbd207c9547e230c822c87926676c37e847566b3",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dirty_paths": [
+    "?? docs/validation/p8-p10/evidence/final2-build/",
+    "?? docs/validation/p8-p10/evidence/final2-typecheck/"
+  ],
+  "log_sha256": "48c345cd2ebc5ddec88641b9b42c111f19291ab1da9f02821587cb78d731a4be",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

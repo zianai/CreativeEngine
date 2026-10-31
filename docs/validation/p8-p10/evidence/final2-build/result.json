@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node_modules/.bin/vite",
+    "build",
+    "--config",
+    "apps/studio/vite.config.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T09:09:56.526833+00:00",
+  "duration_seconds": 1.012,
+  "exit_code": 0,
+  "source_sha": "bbd207c9547e230c822c87926676c37e847566b3",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dirty_paths": [],
+  "log_sha256": "1ecfd7de9ad4f6793e6ab82717403218dfbb1d919ef825a8a5cb891dcc541cf7",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

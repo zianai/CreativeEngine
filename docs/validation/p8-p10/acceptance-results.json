@@ -1,28 +1,28 @@
 {
   "repo": "creative-engine",
-  "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+  "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
   "results": [
     {
       "id": "P8-T020",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/safety.test.ts::P8-T020 concept-only sources and unauthorized logo cannot become verified SKU"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P8-T021",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log",
-        "docs/validation/p8-p10/evidence/final-browser/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log",
+        "docs/validation/p8-p10/evidence/final2-browser/result.json",
         "docs/validation/p8-p10/evidence/studio/render-manifest.json"
       ],
       "test_nodes": [
@@ -30,7 +30,7 @@
         "scripts/p10-studio-e2e.ts"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
@@ -41,7 +41,7 @@
       ],
       "test_nodes": [],
       "reason": "Fresh exact image API grant, authorized real product inputs and paid execution not provided; no call made.",
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E2_IMAGE"
     },
     {
@@ -52,44 +52,44 @@
       ],
       "test_nodes": [],
       "reason": "No authorized 12 real assets with two independent human raters.",
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E3"
     },
     {
       "id": "P9-T015",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/crash.test.ts::P9-T015..018 real process death claimed and restart"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T016",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/crash.test.ts::P9-T015..018 real process death submitted and restart",
         "tests/p8-p10/safety.test.ts::P9-T016 filesystem failure after a provider response keeps liability and forbids retry"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T017",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/crash.test.ts::P9-T015..018 real process death saved and restart",
@@ -97,57 +97,57 @@
         "tests/p8-p10/crash.test.ts::P9-T017 protocol 2 receipt missing attempt_id never recovers as approved or regenerates"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T018",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/crash.test.ts::P9-T015..018 real process death vision_started and restart"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T019",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/safety.test.ts::P8-T021 P9-T019 file QA and skipped Vision do not approve an asset"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T020",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/safety.test.ts::P9-T020 source rights revoked after QA blocks both approval and cached export"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T021",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/safety.test.ts::P9-T021 cached export rejects modified source, output and package bytes",
@@ -155,22 +155,22 @@
         "tests/p7/recovery.test.ts::provider drift fails before execution"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
       "id": "P9-T022",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p7/recovery.test.ts::accepted timeout and missing usage never repeat or report zero liability",
         "tests/p8-p10/crash.test.ts::P9-T015..018 real process death vision_started and restart"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
@@ -181,7 +181,7 @@
       ],
       "test_nodes": [],
       "reason": "No fresh separate paid Vision grant/preapproved real sample; no call made.",
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E2_VISION"
     },
     {
@@ -192,22 +192,22 @@
       ],
       "test_nodes": [],
       "reason": "No fresh full live Worker authorization; one-shot harness is implemented and locally preflight-tested only.",
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E2_IMAGE"
     },
     {
       "id": "P10-T006",
       "state": "passed",
       "evidence_refs": [
-        "docs/validation/p8-p10/evidence/final-regressions/result.json",
-        "docs/validation/p8-p10/evidence/final-regressions/output.log"
+        "docs/validation/p8-p10/evidence/final2-regressions/result.json",
+        "docs/validation/p8-p10/evidence/final2-regressions/output.log"
       ],
       "test_nodes": [
         "tests/p8-p10/operations.test.ts::P10-T006 backup restores new directory with exact assets and no repeat provider call",
         "tests/p8-p10/operations.test.ts::P10-T006 new-directory restore preserves unknown paid receipt liability without resubmit"
       ],
       "reason": null,
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E0/E1 synthetic engineering only"
     },
     {
@@ -218,7 +218,7 @@
       ],
       "test_nodes": [],
       "reason": "No creative/business owner acceptance, real quality ratings or actual bill evidence.",
-      "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+      "tested_commit": "bbd207c9547e230c822c87926676c37e847566b3",
       "scope": "E3"
     }
   ],
@@ -231,16 +231,16 @@
       "tests/p8-p10/http.test.ts"
     ],
     "contracts": [
-      "docs/validation/p8-p10/evidence/final-contract-tc/result.json",
-      "docs/validation/p8-p10/evidence/final-contract-lc/result.json",
-      "docs/validation/p8-p10/evidence/final-contract-verifier/result.json"
+      "docs/validation/p8-p10/evidence/final2-contract-tc/result.json",
+      "docs/validation/p8-p10/evidence/final2-contract-lc/result.json",
+      "docs/validation/p8-p10/evidence/final2-contract-verifier/result.json"
     ],
     "render": [
-      "docs/validation/p8-p10/evidence/final-browser/result.json",
+      "docs/validation/p8-p10/evidence/final2-browser/result.json",
       "docs/validation/p8-p10/evidence/studio/render-manifest.json"
     ],
     "https": [
-      "docs/validation/p8-p10/evidence/final-https/result.json"
+      "docs/validation/p8-p10/evidence/final2-https/result.json"
     ]
   }
 }
