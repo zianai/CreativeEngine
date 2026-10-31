@@ -1,0 +1,22 @@
+✔ observed modern nested user exchange admits completed blob with no assistant role (1.147125ms)
+✔ strict conversation, origin, and fresh turn boundary are mandatory (1.268459ms)
+✔ user attachments and earlier images are not generated outputs for latest request (0.46875ms)
+✔ streaming, stop control, unloaded, hidden and foreign image URLs fail closed (1.53675ms)
+✔ later concurrent request with its own completed image cannot satisfy earlier attempt (0.746666ms)
+✔ legacy same-origin estuary image URL and localized alt remain admitted (0.356916ms)
+✔ patched installed collector waits for stable image, keeps ownership, writes validated bytes once (540.1075ms)
+✔ download ownership change or non-image bytes leave no result and no retry (1030.796625ms)
+✔ missing collection identity and upstream drift fail closed (0.658208ms)
+✔ first post-submit conversation stays frozen through monitor and snapshot changes (0.927875ms)
+✔ owned completed image failure surfaces as terminal code across serialized DOM and patched collector (9.209584ms)
+✔ failure words in user/quote/earlier/foreign/active/later requests are not terminal proof (9.853334ms)
+✔ actual patched poll preserves terminal failure instead of swallowing it (4.678041ms)
+✔ patched upstream URL monitor and collection getter cannot replace first submitted identity (4.261208ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1800.358

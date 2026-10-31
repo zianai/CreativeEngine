@@ -2,6 +2,7 @@
 export class Element {
   constructor(tag, attributes = {}, children = []) {
     this.tagName = tag; this.attributes = attributes; this.children = children;
+    this.childNodes = children; this.textContent = '';
     this.parentElement = null; this.hidden = false;
     for (const child of children) child.parentElement = this;
   }
@@ -10,7 +11,7 @@ export class Element {
   matches(selector) {
     return selector.split(',').some(part => {
       const s = part.trim();
-      if (s === 'main' || s === 'img') return this.tagName === s;
+      if (s === 'main' || s === 'img' || s === 'button') return this.tagName === s;
       if (s.startsWith('form button')) return false;
       const m = s.match(/^\[([^\]$^=]+)(?:(\$=|\^=|=)"([^"]*)")?\]$/);
       if (!m) return false;

@@ -1,5 +1,35 @@
 import { ownedImageSnapshot } from './image-dom.mjs';
 
+/** Latches the first stable post-submit URL; a later mismatch cannot be cleared. */
+export function createConversationIdentity() {
+  let fixed;
+  let invalid = false;
+  function fail(code) { const error = new Error(code); error.code = code; throw error; }
+  function parse(value) {
+    try {
+      const url = new URL(value);
+      if (!['https://chatgpt.com', 'https://chat.openai.com'].includes(url.origin)) return undefined;
+      return /^\/c\/([a-zA-Z0-9-]+)\/?$/.exec(url.pathname)?.[1];
+    } catch { return undefined; }
+  }
+  return {
+    observe(value) {
+      if (invalid) fail('CE_ORACLE_CONVERSATION_CHANGED');
+      const id = parse(value);
+      if (!id) { if (fixed) { invalid = true; fail('CE_ORACLE_CONVERSATION_CHANGED'); } return; }
+      if (fixed && id !== fixed) { invalid = true; fail('CE_ORACLE_CONVERSATION_CHANGED'); }
+      fixed ??= id;
+      return fixed;
+    },
+    current(value) {
+      if (invalid) fail('CE_ORACLE_CONVERSATION_CHANGED');
+      if (!fixed) fail('CE_ORACLE_CONVERSATION_UNCONFIRMED');
+      if (parse(value) !== fixed) { invalid = true; fail('CE_ORACLE_CONVERSATION_CHANGED'); }
+      return fixed;
+    },
+  };
+}
+
 function replaceOnce(source, before, after, count = 1) {
   if (source.split(before).length - 1 !== count) throw new Error('ORACLE_PATCH_CONTEXT_MISMATCH');
   return source.split(before).join(after);
@@ -12,6 +42,11 @@ function replaceFunction(source, start, end, replacement) {
 
 export function patchSource(relativePath, source) {
   if (relativePath === 'dist/src/browser/index.js') {
+    source = 'const ceCreateConversationIdentity = ' + createConversationIdentity.toString() + ';\n' + source;
+    source = replaceOnce(source, '    let submittedPromptHash = null;', '    let submittedPromptHash = null;\n    const ceConversation = ceCreateConversationIdentity();', 2);
+    source = replaceOnce(source, 'persistUrl: async (url) => {\n                lastUrl = url;', 'persistUrl: async (url) => {\n                if (promptSubmitted) ceConversation.observe(url);\n                lastUrl = url;', 2);
+    source = replaceOnce(source, 'const expectedConversationId = () => lastUrl ? extractConversationIdFromUrl(lastUrl) : undefined;', 'const expectedConversationId = () => ceConversation.current(lastUrl);', 2);
+    source = replaceOnce(source, 'readAssistantGeneratedImages(Runtime, minTurnIndex, expectedConversationId).catch(() => [])', 'readAssistantGeneratedImages(Runtime, minTurnIndex, expectedConversationId).catch(error => { if (error?.code?.startsWith("CE_ORACLE_")) throw error; return []; })');
     const matches = [...source.matchAll(/const imageArtifacts = await collectGeneratedImageArtifacts\(\{[\s\S]*?minTurnIndex: imageArtifactMinTurnIndex,/g)];
     if (matches.length !== 2) throw new Error('ORACLE_PATCH_IMAGE_CALL_MISMATCH');
     for (const match of matches) source = replaceOnce(source, match[0], match[0] + '\n            expectedConversationId: expectedConversationId(),');
@@ -20,6 +55,10 @@ export function patchSource(relativePath, source) {
   if (relativePath !== 'dist/src/browser/chatgptImages.js') return source;
   source = replaceFunction(source, 'function buildAssistantImageExpression(', 'export async function readAssistantGeneratedImages(',
     `function buildAssistantImageExpression(minTurnIndex, expectedConversationId) { return ${JSON.stringify('(' + ownedImageSnapshot.toString() + ')(')} + JSON.stringify(expectedConversationId ?? null) + ', ' + JSON.stringify(minTurnIndex ?? null) + ')'; }\nconst ceImageStability = new WeakMap();`);
+  source = replaceOnce(source, '    const raw = Array.isArray(result?.value) ? result.value : [];', `    if (['CE_ORACLE_IMAGE_GENERATION_FAILED', 'CE_ORACLE_RESPONSE_UNAVAILABLE'].includes(result?.value?.ceTerminalError)) {
+      const error = new Error(result.value.ceTerminalError); error.code = result.value.ceTerminalError; throw error;
+    }
+    const raw = Array.isArray(result?.value) ? result.value : [];`);
   source = replaceOnce(source, '    return dedupeImages(normalized);', `    const unique = dedupeImages(normalized);
     const fingerprint = JSON.stringify([expectedConversationId, minTurnIndex, unique]);
     const previous = ceImageStability.get(Runtime);

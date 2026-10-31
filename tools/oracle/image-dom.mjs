@@ -24,12 +24,14 @@ export function ownedImageSnapshot(expectedConversationId, minTurnIndex) {
   const latestUser = [...ownedUsers][0];
   if (!visible(latestUser)) return [];
   const images = [];
+  let hasOwnedImageElement = false;
   for (const img of main.querySelectorAll('img')) {
-    if (!visible(img) || !img.complete || img.naturalWidth < 1 || img.naturalHeight < 1) continue;
     if (img.closest(userSelector) || latestUser.contains(img)) continue;
     if (!(latestUser.compareDocumentPosition(img) & Node.DOCUMENT_POSITION_FOLLOWING)) continue;
     const generation = img.closest('[data-testid="generated-image-preview"], [data-testid="generated-image-gallery"]');
     if (!generation) continue;
+    hasOwnedImageElement = true;
+    if (!visible(img) || !img.complete || img.naturalWidth < 1 || img.naturalHeight < 1) continue;
     const state = img.closest('[data-talvt-turn-state]')?.getAttribute('data-talvt-turn-state');
     if (state && state !== 'complete') continue;
     let url;
@@ -40,6 +42,20 @@ export function ownedImageSnapshot(expectedConversationId, minTurnIndex) {
       if (origin.origin !== location.origin) continue;
     } else if (url.origin !== location.origin || url.pathname !== '/backend-api/estuary/content' || !(url.searchParams.get('id') ?? '').startsWith('file_')) continue;
     images.push({ url: url.href, alt: img.alt || '', width: img.naturalWidth, height: img.naturalHeight });
+  }
+  if (!hasOwnedImageElement) {
+    for (const button of main.querySelectorAll('button')) {
+      if (!visible(button) || !['重试', 'Retry', 'Try again'].includes(button.textContent?.trim())) continue;
+      if (button.closest(userSelector) || !(latestUser.compareDocumentPosition(button) & Node.DOCUMENT_POSITION_FOLLOWING)) continue;
+      const card = button.parentElement;
+      const state = card?.parentElement;
+      // Observed provider error card is a direct child of the completed exchange,
+      // outside markdown/user content. Do not classify quoted error prose.
+      if (state?.getAttribute('data-talvt-turn-state') !== 'complete' || !state.contains(latestUser)) continue;
+      const label = Array.from(card.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join('').trim();
+      if (['图像生成失败', 'Image generation failed', 'Image generation failure'].includes(label)) return { ceTerminalError: 'CE_ORACLE_IMAGE_GENERATION_FAILED' };
+      if (['无法加载此回复', 'Unable to load response'].includes(label)) return { ceTerminalError: 'CE_ORACLE_RESPONSE_UNAVAILABLE' };
+    }
   }
   return images;
 }

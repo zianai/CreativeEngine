@@ -51,6 +51,9 @@ The patch:
 - Requires the exact conversation URL, a fresh turn boundary, an image after the
   user, a recognized generation container, loaded dimensions, no visible stop
   control, and a completed turn where that state marker exists.
+- Freezes the first stable URL observed by the post-submit monitor. A later URL
+  mismatch permanently invalidates this attempt, even when upstream catches a
+  monitor error; the collector cannot adopt the new conversation.
 - Requires two unchanged observations at least 500 ms apart. It carries the same
   conversation boundary into collection and rechecks it before and after download.
 - Accepts only same-origin ChatGPT blob/estuary image URLs. Credentials stay in
@@ -58,6 +61,11 @@ The patch:
 - Rejects non-raster signatures and artifacts larger than 32 MiB, then publishes
   bytes atomically without overwriting a prior file. CE still performs its own
   image decoding, QA, receipt hashing, and human-review gates.
+- Recognizes an owned completed UI error card with exact Chinese/English image
+  failure text and a Retry button. The error must be outside user/quoted content,
+  after the sole current user, with no image or active generation control. Its
+  serialized terminal marker propagates through Oracle's image poll and collector;
+  the helper never clicks Retry. A failed UI result does not establish zero cost.
 
 Offline tests and an MCP dry run require no browser or external request:
 
