@@ -294,6 +294,7 @@ export function livePermission(
   };
   policy.reserve(requestId, request, ceiling, images);
   return {
+    assertCurrent: () => policy.validate(request, ceiling),
     complete: (cost: number, basis: 'actual' | 'estimated' = 'estimated') =>
       policy.settle(requestId, cost, basis),
     unknown: () => policy.settle(requestId, null, 'unknown'),

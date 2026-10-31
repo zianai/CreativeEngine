@@ -3,5 +3,5 @@ protocol_version: "3.0"
 project_id: CREATIVE_ENGINE
 project_name: Creative Engine
 status: active
-active_task: T-012-live-followup
+active_task: T-013-oracle-unattended
 updated: "2026-10-31"

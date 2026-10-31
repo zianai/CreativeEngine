@@ -1,0 +1,17 @@
+schema_version: 3
+protocol_version: "3.0"
+id: T-013-oracle-unattended
+status: implementing
+goal: Repair Oracle completed-image detection and validate one-shot unattended synthetic Worker flow
+scope: [packages/core/validation.ts, packages/providers/oracle/, tools/oracle/, tests/p8-p10/, scripts/, docs/validation/oracle-unattended-20261031/, work/active/T-013-oracle-unattended/, project/]
+non_goals: [Production deployment, Material approval, Real private business data, Cookie extraction, Remote Git writes]
+acceptance: [Bounded actual browser image receipt, Native Worker review-pending result, No automatic retry after uncertainty, Local negative regression tests, Accurate cumulative cost and source evidence]
+risk: high
+risk_reasons: [payment-or-message]
+protected_paths: [docs/validation/p7/, docs/validation/p8-p10/, docs/validation/followup-20261031/]
+context_refs: [work/active/T-013-oracle-unattended/AUTHORITY.md]
+decision_refs: [docs/validation/post-p7/ADR.md]
+evidence_refs: []
+updated: "2026-10-31"
+implementation_started: true
+external_effects: none
