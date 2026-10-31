@@ -1,0 +1,21 @@
+{
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "name": "release-ce-check",
+  "repository": "creative-engine",
+  "cwd": "/Users/a/workspaces/AForeign Trade/p7-validation/worktrees/creative-engine",
+  "command": [
+    "pnpm",
+    "check"
+  ],
+  "exit_code": 0,
+  "started_at_utc": "2026-10-31T07:46:58.266541+00:00",
+  "elapsed_seconds": 12.564,
+  "head": "135e4986cbf67009f4af6f61f50fd0c8037a16a5",
+  "log_sha256": "f3707683eb77db1eaf222aec52f4deb301c91456f2dabdb8be570c82a0ba8f59",
+  "environment": "E0/E1",
+  "data_classification": "synthetic",
+  "public_network": "OS denied",
+  "credentials": "not inherited",
+  "external_writes": 0,
+  "paid_spend_usd": "0"
+}

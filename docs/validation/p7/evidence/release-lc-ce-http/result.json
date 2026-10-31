@@ -1,0 +1,21 @@
+{
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "name": "release-lc-ce-http",
+  "repository": "creative-engine",
+  "cwd": "/Users/a/workspaces/AForeign Trade/p7-validation/worktrees/creative-engine",
+  "command": [
+    "node_modules/.bin/tsx",
+    "scripts/p7-launchcase-http.ts"
+  ],
+  "exit_code": 0,
+  "started_at_utc": "2026-10-31T07:46:58.266464+00:00",
+  "elapsed_seconds": 12.899,
+  "head": "135e4986cbf67009f4af6f61f50fd0c8037a16a5",
+  "log_sha256": "d8790d0c8d7e517074817ad2167cb0722fe09a9a89ce5b56c54e937667071472",
+  "environment": "E0/E1",
+  "data_classification": "synthetic",
+  "public_network": "OS denied",
+  "credentials": "not inherited",
+  "external_writes": 0,
+  "paid_spend_usd": "0"
+}

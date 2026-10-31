@@ -1,0 +1,34 @@
+[
+  {
+    "command": [
+      "/Users/a/workspaces/AForeign Trade/tradecase-v1/.venv/bin/python",
+      "contracts/visual-task/verify.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "/Users/a/workspaces/AForeign Trade/tradecase-v1/.venv/bin/python",
+      "-m",
+      "pytest",
+      "contracts/visual-task/test_verifier.py",
+      "-q"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "node_modules/.bin/tsx",
+      "scripts/p7-studio-smoke.ts"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "/Users/a/workspaces/AForeign Trade/tradecase-v1/.venv/bin/python",
+      "../../scripts/preflight.py",
+      "creative-engine"
+    ],
+    "exit_code": 0
+  }
+]
