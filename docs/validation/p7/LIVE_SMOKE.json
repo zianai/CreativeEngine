@@ -12,6 +12,6 @@
   "source_sha_at_live_call": "135e4986cbf67009f4af6f61f50fd0c8037a16a5",
   "limitations": [
     "Synthetic smoke only; no human business assessment or real-case validation.",
-    "Native image provider call only; no full Worker integration or Vision review. Human visual inspection found text despite no-text prompt."
+    "Native image provider call only; no full Worker integration, Vision review or human business assessment. Text is permitted in concept images; a no-text prompt was an optional smoke condition, not a general quality criterion."
   ]
 }
