@@ -16,6 +16,12 @@ export function oracleImagePrompt(prompt: string, editing: boolean, hasReference
       : 'Generate exactly one NEW image FROM SCRATCH. There is NO reference image and NO existing image target. Use text-to-image generation, not image editing. Follow the fictional concept brief below; do not invent product facts or approval.';
   return `${intent}\n\n${prompt}`;
 }
+export function oracleAspectRatio(width: number, height: number): string {
+  let a = width,
+    b = height;
+  while (b) [a, b] = [b, a % b];
+  return `${width / a}:${height / a}`;
+}
 export interface OracleConnection {
   listTools(): Promise<{ tools: { name: string; inputSchema?: Record<string, unknown> }[] }>;
   callTool(
@@ -105,6 +111,7 @@ export class OracleProvider implements ImageProvider {
       model_identity: this.model,
       browser_model_strategy: 'current',
       prompt_protocol: 'explicit_generate_or_edit_v1',
+      aspect_ratio_protocol: 'reduced_integer_ratio_v1',
       authorization: 'fresh_pinned_one_shot_grant',
       api_cost_usd: 0,
       subscription_cost: 'unmetered',
@@ -311,7 +318,7 @@ export class OracleProvider implements ImageProvider {
             arguments: {
               prompt: submittedPrompt,
               files: snapshotPaths,
-              aspectRatio: `${req.width}:${req.height}`,
+              aspectRatio: oracleAspectRatio(req.width, req.height),
               slug: req.attemptId,
               outputPath: path.join(this.generatedRoot, `${req.attemptId}.png`),
               browserModelStrategy: 'current',

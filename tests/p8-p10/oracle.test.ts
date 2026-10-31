@@ -5,7 +5,11 @@ import { mkdtemp, mkdir, writeFile, rm, readFile, realpath } from 'node:fs/promi
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import { OracleProvider, oracleImagePrompt } from '../../packages/providers/oracle/index.js';
+import {
+  OracleProvider,
+  oracleImagePrompt,
+  oracleAspectRatio,
+} from '../../packages/providers/oracle/index.js';
 import { sha } from '../../packages/core/validation.js';
 import { DatabaseSync } from 'node:sqlite';
 async function fixture(
@@ -57,6 +61,7 @@ async function fixture(
         assert(String(args.prompt).startsWith('Generate exactly one NEW image FROM SCRATCH'));
         assert.equal(args.browserModelStrategy, 'current');
         assert.equal(args.browserArchive, 'never');
+        assert.equal(args.aspectRatio, '1:1');
         if (response === 'timeout') throw Error('simulated ambiguous timeout');
         const image = response === 'wrong-path' ? join(generated, 'stale.png') : String(args.outputPath);
         await sharp({ create: { width: 256, height: 256, channels: 3, background: '#06a' } })
@@ -243,4 +248,10 @@ test('Oracle warmed connection cannot execute a newly authorized transport confi
   } finally {
     await f.close();
   }
+});
+
+test('Oracle aspect ratio uses ratio units rather than pixel counts', () => {
+  assert.equal(oracleAspectRatio(1024, 1024), '1:1');
+  assert.equal(oracleAspectRatio(1024, 1536), '2:3');
+  assert.equal(oracleAspectRatio(1920, 1080), '16:9');
 });
