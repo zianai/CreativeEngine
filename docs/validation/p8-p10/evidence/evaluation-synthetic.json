@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "project": "creative-engine",
+  "batch_id": "batch_693ceed9-c630-47e1-8877-b1c1afdb7d92",
+  "plan_sha256": "f6c903ec19b3c02c2aea906458dcf3b928167f656b710272264636524bc69365",
+  "purpose": "internal_review",
+  "product_id": "SYNTHETIC",
+  "skill_version": "1.0.0",
+  "skill_sha256": "0d4a0e0d67b903e32bfdafd36c533593fc8a9ac30e50f5cbc240cdb52c8978a7",
+  "business_pilot_status": "not_evaluable",
+  "human_reviewers": [],
+  "actual_billed_usd": 0,
+  "estimated_cost_usd": 0,
+  "billing_status": "actual",
+  "assets": [
+    {
+      "asset_id": "asset_84f27683-0454-4afc-8211-6f4e98281e10",
+      "subject_sha256": "0c34c6227ce70266a87b0dad10c3f0ecf1358e746f9e99a24d9f8425948805e4",
+      "identity": "mock",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "prompt_sha256": "8a208e2a4b9d9d1f9d0e854625d35587ccfeeffc61d66fa15dd7846272529291",
+      "attempt_id": "attempt_771d731e-94dd-4cef-bc72-1e7074958766",
+      "source_refs": [],
+      "truth_snapshot_id": null,
+      "qa": {
+        "status": "warn",
+        "checks": [
+          {
+            "name": "file_integrity",
+            "status": "pass",
+            "detail": "Decoded png; 92026 bytes."
+          },
+          {
+            "name": "dimensions",
+            "status": "pass",
+            "detail": "1024×1024; expected 1024×1024."
+          },
+          {
+            "name": "image_content",
+            "status": "pass",
+            "detail": "Image contains nonuniform pixel content."
+          },
+          {
+            "name": "mock_identity",
+            "status": "warn",
+            "detail": "Offline fixture, not actual AI generation or a factual product depiction."
+          },
+          {
+            "name": "vision_review",
+            "status": "warn",
+            "detail": "No authorized vision reviewer configured; semantic product fidelity has not been machine-verified."
+          }
+        ],
+        "issues": [
+          {
+            "category": "mock_identity",
+            "severity": "warning",
+            "description": "Offline fixture, not actual AI generation or a factual product depiction."
+          },
+          {
+            "category": "vision_review",
+            "severity": "warning",
+            "description": "No authorized vision reviewer configured; semantic product fidelity has not been machine-verified."
+          }
+        ],
+        "vision": {
+          "status": "skipped",
+          "reason": "No authorized vision reviewer configured; semantic product fidelity has not been machine-verified."
+        },
+        "id": "qa_86732fec-2bc0-4e87-a93b-90d6353547ca",
+        "project_id": "prj_bbfa8201-a388-432a-9cc9-a5ab02c9d92f",
+        "asset_id": "asset_84f27683-0454-4afc-8211-6f4e98281e10",
+        "created_at": "2026-10-31T09:09:00.715Z"
+      },
+      "review_status": "pending",
+      "required_dimensions": [
+        "product_identity_fidelity",
+        "claim_and_text_truth",
+        "composition_and_hierarchy",
+        "brand_consistency",
+        "technical_delivery",
+        "overall_usable"
+      ],
+      "use_authorization": "not_established_by_evaluation_export"
+    }
+  ],
+  "limitations": [
+    "No human ratings or billing were fabricated.",
+    "A source/QA assertion does not certify a real product.",
+    "Provider identity is retained here; blinded reviewer cards must hide it separately."
+  ],
+  "classification": "synthetic",
+  "synthetic": true,
+  "fixture_origin": "new_tool_owned_temporary_workspace"
+}

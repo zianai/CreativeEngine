@@ -1,0 +1,33 @@
+✖ P10-T002 missing token/config, origin, host and version reject protected data (188.61075ms)
+✔ P9-T029 P10-T003 unsafe uploads and error messages never disclose supplied secrets (109.297167ms)
+✔ P10-T009 SSE resume returns durable later events; repeated write idempotency does not duplicate jobs (1092.564791ms)
+{"scope":"local_synthetic_30_sequential_reads_not_SLA","median_ms":0.28158299999995506,"p95_ms":0.47737499999993815}
+✔ P9-OPS-01 bounded local writes and measured HTTP read latency (24.524875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3307.96925
+
+✖ failing tests:
+
+test at tests/p8-p10/http.test.ts:5:1
+✖ P10-T002 missing token/config, origin, host and version reject protected data (188.61075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  409 !== 426
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/http.test.ts:9:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 409,
+    expected: 426,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,148 @@
+✔ reject tenant_id drift (308.938583ms)
+✔ reject case_id drift (21.338ms)
+✔ reject environment drift (37.274ms)
+✔ reject dataset_id drift (33.415833ms)
+✔ reject plan_hash drift (32.67325ms)
+✔ reject input_hash drift (735.349958ms)
+✔ reject rights_hash drift (30.868208ms)
+✔ reject provider_config_hash drift (31.604167ms)
+✔ reject provider drift (41.600583ms)
+✔ reject model drift (31.141833ms)
+✔ reject domain drift (32.068167ms)
+✔ reject rights_current drift (30.738459ms)
+✔ reject data_classification drift (31.973583ms)
+✔ reject action drift (32.326917ms)
+✔ no grant, injection, secret redaction and forbidden writes (47.782208ms)
+✔ expiry revocation and hash pin (103.162167ms)
+✔ unknown receipt durable; no retry or zero-cost fiction (1430.463917ms)
+✔ budget reservation retains estimate; image and vision budgets separate (4459.649416ms)
+✔ provider boundary cannot be bypassed by authorize_paid or injected SDK (1017.40175ms)
+✔ independent processes cannot double reserve the authorization budget (7550.031333ms)
+✔ two workers atomically claim one task; cancelled queue never executes (8363.7555ms)
+✔ worker death after reservation without receipt reconciles after restart (2555.893875ms)
+✔ accepted timeout and missing usage never repeat or report zero liability (7404.137291ms)
+✔ explicit 429 can retry within old worker ceiling, unlike an accepted timeout (6044.828167ms)
+✔ provider drift fails before execution (6324.84825ms)
+✖ partial batch has separate successful and reconciling receipts (34803.884541ms)
+✔ concept/Mock label, skipped Vision, independent review, and tamper gate (8383.071875ms)
+✔ quiesced backup and same-path restore retain assets and unknown receipts (2448.18425ms)
+✖ P9-T015..018 real process death claimed and restart (22923.318917ms)
+✖ P9-T015..018 real process death submitted and restart (20901.28625ms)
+✖ P9-T015..018 real process death saved and restart (21036.214208ms)
+✔ P9-T015..018 real process death vision_started and restart (23378.795667ms)
+✔ P9-T017 protocol 2 receipt missing artifact_sha256 never recovers as approved or regenerates (16348.118875ms)
+✔ P9-T017 protocol 2 receipt missing attempt_id never recovers as approved or regenerates (3496.151ms)
+✔ P8-T020 evaluation cannot relabel existing data synthetic or borrow a foreign grant (23320.981792ms)
+✔ P10-T002 missing token/config, origin, host and version reject protected data (10289.276041ms)
+✔ P9-T029 P10-T003 unsafe uploads and error messages never disclose supplied secrets (3661.362875ms)
+✔ P10-T009 SSE resume returns durable later events; repeated write idempotency does not duplicate jobs (8492.606709ms)
+{"scope":"local_synthetic_30_sequential_reads_not_SLA","median_ms":0.7071250000008149,"p95_ms":11.96820800000205}
+✔ P9-OPS-01 bounded local writes and measured HTTP read latency (916.262958ms)
+✔ P10-T002 local session is HttpOnly, expires on token rotation and rejects cross-port browser origin (1703.632042ms)
+✔ P10-T006 backup restores new directory with exact assets and no repeat provider call (28578.402125ms)
+✔ P10-T010 snapshot corruption fails closed (372.835042ms)
+✔ P10-T006 active queue cannot be snapshotted (2867.316833ms)
+✖ P10-T006 new-directory restore preserves unknown paid receipt liability without resubmit (20701.425958ms)
+✔ P9-T020 source rights revoked after QA blocks both approval and cached export (14378.173834ms)
+✔ P9-T021 cached export rejects modified source, output and package bytes (1978.405375ms)
+✔ P9-T015 known pre-submission worker death is retryable without charge (404.634458ms)
+✔ P8-T020 concept-only sources and unauthorized logo cannot become verified SKU (7317.78725ms)
+✔ P8-T021 P9-T019 file QA and skipped Vision do not approve an asset (7684.016625ms)
+✔ P9-T016 filesystem failure after a provider response keeps liability and forbids retry (6268.311958ms)
+✔ P9-T021 changed immutable Skill snapshot fails before execution (13902.161375ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 46
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115360.858541
+
+✖ failing tests:
+
+test at tests/p7/recovery.test.ts:153:1
+✖ partial batch has separate successful and reconciling receipts (34803.884541ms)
+  Error: Worker drain timed out
+      at Worker.drain (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/packages/core/worker.ts:90:11)
+      at async TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p7/recovery.test.ts:156:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/p8-p10/crash.test.ts:9:3
+✖ P9-T015..018 real process death claimed and restart (22923.318917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 86
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/crash.test.ts:25:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 86,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p8-p10/crash.test.ts:9:3
+✖ P9-T015..018 real process death submitted and restart (20901.28625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 86
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/crash.test.ts:25:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 86,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p8-p10/crash.test.ts:9:3
+✖ P9-T015..018 real process death saved and restart (21036.214208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 86
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/crash.test.ts:25:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 86,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p8-p10/operations.test.ts:92:1
+✖ P10-T006 new-directory restore preserves unknown paid receipt liability without resubmit (20701.425958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 86
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/operations.test.ts:110:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 86,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

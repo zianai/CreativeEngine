@@ -1,0 +1,29 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "--test",
+    "tests/p8-p10/safety.test.ts",
+    "tests/p7/authorization.test.ts",
+    "tests/p7/recovery.test.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "exit_code": 0,
+  "elapsed_seconds": 5.317,
+  "source_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+  "dirty_paths": [
+    " M .gitignore",
+    " M packages/core/service.ts",
+    " M packages/core/worker.ts",
+    " M packages/providers/files.ts",
+    " M project/state.yaml",
+    " M tests/p7/recovery.test.ts",
+    "?? docs/validation/p8-p10/",
+    "?? docs/validation/post-p7/",
+    "?? scripts/p8-run.py",
+    "?? tests/p8-p10/",
+    "?? work/active/T-011-p8-p10/"
+  ],
+  "environment": "E1_local_synthetic_no_paid_credentials",
+  "log_ref": "docs/validation/p8-p10/evidence/repaired-safety-real-tmp.txt",
+  "log_sha256": "20b2692f3762a1183358417bc5e6e9956f2c2acd1150416485259a8dc22a27a3"
+}

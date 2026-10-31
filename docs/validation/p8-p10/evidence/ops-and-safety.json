@@ -1,0 +1,32 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "--test",
+    "tests/p8-p10/operations.test.ts",
+    "tests/p8-p10/safety.test.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "exit_code": 0,
+  "elapsed_seconds": 7.122,
+  "source_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+  "dirty_paths": [
+    " M .gitignore",
+    " M packages/core/service.ts",
+    " M packages/core/worker.ts",
+    " M packages/providers/files.ts",
+    " M project/state.yaml",
+    " M tests/p7/recovery.test.ts",
+    "?? docs/validation/p8-p10/",
+    "?? docs/validation/post-p7/",
+    "?? packages/core/evaluation.ts",
+    "?? packages/core/operations.ts",
+    "?? scripts/p10-backup.ts",
+    "?? scripts/p10-local.ts",
+    "?? scripts/p8-run.py",
+    "?? tests/p8-p10/",
+    "?? work/active/T-011-p8-p10/"
+  ],
+  "environment": "E1_local_synthetic_no_paid_credentials",
+  "log_ref": "docs/validation/p8-p10/evidence/ops-and-safety.txt",
+  "log_sha256": "e2b560146dcb2ae95435a351ab3f38ec96e9b5a4c11ef8b9737f5fc51574bea9"
+}

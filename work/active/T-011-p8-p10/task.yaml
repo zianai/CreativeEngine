@@ -11,9 +11,16 @@ risk_reasons: [cross-component, local-reversible]
 protected_paths: [docs/validation/p7/]
 context_refs: [docs/validation/post-p7/BASELINE.md]
 decision_refs: [docs/validation/post-p7/ADR.md]
-evidence_refs: [docs/validation/post-p7/P7_DELTA_REGISTER.json]
+evidence_refs: [docs/validation/post-p7/P7_DELTA_REGISTER.json, docs/validation/p8-p10/acceptance-results.json, docs/validation/p8-p10/GO_NO_GO.md]
 updated: "2026-10-31"
 implementation_started: true
 external_effects: none
-conformance_status: pending
+conformance_status: design_pending
 baseline_decision_ref: docs/validation/post-p7/ADR.md
+
+x_local_status: implemented_and_tested
+x_external_status: BLOCKED_EXTERNAL
+x_tested_commit: bf18ba8b919e33f08a68749380c474c40a21c621
+x_implementation_render_subject: sha256:09903da5ba6649f2369941076dbdf9c2535a3afd10a0e447b21167b949cb6366
+x_implementation_render_ref: docs/validation/p8-p10/evidence/studio/render-manifest.json
+x_human_visual_approval: absent

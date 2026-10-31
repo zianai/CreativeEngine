@@ -1,0 +1,12 @@
+✔ P9-T015..018 real process death claimed and restart (3281.072291ms)
+✔ P9-T015..018 real process death submitted and restart (3022.064916ms)
+✔ P9-T015..018 real process death saved and restart (1805.833542ms)
+✔ P9-T015..018 real process death vision_started and restart (2245.763666ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12524.60175

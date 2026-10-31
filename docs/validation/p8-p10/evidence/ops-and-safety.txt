@@ -1,0 +1,15 @@
+✔ P10-T006 backup restores new directory with exact assets and no repeat provider call (1877.843917ms)
+✔ P10-T010 snapshot corruption and active queue fail closed (11.479666ms)
+✔ P9-T020 source rights revoked after QA blocks both approval and cached export (777.996292ms)
+✔ P9-T021 cached export rejects modified source, output and package bytes (1382.617ms)
+✔ P9-T015 known pre-submission worker death is retryable without charge (98.846ms)
+✔ P8-T020 concept-only sources and unauthorized logo cannot become verified SKU (1035.903584ms)
+✔ P8-T021 P9-T019 file QA and skipped Vision do not approve an asset (504.786709ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6522.003792

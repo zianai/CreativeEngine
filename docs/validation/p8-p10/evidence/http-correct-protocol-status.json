@@ -1,0 +1,33 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "--test",
+    "tests/p8-p10/http.test.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "exit_code": 0,
+  "elapsed_seconds": 2.417,
+  "source_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+  "dirty_paths": [
+    " M .gitignore",
+    " M apps/server/app.ts",
+    " M packages/core/service.ts",
+    " M packages/core/worker.ts",
+    " M packages/providers/files.ts",
+    " M project/state.yaml",
+    " M tests/p7/recovery.test.ts",
+    "?? docs/validation/p8-p10/",
+    "?? docs/validation/post-p7/",
+    "?? packages/core/evaluation.ts",
+    "?? packages/core/operations.ts",
+    "?? scripts/p10-backup.ts",
+    "?? scripts/p10-local.ts",
+    "?? scripts/p8-export-evaluation.ts",
+    "?? scripts/p8-run.py",
+    "?? tests/p8-p10/",
+    "?? work/active/T-011-p8-p10/"
+  ],
+  "environment": "E1_local_synthetic_no_paid_credentials",
+  "log_ref": "docs/validation/p8-p10/evidence/http-correct-protocol-status.txt",
+  "log_sha256": "1e05682f6580cb1863d4874c2378bde1ceb0a60a72baf744c2d8b2d7c7e19cd0"
+}

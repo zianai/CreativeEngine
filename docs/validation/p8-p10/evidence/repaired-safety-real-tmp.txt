@@ -1,0 +1,41 @@
+✔ reject tenant_id drift (8.290375ms)
+✔ reject case_id drift (2.930209ms)
+✔ reject environment drift (1.643208ms)
+✔ reject dataset_id drift (1.382292ms)
+✔ reject plan_hash drift (1.483875ms)
+✔ reject input_hash drift (0.993458ms)
+✔ reject rights_hash drift (1.354375ms)
+✔ reject provider_config_hash drift (2.804792ms)
+✔ reject provider drift (1.352958ms)
+✔ reject model drift (1.418792ms)
+✔ reject domain drift (4.275125ms)
+✔ reject rights_current drift (0.77125ms)
+✔ reject data_classification drift (0.820917ms)
+✔ reject action drift (0.86425ms)
+✔ no grant, injection, secret redaction and forbidden writes (1.1125ms)
+✔ expiry revocation and hash pin (1.17775ms)
+✔ unknown receipt durable; no retry or zero-cost fiction (5.924166ms)
+✔ budget reservation retains estimate; image and vision budgets separate (4.697458ms)
+✔ provider boundary cannot be bypassed by authorize_paid or injected SDK (5.765166ms)
+✔ independent processes cannot double reserve the authorization budget (397.8735ms)
+✔ two workers atomically claim one task; cancelled queue never executes (140.816208ms)
+✔ worker death after reservation without receipt reconciles after restart (66.557333ms)
+✔ accepted timeout and missing usage never repeat or report zero liability (561.111125ms)
+✔ explicit 429 can retry within old worker ceiling, unlike an accepted timeout (684.501833ms)
+✔ provider drift fails before execution (90.929292ms)
+✔ partial batch has separate successful and reconciling receipts (696.882542ms)
+✔ concept/Mock label, skipped Vision, independent review, and tamper gate (710.071375ms)
+✔ quiesced backup and same-path restore retain assets and unknown receipts (740.439542ms)
+✔ P9-T020 source rights revoked after QA blocks both approval and cached export (406.282083ms)
+✔ P9-T021 cached export rejects modified source, output and package bytes (841.613875ms)
+✔ P9-T015 known pre-submission worker death is retryable without charge (126.758167ms)
+✔ P8-T020 concept-only sources and unauthorized logo cannot become verified SKU (969.089083ms)
+✔ P8-T021 P9-T019 file QA and skipped Vision do not approve an asset (771.3365ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5156.261833

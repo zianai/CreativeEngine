@@ -1,0 +1,1 @@
+{"scope":"ephemeral_loopback_https_only","status":200,"certificate_sha256":"43d670b5ed956b90cc4bf041a4c5d19cfe20cee693242629c5330a6dedde45ab","public_exposure":false,"production_trust":"not_validated"}

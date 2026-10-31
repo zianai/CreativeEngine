@@ -1,0 +1,30 @@
+✖ P9-T016 filesystem failure after a provider response keeps liability and forbids retry (99.67625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 921.261583
+
+✖ failing tests:
+
+test at tests/p8-p10/safety.test.ts:91:1
+✖ P9-T016 filesystem failure after a provider response keeps liability and forbids retry (99.67625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'reconciling'
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/safety.test.ts:92:743)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'reconciling',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

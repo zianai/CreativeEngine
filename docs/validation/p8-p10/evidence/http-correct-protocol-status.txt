@@ -1,0 +1,13 @@
+✔ P10-T002 missing token/config, origin, host and version reject protected data (132.730166ms)
+✔ P9-T029 P10-T003 unsafe uploads and error messages never disclose supplied secrets (80.543375ms)
+✔ P10-T009 SSE resume returns durable later events; repeated write idempotency does not duplicate jobs (610.760708ms)
+{"scope":"local_synthetic_30_sequential_reads_not_SLA","median_ms":0.2029579999998532,"p95_ms":0.29183400000010806}
+✔ P9-OPS-01 bounded local writes and measured HTTP read latency (76.472583ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2277.848375

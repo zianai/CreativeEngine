@@ -1,0 +1,14 @@
+node:internal/modules/run_main:111
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /项目总览 PROJECT/ })
+
+    at <anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/scripts/p10-studio-e2e.ts:9:133) {
+  log: [ "  - waiting for getByRole('button', { name: /项目总览 PROJECT/ })" ],
+  name: 'TimeoutError'
+}
+
+Node.js v26.12.1

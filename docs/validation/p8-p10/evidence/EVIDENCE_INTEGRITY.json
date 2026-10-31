@@ -1,0 +1,19 @@
+{
+  "tested_commit": "bf18ba8b919e33f08a68749380c474c40a21c621",
+  "command_results_verified": [
+    "docs/validation/p8-p10/evidence/final-browser/result.json",
+    "docs/validation/p8-p10/evidence/final-build/result.json",
+    "docs/validation/p8-p10/evidence/final-contract-lc/result.json",
+    "docs/validation/p8-p10/evidence/final-contract-tc/result.json",
+    "docs/validation/p8-p10/evidence/final-contract-verifier/result.json",
+    "docs/validation/p8-p10/evidence/final-evaluation-cli/result.json",
+    "docs/validation/p8-p10/evidence/final-https/result.json",
+    "docs/validation/p8-p10/evidence/final-regressions/result.json",
+    "docs/validation/p8-p10/evidence/final-typecheck/result.json"
+  ],
+  "passing_ce_acceptance_ids": 11,
+  "blocked_external_ce_acceptance_ids": 5,
+  "screenshots_verified": 10,
+  "source_diff_after_tested_commit": "empty",
+  "scope": "local evidence structural verification, not new business acceptance"
+}

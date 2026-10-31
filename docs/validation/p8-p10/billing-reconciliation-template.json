@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "status": "BLOCKED_EXTERNAL",
+  "reason": "No separately authorized billing access or confirmed invoice available",
+  "historical_scope": "P7 retained synthetic E2 only; never reuse its grant",
+  "fresh_calls": 0,
+  "provider_request_ref": null,
+  "receipt_sha256": null,
+  "estimated_usd": null,
+  "actual_usd": null,
+  "actual_basis": "unknown",
+  "currency": "USD",
+  "billing_period": null,
+  "mapping_method": null,
+  "invoice_reference": null,
+  "operator_reviewer": null,
+  "business_acceptance": "not_evaluable"
+}

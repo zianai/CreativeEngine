@@ -1,0 +1,39 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "scripts/p10-https-smoke.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "exit_code": 0,
+  "elapsed_seconds": 2.641,
+  "source_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+  "dirty_paths": [
+    " M .gitignore",
+    " M apps/server/app.ts",
+    " M apps/server/openapi.ts",
+    " M apps/studio/src/main.tsx",
+    " M packages/core/service.ts",
+    " M packages/core/worker.ts",
+    " M packages/providers/files.ts",
+    " M project/state.yaml",
+    " M tests/p7/recovery.test.ts",
+    "?? contracts/launchcase/",
+    "?? docs/validation/p8-p10/",
+    "?? docs/validation/post-p7/",
+    "?? ops/",
+    "?? packages/core/evaluation.ts",
+    "?? packages/core/operations.ts",
+    "?? scripts/p10-backup.ts",
+    "?? scripts/p10-https-smoke.ts",
+    "?? scripts/p10-local.ts",
+    "?? scripts/p10-studio-e2e.ts",
+    "?? scripts/p8-export-evaluation.ts",
+    "?? scripts/p8-run.py",
+    "?? scripts/verify-launchcase-contract.ts",
+    "?? tests/p8-p10/",
+    "?? work/active/T-011-p8-p10/"
+  ],
+  "environment": "E1_local_synthetic_no_paid_credentials",
+  "log_ref": "docs/validation/p8-p10/evidence/local-https.txt",
+  "log_sha256": "055f859682f99a63070e7ff6e4e23265109a33b24b02a1b0707decd17536b1c7"
+}

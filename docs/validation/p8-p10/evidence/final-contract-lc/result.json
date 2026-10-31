@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "scripts/verify-launchcase-contract.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T09:08:01.702969+00:00",
+  "duration_seconds": 8.116,
+  "exit_code": 0,
+  "source_sha": "bf18ba8b919e33f08a68749380c474c40a21c621",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dirty_paths": [
+    "?? docs/validation/p8-p10/"
+  ],
+  "log_sha256": "fa8d73b6d2ed01edff0131d99e7373450cfc69ebc9eddfc609acaad642df9b31",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

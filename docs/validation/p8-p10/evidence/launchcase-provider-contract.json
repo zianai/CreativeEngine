@@ -1,0 +1,35 @@
+{
+  "command": [
+    "node_modules/.bin/tsx",
+    "scripts/verify-launchcase-contract.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "exit_code": 0,
+  "elapsed_seconds": 2.565,
+  "source_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+  "dirty_paths": [
+    " M .gitignore",
+    " M apps/server/app.ts",
+    " M apps/server/openapi.ts",
+    " M packages/core/service.ts",
+    " M packages/core/worker.ts",
+    " M packages/providers/files.ts",
+    " M project/state.yaml",
+    " M tests/p7/recovery.test.ts",
+    "?? contracts/launchcase/",
+    "?? docs/validation/p8-p10/",
+    "?? docs/validation/post-p7/",
+    "?? packages/core/evaluation.ts",
+    "?? packages/core/operations.ts",
+    "?? scripts/p10-backup.ts",
+    "?? scripts/p10-local.ts",
+    "?? scripts/p8-export-evaluation.ts",
+    "?? scripts/p8-run.py",
+    "?? scripts/verify-launchcase-contract.ts",
+    "?? tests/p8-p10/",
+    "?? work/active/T-011-p8-p10/"
+  ],
+  "environment": "E1_local_synthetic_no_paid_credentials",
+  "log_ref": "docs/validation/p8-p10/evidence/launchcase-provider-contract.txt",
+  "log_sha256": "fa8d73b6d2ed01edff0131d99e7373450cfc69ebc9eddfc609acaad642df9b31"
+}

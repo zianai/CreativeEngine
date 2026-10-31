@@ -1,0 +1,27 @@
+PASS health
+PASS authentication
+PASS unsupported-version
+PASS project
+PASS source
+PASS truth
+PASS brief
+PASS plan
+PASS paid-generation-denied
+PASS budget-ceiling
+PASS submit
+PASS idempotent-replay
+PASS idempotent-conflict
+PASS batch-review-pending
+PASS batch-plan
+PASS batch-asset
+PASS asset-metadata
+PASS asset-bytes
+PASS generated-is-not-evidence
+PASS no-automatic-approval
+PASS reconcile-list
+PASS reconcile-batch
+PASS reconcile-plan
+PASS reconcile-asset
+PASS cancel
+PASS cancel-replay
+Provider: 26 HTTP interactions passed; protocol 1.0.0; cost USD 0.

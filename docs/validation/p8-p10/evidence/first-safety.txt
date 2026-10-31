@@ -1,0 +1,64 @@
+✖ P9-T020 source rights revoked after QA blocks both approval and cached export (526.446417ms)
+✖ P9-T021 cached export rejects modified source, output and package bytes (366.986916ms)
+✖ P9-T015 known pre-submission worker death is retryable without charge (82.377083ms)
+✔ P8-T020 concept-only sources and unauthorized logo cannot become verified SKU (923.360959ms)
+✔ P8-T021 P9-T019 file QA and skipped Vision do not approve an asset (727.410709ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 2
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9197.2615
+
+✖ failing tests:
+
+test at tests/p8-p10/safety.test.ts:31:1
+✖ P9-T020 source rights revoked after QA blocks both approval and cached export (526.446417ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/safety.test.ts:39:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Plan needs corrected|SOURCE_STALE/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/p8-p10/safety.test.ts:45:1
+✖ P9-T021 cached export rejects modified source, output and package bytes (366.986916ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/safety.test.ts:55:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /TAMPERED|hash/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/p8-p10/safety.test.ts:60:1
+✖ P9-T015 known pre-submission worker death is retryable without charge (82.377083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'reconciling'
+  - 'queued'
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/safety.test.ts:72:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'reconciling',
+    expected: 'queued',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,11 @@
+# Remaining limits
+
+- BLOCKED_EXTERNAL: fresh paid image/Vision runs, authorized real product inputs, two independent human raters, private billing access, human business acceptance, public deployment and remote repository mutations. P7 historical synthetic E2 is historical evidence, not fresh P8–P10 or genuine business acceptance.
+- Actual paid billing remains null when unavailable. Mock zero cost and estimated amounts are explicitly scoped; no business cost per approved asset can be established here.
+- CE trusts one local operator. Reviewer strings are attribution, not independently authenticated human identities. Image approval does not approve product facts, business pilot success, publication or sending. Cross-system business gates must independently verify real reviewer identity and exact source subject. No multi-tenant RBAC or cross-machine resilience claim.
+- Studio renders at 1440/390 with named dialogs, labeled visible controls, loaded/alt images and no horizontal overflow. This is limited automated accessibility coverage, not a full WCAG audit or human visual sign-off. Human design status is design_pending.
+- Source rights are operator-recorded evidence, not a legal determination. Synthetic deterministic fixtures prove code behavior only.
+- New receipt protocol 2 requires hash and attempt identity. Legacy attempts retain migration compatibility; legacy export packages without a package hash require fresh export. File tamper checks protect present bytes; not malicious filesystem renames/hardlinks by the trusted OS owner.
+- Backup requires quiesced writers. Same-host new-directory restore is tested. Power-loss atomic durability, foreign OS restore and continuous backup are not tested.
+- Remote CI was configured but not executed. Offline pnpm install could not fetch one uncached tarball; local dependencies were reused from the existing P7 installation. No new download was needed for successful checks.
+- A concurrent precommit test run exceeded short process/drain deadlines on this shared host. Its failing logs remain evidence; the final suite uses serial test-file execution while retaining explicit multi-process race and crash tests. It is not a performance/load certification.

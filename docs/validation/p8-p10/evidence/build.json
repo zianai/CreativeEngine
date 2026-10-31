@@ -1,0 +1,34 @@
+{
+  "command": [
+    "node_modules/.bin/vite",
+    "build",
+    "--config",
+    "apps/studio/vite.config.ts"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "exit_code": 0,
+  "elapsed_seconds": 3.008,
+  "source_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+  "dirty_paths": [
+    " M .gitignore",
+    " M apps/server/app.ts",
+    " M packages/core/service.ts",
+    " M packages/core/worker.ts",
+    " M packages/providers/files.ts",
+    " M project/state.yaml",
+    " M tests/p7/recovery.test.ts",
+    "?? docs/validation/p8-p10/",
+    "?? docs/validation/post-p7/",
+    "?? packages/core/evaluation.ts",
+    "?? packages/core/operations.ts",
+    "?? scripts/p10-backup.ts",
+    "?? scripts/p10-local.ts",
+    "?? scripts/p8-export-evaluation.ts",
+    "?? scripts/p8-run.py",
+    "?? tests/p8-p10/",
+    "?? work/active/T-011-p8-p10/"
+  ],
+  "environment": "E1_local_synthetic_no_paid_credentials",
+  "log_ref": "docs/validation/p8-p10/evidence/build.txt",
+  "log_sha256": "6472554b28fa7537326282a5a842046d595adc0c0f2bc32e9247daf48702c1c1"
+}

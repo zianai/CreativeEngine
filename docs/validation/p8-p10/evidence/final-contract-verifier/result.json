@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/Users/a/workspaces/AForeign Trade/p7-validation/worktrees/launchcase/.venv/bin/python",
+    "-m",
+    "pytest",
+    "contracts/visual-task/test_verifier.py",
+    "-q"
+  ],
+  "cwd": "/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine",
+  "started_at": "2026-10-31T09:08:14.227004+00:00",
+  "duration_seconds": 2.078,
+  "exit_code": 0,
+  "source_sha": "bf18ba8b919e33f08a68749380c474c40a21c621",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dirty_paths": [
+    "?? docs/validation/p8-p10/"
+  ],
+  "log_sha256": "5661498d14ee1c9c3a20069a90265d8f6ed10a6918b3e4f6c80794ccd71dc2f5",
+  "scope": "local E0/E1; service credentials not inherited",
+  "public_network": "OS denied",
+  "new_paid_calls_authorized": false
+}

@@ -1,0 +1,75 @@
+✔ reject tenant_id drift (67.658584ms)
+✔ reject case_id drift (7.390292ms)
+✔ reject environment drift (4.821083ms)
+✔ reject dataset_id drift (2.779041ms)
+✔ reject plan_hash drift (6.652875ms)
+✔ reject input_hash drift (16.063541ms)
+✔ reject rights_hash drift (3.921209ms)
+✔ reject provider_config_hash drift (4.675666ms)
+✔ reject provider drift (10.71425ms)
+✔ reject model drift (6.098208ms)
+✔ reject domain drift (15.063875ms)
+✔ reject rights_current drift (3.451667ms)
+✔ reject data_classification drift (3.1425ms)
+✔ reject action drift (3.809292ms)
+✔ no grant, injection, secret redaction and forbidden writes (6.078125ms)
+✔ expiry revocation and hash pin (11.426125ms)
+✔ unknown receipt durable; no retry or zero-cost fiction (26.516083ms)
+✔ budget reservation retains estimate; image and vision budgets separate (10.262083ms)
+✔ provider boundary cannot be bypassed by authorize_paid or injected SDK (20.500292ms)
+✔ independent processes cannot double reserve the authorization budget (916.833875ms)
+✔ two workers atomically claim one task; cancelled queue never executes (720.494667ms)
+✔ worker death after reservation without receipt reconciles after restart (272.365792ms)
+✔ accepted timeout and missing usage never repeat or report zero liability (958.405125ms)
+✔ explicit 429 can retry within old worker ceiling, unlike an accepted timeout (1105.085291ms)
+✔ provider drift fails before execution (168.754625ms)
+✔ partial batch has separate successful and reconciling receipts (1478.971209ms)
+✔ concept/Mock label, skipped Vision, independent review, and tamper gate (695.2995ms)
+✔ quiesced backup and same-path restore retain assets and unknown receipts (563.7ms)
+✔ P9-T015..018 real process death claimed and restart (6094.817917ms)
+✔ P9-T015..018 real process death submitted and restart (1997.809375ms)
+✔ P9-T015..018 real process death saved and restart (2552.183667ms)
+✔ P9-T015..018 real process death vision_started and restart (2250.305833ms)
+✔ P10-T002 missing token/config, origin, host and version reject protected data (337.876125ms)
+✔ P9-T029 P10-T003 unsafe uploads and error messages never disclose supplied secrets (105.039917ms)
+✔ P10-T009 SSE resume returns durable later events; repeated write idempotency does not duplicate jobs (1679.622708ms)
+{"scope":"local_synthetic_30_sequential_reads_not_SLA","median_ms":1.2906250000005457,"p95_ms":3.568333999999595}
+✔ P9-OPS-01 bounded local writes and measured HTTP read latency (98.790583ms)
+✖ P10-T002 local session is HttpOnly, expires on token rotation and rejects cross-port browser origin (22.849958ms)
+✔ P10-T006 backup restores new directory with exact assets and no repeat provider call (2868.911083ms)
+✔ P10-T010 snapshot corruption fails closed (11.943083ms)
+✔ P10-T006 active queue cannot be snapshotted (254.034542ms)
+✔ P9-T020 source rights revoked after QA blocks both approval and cached export (1455.942458ms)
+✔ P9-T021 cached export rejects modified source, output and package bytes (1979.498708ms)
+✔ P9-T015 known pre-submission worker death is retryable without charge (277.0915ms)
+✔ P8-T020 concept-only sources and unauthorized logo cannot become verified SKU (1304.54075ms)
+✔ P8-T021 P9-T019 file QA and skipped Vision do not approve an asset (646.206959ms)
+✔ P9-T016 filesystem failure after a provider response keeps liability and forbids retry (100.591167ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 45
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15964.097083
+
+✖ failing tests:
+
+test at tests/p8-p10/http.test.ts:186:1
+✖ P10-T002 local session is HttpOnly, expires on token rotation and rejects cross-port browser origin (22.849958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (/Users/a/workspaces/AForeign Trade/validation-coordinator/worktrees/creative-engine/tests/p8-p10/http.test.ts:190:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
