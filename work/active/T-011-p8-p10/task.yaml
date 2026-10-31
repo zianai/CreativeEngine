@@ -1,7 +1,7 @@
 schema_version: 3
 protocol_version: "3.0"
 id: T-011-p8-p10
-status: in_progress
+status: ready_for_review
 goal: Implement and verify authorized P8 through P10 local incremental engineering
 scope: [src/, packages/, apps/, frontend/, scripts/, tools/, ops/, tests/, contracts/, .github/, docs/validation/post-p7/, docs/validation/p8-p10/, project/, work/active/T-011-p8-p10/]
 non_goals: [Private business data access, Paid provider calls, Remote Git mutations, Production and external business actions]
@@ -15,12 +15,18 @@ evidence_refs: [docs/validation/post-p7/P7_DELTA_REGISTER.json, docs/validation/
 updated: "2026-10-31"
 implementation_started: true
 external_effects: none
-conformance_status: design_pending
+conformance_status: pending
 baseline_decision_ref: docs/validation/post-p7/ADR.md
 
 x_local_status: implemented_and_tested
 x_external_status: BLOCKED_EXTERNAL
-x_tested_commit: bf18ba8b919e33f08a68749380c474c40a21c621
-x_implementation_render_subject: sha256:09903da5ba6649f2369941076dbdf9c2535a3afd10a0e447b21167b949cb6366
+x_tested_commit: bbd207c9547e230c822c87926676c37e847566b3
+x_implementation_render_subject: sha256:76a5cae7984b15b02db721e0910fe7e9b5689a5c2062fb5c2c5560e37cf65bb5
 x_implementation_render_ref: docs/validation/p8-p10/evidence/studio/render-manifest.json
 x_human_visual_approval: absent
+
+implementation_render_subject: "sha256:76a5cae7984b15b02db721e0910fe7e9b5689a5c2062fb5c2c5560e37cf65bb5"
+implementation_render_ref: docs/validation/p8-p10/evidence/studio/render-manifest.json
+x_visual_approval: "No approved human baseline; design pending"
+handoff_ref: work/active/T-011-p8-p10/handoff.md
+handoff_current: true
