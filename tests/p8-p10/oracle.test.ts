@@ -60,6 +60,7 @@ async function fixture(
         calls++;
         assert(String(args.prompt).startsWith('Generate exactly one NEW image FROM SCRATCH'));
         assert.equal(args.browserModelStrategy, 'current');
+        assert.equal(args.browserThinkingTime, 'medium');
         assert.equal(args.browserArchive, 'never');
         assert.equal(args.aspectRatio, '1:1');
         if (response === 'timeout') throw Error('simulated ambiguous timeout');
