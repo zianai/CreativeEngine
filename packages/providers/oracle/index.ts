@@ -7,6 +7,15 @@ import path from 'node:path';
 import os from 'node:os';
 import { containedFile, ReceiptStore, validateRequest, validatedRaster, writeRaster } from '../files.js';
 import { ProviderError, type ImageProvider, type ProviderRequest, type ProviderResult } from '../types.js';
+/** Explicit tool intent prevents a text-only concept brief from being treated as an image edit. */
+export function oracleImagePrompt(prompt: string, editing: boolean, hasReferences = false): string {
+  const intent = editing
+    ? 'Edit exactly one image using the attached reference image(s). Preserve the supplied constraints. Do not invent product facts or approval.'
+    : hasReferences
+      ? 'Generate exactly one NEW image from scratch, using the attached references only as visual constraints. Do not require an existing image target.'
+      : 'Generate exactly one NEW image FROM SCRATCH. There is NO reference image and NO existing image target. Use text-to-image generation, not image editing. Follow the fictional concept brief below; do not invent product facts or approval.';
+  return `${intent}\n\n${prompt}`;
+}
 export interface OracleConnection {
   listTools(): Promise<{ tools: { name: string; inputSchema?: Record<string, unknown> }[] }>;
   callTool(
@@ -95,6 +104,7 @@ export class OracleProvider implements ImageProvider {
       ),
       model_identity: this.model,
       browser_model_strategy: 'current',
+      prompt_protocol: 'explicit_generate_or_edit_v1',
       authorization: 'fresh_pinned_one_shot_grant',
       api_cost_usd: 0,
       subscription_cost: 'unmetered',
@@ -208,9 +218,10 @@ export class OracleProvider implements ImageProvider {
     validateRequest(req);
     const previous = await this.getResult(req.attemptId);
     const refs = await Promise.all(req.referencePaths.map(async (file) => sha(await readFile(file))));
+    const submittedPrompt = oracleImagePrompt(req.prompt, editing, req.referencePaths.length > 0);
     const inputHash = sha(
       JSON.stringify({
-        prompt: req.prompt,
+        prompt: submittedPrompt,
         width: req.width,
         height: req.height,
         refs,
@@ -260,6 +271,7 @@ export class OracleProvider implements ImageProvider {
           JSON.stringify({
             attempt_id: req.attemptId,
             input_hash: inputHash,
+            submitted_prompt_sha256: sha(submittedPrompt),
             state: 'submitted_or_unknown',
             retry_allowed: false,
           }),
@@ -297,7 +309,7 @@ export class OracleProvider implements ImageProvider {
           {
             name: 'chatgpt_image',
             arguments: {
-              prompt: req.prompt,
+              prompt: submittedPrompt,
               files: snapshotPaths,
               aspectRatio: `${req.width}:${req.height}`,
               slug: req.attemptId,
@@ -361,6 +373,7 @@ export class OracleProvider implements ImageProvider {
             api_cost_usd: 0,
             actual_subscription_cost_usd: null,
             input_hash: inputHash,
+            submitted_prompt_sha256: sha(submittedPrompt),
             model_verified: false,
             human_approval: false,
             aspect_ratio_enforcement: 'prompt_only',

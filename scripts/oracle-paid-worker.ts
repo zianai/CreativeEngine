@@ -6,7 +6,7 @@ import { Worker } from '../packages/core/worker.js';
 import { ValidationRunPolicy, sha } from '../packages/core/validation.js';
 import { evaluationSubject } from '../packages/core/evaluation-export.js';
 import { validatePlan } from '../packages/planner/index.js';
-import { OracleProvider } from '../packages/providers/oracle/index.js';
+import { OracleProvider, oracleImagePrompt } from '../packages/providers/oracle/index.js';
 const [mode, root, batchId] = process.argv.slice(2),
   policy = new ValidationRunPolicy();
 if (!['--preflight', '--execute-once'].includes(mode) || !root || !batchId)
@@ -65,7 +65,7 @@ try {
     provider_config_hash: sha(JSON.stringify(provider.configuration())),
     input_hash: sha(
       JSON.stringify({
-        prompt: task.prompt.text,
+        prompt: oracleImagePrompt(task.prompt.text, plan.strategy === 'edit', refs.length > 0),
         ...size,
         refs,
         mode: plan.strategy === 'edit' ? 'edit' : 'generate',

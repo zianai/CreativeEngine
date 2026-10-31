@@ -5,7 +5,7 @@ import { mkdtemp, mkdir, writeFile, rm, readFile, realpath } from 'node:fs/promi
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import { OracleProvider } from '../../packages/providers/oracle/index.js';
+import { OracleProvider, oracleImagePrompt } from '../../packages/providers/oracle/index.js';
 import { sha } from '../../packages/core/validation.js';
 import { DatabaseSync } from 'node:sqlite';
 async function fixture(
@@ -54,6 +54,7 @@ async function fixture(
       },
       async callTool({ arguments: args }) {
         calls++;
+        assert(String(args.prompt).startsWith('Generate exactly one NEW image FROM SCRATCH'));
         assert.equal(args.browserModelStrategy, 'current');
         assert.equal(args.browserArchive, 'never');
         if (response === 'timeout') throw Error('simulated ambiguous timeout');
@@ -96,7 +97,7 @@ async function fixture(
     domain: 'chatgpt.com',
     input_hash: sha(
       JSON.stringify({
-        prompt: req.prompt,
+        prompt: oracleImagePrompt(req.prompt, false, referencePaths.length > 0),
         width: req.width,
         height: req.height,
         refs: await Promise.all(referencePaths.map(async (f) => sha(await readFile(f)))),
