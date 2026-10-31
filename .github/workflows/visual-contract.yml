@@ -39,6 +39,8 @@ jobs:
         run: python contracts/visual-task/verify.py --base "$CONTRACT_BASE"
       - name: Verify contract checker
         run: python -m pytest contracts/visual-task/test_verifier.py -q
+      - name: P7 zero-cost authorization and recovery regressions
+        run: pnpm test:p7
       - name: Verify real provider HTTP with zero-cost fixtures
         run: |
           set -o pipefail

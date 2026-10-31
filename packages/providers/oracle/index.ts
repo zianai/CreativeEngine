@@ -118,26 +118,9 @@ export class OracleProvider implements ImageProvider {
     this.probed = true;
   }
   async healthCheck(): Promise<Record<string, unknown>> {
-    try {
-      await this.probe();
-      return {
-        id: this.id,
-        available: true,
-        live_verified: false,
-        tool: 'chatgpt_image',
-        attended_only: true,
-        capabilities: this.capabilities(),
-      };
-    } catch (e) {
-      return {
-        id: this.id,
-        available: false,
-        live_verified: false,
-        reason: e instanceof ProviderError ? e.code : 'ORACLE_UNAVAILABLE',
-        capabilities: this.capabilities(),
-      };
-    }
+    return { id: this.id, available: false, live_verified: false, reason: 'attended_authorization_required', capabilities: this.capabilities() };
   }
+
   async generate(req: ProviderRequest) {
     return this.execute(req, false);
   }
@@ -147,6 +130,7 @@ export class OracleProvider implements ImageProvider {
     return this.execute(req, true);
   }
   private async execute(req: ProviderRequest, editing: boolean): Promise<ProviderResult> {
+    blockUnattended();
     validateRequest(req);
     const previous = await this.getResult(req.attemptId);
     if (previous) return previous;
@@ -227,3 +211,5 @@ export class OracleProvider implements ImageProvider {
     this.probed = false;
   }
 }
+
+function blockUnattended(): void { throw new ProviderError("P7_ATTENDED_AUTH_REQUIRED", "Browser account extraction requires separate attended authorization."); }

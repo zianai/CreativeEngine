@@ -1,3 +1,4 @@
+import { livePermission, sha } from '../../core/validation.js';
 import OpenAI, { toFile } from 'openai';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
@@ -97,7 +98,7 @@ export class OpenAIImageProvider implements ImageProvider {
     const apiKey = config.apiKey ?? process.env.OPENAI_API_KEY;
     this.client =
       config.client ??
-      (apiKey ? new OpenAI({ apiKey, maxRetries: 0, timeout: config.timeoutMs ?? 180_000 }) : undefined);
+      (apiKey ? new OpenAI({ baseURL: 'https://api.openai.com/v1', apiKey, maxRetries: 0, timeout: config.timeoutMs ?? 180_000 }) : undefined);
   }
   capabilities() {
     return {
@@ -134,26 +135,10 @@ export class OpenAIImageProvider implements ImageProvider {
         models: [this.model, this.editModel],
         capabilities: this.capabilities(),
       };
-    try {
-      await Promise.all([...new Set([this.model, this.editModel])].map((model) => this.verifyModel(model)));
-      return {
-        id: this.id,
-        available: true,
-        live_verified: false,
-        model_access_verified: true,
-        models: [this.model, this.editModel],
-        capabilities: this.capabilities(),
-      };
-    } catch (e) {
-      return {
-        id: this.id,
-        available: false,
-        reason: classifyOpenAIError(e, false).code,
-        live_verified: false,
-        capabilities: this.capabilities(),
-      };
-    }
+    return { id: this.id, available: true, live_verified: false, model_access_verified: false,
+      reason: 'local_capability_only_no_network_probe', models: [this.model, this.editModel], capabilities: this.capabilities() };
   }
+
   private requireClient() {
     if (!this.client)
       throw new ProviderError('NOT_CONFIGURED', 'OpenAI image credentials are not configured.');
@@ -165,15 +150,10 @@ export class OpenAIImageProvider implements ImageProvider {
         'UNSUPPORTED_MODEL',
         'Configured model lacks a verified Creative Engine image capability profile.',
       );
-    if (!this.availableModels.has(model)) {
-      try {
-        await this.requireClient().models.retrieve(model);
-        this.availableModels.add(model);
-      } catch (e) {
-        throw classifyOpenAIError(e, false);
-      }
-    }
+    // Capability discovery is local. The explicitly authorized image request verifies access.
+    this.availableModels.add(model);
   }
+
   private async body(req: ProviderRequest, mode: 'generate' | 'edit') {
     validateRequest(req);
     const model = req.model ?? (mode === 'edit' ? this.editModel : this.model);
@@ -204,6 +184,16 @@ export class OpenAIImageProvider implements ImageProvider {
     return this.execute(req, 'edit');
   }
   private async execute(req: ProviderRequest, mode: 'generate' | 'edit'): Promise<ProviderResult> {
+    const previous = await this.getResult(req.attemptId);
+    if (previous) return previous;
+    const refs = await Promise.all(req.referencePaths.map(async file => sha(await readFile(file))));
+    const permit = livePermission('generate_image', this.id, req.model ?? (mode === 'edit' ? this.editModel : this.model),
+      sha(JSON.stringify({ prompt: req.prompt, width: req.width, height: req.height, refs, mode })),
+      sha(JSON.stringify(this.configuration())), this.estimateCost(req), req.attemptId, 1);
+    try { const result = await this.executeAuthorized(req, mode); permit.complete(result.costUsd, 'estimated'); return result; }
+    catch (e) { permit.unknown(); throw e; }
+  }
+  private async executeAuthorized(req: ProviderRequest, mode: 'generate' | 'edit'): Promise<ProviderResult> {
     validateRequest(req);
     const previous = await this.getResult(req.attemptId);
     if (previous) return previous;
@@ -293,6 +283,8 @@ export class OpenAIImageProvider implements ImageProvider {
     requests: ProviderRequest[],
     mode: 'generate' | 'edit' = 'generate',
   ): Promise<BatchSubmission> {
+    blockRemoteBatch();
+
     if (!requests.length || requests.length > 100)
       throw new ProviderError('BATCH_SIZE', 'Batch adapter accepts 1–100 image requests.');
     if (new Set(requests.map((r) => r.attemptId)).size !== requests.length)
@@ -344,6 +336,8 @@ export class OpenAIImageProvider implements ImageProvider {
     }
   }
   async pollBatch(id: string): Promise<BatchPoll> {
+    blockRemoteBatch();
+
     safeId(id);
     const client = this.requireClient();
     const stored = JSON.parse(await readFile(path.join(this.stateDir, `batch-${id}.json`), 'utf8')) as {
@@ -387,3 +381,5 @@ export class OpenAIImageProvider implements ImageProvider {
     await this.requireClient().batches.cancel(safeId(id));
   }
 }
+
+function blockRemoteBatch(): void { throw new ProviderError('P7_REMOTE_BATCH_BLOCKED', 'Remote batch requires separate scoped authorization and lifecycle validation.'); }

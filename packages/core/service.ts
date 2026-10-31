@@ -1,5 +1,5 @@
 import { mkdir, readFile, writeFile, rm } from 'node:fs/promises';
-import { createWriteStream } from 'node:fs';
+import { createWriteStream, readFileSync, lstatSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { ZipArchive } from 'archiver';
 import { z } from 'zod';
@@ -282,7 +282,21 @@ export class Core {
   }
   batch(batchId: string) {
     const b = this.require('batch', batchId);
-    return { ...b, tasks: this.store.tasks(batchId).map((t) => this.publicTask(t)) };
+    const tasks = this.store.tasks(batchId), ids = new Set(tasks.map(t => t.id));
+    const attempts = this.store.list('attempt').filter(a => ids.has(a.task_id));
+    const unknown = tasks.some(t => t.status === 'reconciling') || attempts.some(a => a.status === 'unknown');
+    const imageCost = attempts.reduce((sum, a) => sum + Number(a.image_cost_usd ?? 0), 0);
+    const visionCost = attempts.reduce((sum, a) => sum + Number(a.vision_cost_usd ?? 0), 0);
+    const paid = Boolean(b.authorize_paid && (b.provider !== 'mock' || b.vision_review));
+    const approved = this.store.list('asset', b.project_id).filter(a => a.batch_id === batchId && a.review_status === 'approved').length;
+    return { ...b, tasks: tasks.map((t) => this.publicTask(t)), cost_summary: {
+      charge_status: unknown ? 'unknown' : paid ? 'estimated' : 'actual',
+      actual_cost_usd: unknown || paid ? null : b.cost_usd,
+      gross_spend_estimated_usd: b.cost_usd, image_cost_estimated_usd: imageCost, vision_review_cost_estimated_usd: visionCost,
+      unknown_liability_usd: unknown ? b.reserved_usd : 0, approved_assets: approved,
+      cost_per_approved_asset: unknown || !approved ? null : b.cost_usd / approved,
+      cost_per_approved_asset_basis: unknown ? 'unknown' : paid ? 'estimated' : 'actual',
+    } };
   }
   publicTask(t: any) {
     const { lease_owner, lease_until, ...safe } = t;
@@ -366,6 +380,10 @@ export class Core {
     if (a.identity === 'source')
       throw new AppError('SOURCE_NOT_OUTPUT', 'Review applies to production outputs');
     const qa = this.require('qa', a.qa_id);
+    if (lstatSync(a.path).isSymbolicLink() || !realpathSync(a.path).startsWith(realpathSync(this.root) + '/') || hash(readFileSync(a.path)) !== a.sha256)
+      throw new AppError('ASSET_TAMPERED', 'ASSET_TAMPERED: exact asset bytes changed; review blocked');
+    if (!['pass', 'warn', 'block'].includes(qa.status))
+      throw new AppError('QA_UNKNOWN', 'Unknown QA status cannot authorize a business asset');
     if (review.decision === 'approved' && qa.status === 'block')
       throw new AppError('QA_BLOCKED', 'Blocking QA issues cannot be bypassed by review');
     return this.store.transaction(() => {
@@ -374,6 +392,8 @@ export class Core {
         throw new AppError('INVALID_STATE', 'Only current review candidates may be reviewed');
       const decision = {
         ...review,
+        asset_sha256: a.sha256,
+        plan_id: t.plan_id,
         id: id('review'),
         project_id: a.project_id,
         asset_id: assetId,

@@ -1,3 +1,4 @@
+import { livePermission, sha } from '../core/validation.js';
 import { readFile, stat } from 'node:fs/promises';
 import sharp from 'sharp';
 import OpenAI from 'openai';
@@ -220,7 +221,7 @@ export class OpenAIVisionReviewer implements VisionReviewer {
         throw new Error('Vision token rates must be nonnegative.');
     this.client =
       options.client ??
-      new OpenAI({ apiKey: options.apiKey ?? process.env.OPENAI_API_KEY, maxRetries: 0, timeout: 60000 });
+      new OpenAI({ baseURL: 'https://api.openai.com/v1', apiKey: options.apiKey ?? process.env.OPENAI_API_KEY, maxRetries: 0, timeout: 60000 });
   }
   estimateCost() {
     return this.options.reservationUsd ?? 0.25;
@@ -229,6 +230,16 @@ export class OpenAIVisionReviewer implements VisionReviewer {
     return this.lastUsage;
   }
   async review(file: string, options: QAOptions): Promise<VisionReport> {
+    const hashes = await Promise.all([file, ...(options.referencePaths ?? []).slice(0, 3)].map(async path => sha(await readFile(path))));
+    const inputHash = sha(JSON.stringify({ hashes, identity: options.identity, fidelity: options.fidelity, prompt: options.prompt ?? '' }));
+    const configHash = sha(JSON.stringify({ model: this.options.model, reservation: this.estimateCost(),
+      input_rate: this.options.inputUsdPerMillion, output_rate: this.options.outputUsdPerMillion }));
+    const permit = livePermission('vision_review', 'openai', this.options.model, inputHash, configHash,
+      this.estimateCost(), 'vision-' + inputHash);
+    try { const result = await this.reviewAuthorized(file, options); permit.complete(this.lastUsage?.cost_usd ?? this.estimateCost(), 'estimated'); return result; }
+    catch (e) { permit.unknown(); throw e; }
+  }
+  private async reviewAuthorized(file: string, options: QAOptions): Promise<VisionReport> {
     this.lastUsage = { cost_usd: this.estimateCost(), basis: 'reservation_estimate' };
     const files = [file, ...(options.referencePaths ?? []).slice(0, 3)],
       images = await Promise.all(

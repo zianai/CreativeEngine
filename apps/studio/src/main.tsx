@@ -52,7 +52,15 @@ function list(data: any): Row[] {
   return Array.isArray(data) ? data : (data?.items ?? []);
 }
 function money(v: unknown) {
-  return `$${Number(v || 0).toFixed(3)}`;
+  return v == null || !Number.isFinite(Number(v)) ? '未知' : `$${Number(v).toFixed(3)}`;
+}
+function batchCost(b: Row) {
+  const summary = b.cost_summary;
+  if (summary?.charge_status === 'unknown' || b.status === 'reconciling') return '待核对';
+  return (
+    money(summary?.actual_cost_usd ?? summary?.gross_spend_estimated_usd ?? b.cost_usd) +
+    (summary?.charge_status === 'estimated' ? '（估算）' : '')
+  );
 }
 function short(s: any) {
   return String(s ?? '—').slice(0, 18);
@@ -447,11 +455,15 @@ function App() {
                   <small>进入交付前的人工确认</small>
                 </div>
                 <div>
-                  <span>已记录费用</span>
+                  <span>费用记录</span>
                   <strong className="cost">
-                    {money(batches.reduce((n, b) => n + Number(b.cost_usd || b.actual_cost_usd || 0), 0))}
+                    {batches.some(
+                      (b) => b.cost_summary?.charge_status === 'unknown' || b.status === 'reconciling',
+                    )
+                      ? '待核对'
+                      : money(batches.reduce((n, b) => n + Number(b.cost_usd ?? 0), 0))}
                   </strong>
-                  <small>Mock 与确定性合成费用为 0</small>
+                  <small>付费记录为估算；未知账单需核对</small>
                 </div>
               </div>
               <div className="section-title">
@@ -1632,7 +1644,7 @@ function BatchTable({ batches, onSelect }: { batches: Row[]; onSelect: (id: stri
                 <Pill state={b.status} />
               </td>
               <td>{b.task_count ?? b.tasks?.length ?? b.total_tasks ?? '—'}</td>
-              <td>{money(b.cost_usd ?? b.actual_cost_usd)}</td>
+              <td>{batchCost(b)}</td>
               <td>{b.created_at ? new Date(b.created_at).toLocaleString('zh-CN') : '—'}</td>
               <td>
                 <button
@@ -1687,7 +1699,7 @@ function BatchDetail({
           {done} / {tasks.length} 个任务已产出
         </span>
         <span>
-          预算 {money(batch.budget_usd)} · 已记录 {money(batch.cost_usd ?? batch.actual_cost_usd)}
+          预算 {money(batch.budget_usd)} · 已记录 {batchCost(batch)}
         </span>
       </div>
       <progress max={Math.max(tasks.length, 1)} value={done} />
@@ -1713,7 +1725,7 @@ function BatchDetail({
               <span>{t.scene || t.direction || short(t.id)}</span>
               <span>变体 {(t.variant ?? t.variant_index ?? 0) + 1}</span>
               <Pill state={t.status} />
-              <span>{money(t.cost_usd)}</span>
+              <span>{t.status === 'reconciling' ? '待核对' : money(t.cost_usd)}</span>
             </summary>
             {(t.error || t.last_error) && (
               <div className="task-error">

@@ -16,8 +16,9 @@
     "typecheck": "tsc --noEmit",
     "test": "pnpm test:contract:tradecase",
     "test:contract:tradecase": "tsx scripts/verify-tradecase-contract.ts",
-    "check": "pnpm typecheck && pnpm test:contract:tradecase && pnpm build",
-    "format": "prettier --write apps packages scripts rules"
+    "check": "pnpm typecheck && pnpm test:contract:tradecase && pnpm test:p7 && pnpm build",
+    "format": "prettier --write apps packages scripts rules",
+    "test:p7": "tsx --test tests/p7/*.test.ts"
   },
   "dependencies": {
     "@fastify/multipart": "10.1.6",
