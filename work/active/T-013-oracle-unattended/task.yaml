@@ -16,3 +16,5 @@ updated: "2026-10-31"
 implementation_started: true
 external_effects: bounded_browser_generation
 action_refs: [work/active/T-013-oracle-unattended/action-worker-compatible.yaml, work/active/T-013-oracle-unattended/action-cli-control.yaml, work/active/T-013-oracle-unattended/action.yaml, work/active/T-013-oracle-unattended/action-cli-final.yaml, work/active/T-013-oracle-unattended/action-worker-final.yaml, work/active/T-013-oracle-unattended/action-worker-ratio.yaml, work/active/T-013-oracle-unattended/action-worker-medium.yaml, work/active/T-013-oracle-unattended/action-flat-mcp.yaml, work/active/T-013-oracle-unattended/action-raw-mcp.yaml]
+review_ref: work/active/T-013-oracle-unattended/review.md
+review_current: true
