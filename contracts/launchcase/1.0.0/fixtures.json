@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "consumer": "LaunchCase",
+  "scope": "synthetic isolated zero-cost HTTP; no business approval",
+  "batch": {
+    "id": "fixture-batch",
+    "project_id": "fixture-project",
+    "plan_id": "fixture-plan",
+    "status": "review_pending",
+    "cost_usd": 0
+  },
+  "plan": {
+    "project_id": "fixture-project",
+    "plan_id": "fixture-plan"
+  },
+  "asset": {
+    "id": "fixture-asset",
+    "project_id": "fixture-project",
+    "batch_id": "fixture-batch",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "identity": "mock",
+    "provider": "mock",
+    "qa": {
+      "status": "warn",
+      "checks": [],
+      "issues": [],
+      "vision": {
+        "status": "skipped"
+      }
+    },
+    "review_status": "pending",
+    "allowed_uses": [
+      "internal_review"
+    ]
+  }
+}

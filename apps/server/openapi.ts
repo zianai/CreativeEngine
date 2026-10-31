@@ -14,6 +14,8 @@ const errors = {
   '403': jsonResponse('Untrusted browser origin or host', ref('Error')),
   '404': jsonResponse('Entity does not exist', ref('Error')),
   '409': jsonResponse('State, input evidence or idempotency conflict', ref('Error')),
+  '429': jsonResponse('Local write quota exceeded; Retry-After applies', ref('Error')),
+  '503': jsonResponse('Local API authorization is not configured', ref('Error')),
   '500': jsonResponse('Internal failure; inspect durable task status before retry', ref('Error')),
 };
 const pagination = [
@@ -203,6 +205,24 @@ export function openapi() {
   };
   add('/health', 'get', 'Inspect service health without claiming live provider verification', ref('Health'));
   add('/dashboard', 'get', 'Read project and budget totals', ref('Dashboard'));
+  add('/operations/status', 'get', 'Single-host queue and reconciliation alerts without sensitive context', {
+    type: 'object',
+    additionalProperties: true,
+  });
+  add(
+    '/session',
+    'post',
+    'Exchange local bearer token for a one-hour HttpOnly same-origin session',
+    { type: 'object', additionalProperties: true },
+    {
+      description:
+        'Bearer token required. Session is in memory, bound to the current API token, SameSite=Strict, and does not authorize paid provider actions.',
+    },
+  );
+  add('/session/end', 'post', 'Revoke the current local browser session', {
+    type: 'object',
+    additionalProperties: true,
+  });
   add('/providers', 'get', 'Read declared capabilities and runtime health', ref('Provider'), { list: true });
   add(
     '/delivery-rules',
@@ -354,14 +374,20 @@ export function openapi() {
         'Local-first visual production. API, CLI and MCP share deterministic policy, workflow and asset services.',
     },
     servers: [{ url: 'http://127.0.0.1:4310/v1' }],
-    security: [{}, { LocalToken: [] }],
+    security: [{ LocalToken: [] }, { LocalSession: [] }],
     paths,
     components: {
       securitySchemes: {
         LocalToken: {
           type: 'http',
           scheme: 'bearer',
-          description: 'Required on /v1 routes only when CREATIVE_API_TOKEN is configured.',
+          description: 'Local API token; protected routes fail closed when CREATIVE_API_TOKEN is absent.',
+        },
+        LocalSession: {
+          type: 'apiKey',
+          in: 'cookie',
+          name: 'ce_session',
+          description: 'Short-lived same-origin local Studio session. Session creation requires LocalToken.',
         },
       },
       schemas,

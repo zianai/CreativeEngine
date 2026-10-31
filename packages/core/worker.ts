@@ -135,6 +135,8 @@ export class Worker {
           task_id: current.id,
           provider: current.provider,
           status: 'started',
+          execution_protocol: 2,
+          submission_state: 'not_started',
           estimated_cost_usd: current.estimated_cost_usd,
           created_at: now(),
         });
@@ -276,14 +278,34 @@ export class Worker {
               'UNSUPPORTED_CAPABILITY',
               'This provider cannot edit a base or revision image.',
             );
+          // Persist the point of no safe automatic replay before entering a provider.
+          // A crash after this commit remains uncertain even if no response arrived.
+          core.store.transaction(() => {
+            if (!this.owns(task))
+              throw new ProviderError('LEASE_LOST', 'Task lease changed before submission');
+            const current = core.require('task', task.id);
+            if (current.cancel_requested || core.require('batch', task.batch_id).status === 'cancelled')
+              throw new ProviderError('CANCELLED', 'Task was cancelled before submission');
+            core.store.put('attempt', {
+              ...core.require('attempt', task.attempt_id),
+              submission_state: 'started',
+            });
+          });
           result = await (editing ? provider.edit(request) : provider.generate(request));
+          // A response is evidence of external execution even if validation or local
+          // persistence fails. Keep its liability instead of making a safe retry.
+          received = true;
         } finally {
           clearTimeout(timeout);
         }
       }
       validateProviderResult(result);
       await inside(outputDir, result.path);
-      await inspectStored(core.root, result.path);
+      const resultMetadata = await inspectStored(core.root, result.path);
+      result = {
+        ...result,
+        metadata: { ...result.metadata, artifact_sha256: resultMetadata.sha256, attempt_id: task.attempt_id },
+      };
       await atomicWrite(join(outputDir, 'receipt.json'), JSON.stringify(result));
       received = true;
       if (this.owns(task)) await this.finish(task, result);
@@ -306,9 +328,23 @@ export class Worker {
     validateProviderResult(result);
     const { core } = this;
     if (!this.owns(task)) return;
+    const receivedMetadata = await inspectStored(core.root, result.path);
+    const attempt = core.require('attempt', task.attempt_id);
+    if (
+      attempt.execution_protocol === 2 &&
+      (!result.metadata?.artifact_sha256 || result.metadata.attempt_id !== task.attempt_id)
+    )
+      throw new ProviderError('RECEIPT_MISMATCH', 'Current execution requires a hash-bound attempt receipt', {
+        uncertain: true,
+      });
+    if (result.metadata?.artifact_sha256 && result.metadata.artifact_sha256 !== receivedMetadata.sha256)
+      throw new ProviderError('ASSET_TAMPERED', 'Receipt image hash changed', { uncertain: true });
+    if (result.metadata?.attempt_id && result.metadata.attempt_id !== task.attempt_id)
+      throw new ProviderError('RECEIPT_MISMATCH', 'Receipt belongs to another attempt', { uncertain: true });
     const plan = core.require('plan', task.plan_id),
       size = dimensions(plan.aspect_ratio),
       identity = result.mock ? 'mock' : plan.fidelity === 'strict' ? 'real_product' : 'concept';
+    validatePlan(plan, core.context(plan.project_id, plan.product.truth_snapshot_id));
     const prior = core.store
       .list('asset', task.project_id)
       .find((asset) => asset.attempt_id === task.attempt_id);
@@ -597,9 +633,11 @@ export class Worker {
         fresh.lease_owner = this.workerId;
         core.store.saveTask(fresh);
         const batch = core.require('batch', fresh.batch_id),
+          attempt = core.require('attempt', fresh.attempt_id),
           paid =
             (core.providers.get(task.provider)!.capabilities().paid &&
-              ['generate', 'edit'].includes(core.require('plan', task.plan_id).strategy)) ||
+              ['generate', 'edit'].includes(core.require('plan', task.plan_id).strategy) &&
+              !(attempt.execution_protocol === 2 && attempt.submission_state === 'not_started')) ||
             (batch.vision_review && fresh.status === 'qa_pending');
         this.failOutsideTransaction(fresh, paid);
       });

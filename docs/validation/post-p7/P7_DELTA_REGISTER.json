@@ -1,0 +1,83 @@
+{
+  "p7_live": {
+    "system": "creative-engine",
+    "run_id": "live-synthetic-20261031T080134Z",
+    "environment": "E2",
+    "data_classification": "synthetic",
+    "actual_api_smoke": "succeeded",
+    "business_pilot_reviewed": false,
+    "business_validation": "not_evaluable",
+    "billing_actual_usd": null,
+    "external_business_writes": 0,
+    "user_authorization": "2026-10-31: synthetic paid three-system smoke, total <= USD 10, no business writes",
+    "source_sha_at_live_call": "135e4986cbf67009f4af6f61f50fd0c8037a16a5",
+    "limitations": [
+      "Synthetic smoke only; no human business assessment or real-case validation.",
+      "Native image provider call only; no full Worker integration, Vision review or human business assessment. Text is permitted in concept images; a no-text prompt was an optional smoke condition, not a general quality criterion."
+    ]
+  },
+  "p7_go_no_go_is_historical": true,
+  "current_business": "not_evaluable",
+  "new_live_authorized": false,
+  "remote": {
+    "visibility": "public",
+    "sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+    "runs": [
+      {
+        "name": "Visual Task contract",
+        "sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/zianai/CreativeEngine/actions/runs/41183725456"
+      },
+      {
+        "name": "Visual Task contract",
+        "sha": "cd90f64c7ab577ea029d35119f0ad6eba18e57ad",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/zianai/CreativeEngine/actions/runs/41103730852"
+      },
+      {
+        "name": "Visual Task contract",
+        "sha": "a1b068ea889409065a382de33536afdfbda5c7df",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/zianai/CreativeEngine/actions/runs/41101261005"
+      }
+    ]
+  },
+  "local": {
+    "base_sha": "93102c2725b3942ca924ec0115224fa65bcb13d5",
+    "original_path": "/Users/a/workspaces/AForeign Trade/creative-engine",
+    "original_dirty": " M apps/server/app.ts\n M apps/server/openapi.ts\n M apps/studio/src/main.tsx\n M docs/api.md\n M packages/core/service.ts\n M packages/providers/oracle/index.ts\n M project/state.yaml\n M tests/e2e/studio.spec.ts\n M tests/unit/providers.test.ts\n?? output/live-acceptance/openai-action.json\n?? output/live-acceptance/openai-candidates.json\n?? output/live-acceptance/openai-front-round1.png\n?? output/live-acceptance/openai-receipt.json\n?? output/live-acceptance/openai-side-round1.png\n?? output/live-acceptance/openai/ce-first-round-openai-20261030.png\n?? output/live-acceptance/oracle-action.json\n?? output/live-acceptance/oracle-reconciliation.json\n?? output/live-acceptance/receipts/openai/ce-first-round-openai-20261030.json\n?? output/live-acceptance/specification.md\n?? output/live-acceptance/studio-gallery.png\n?? output/live-acceptance/studio-review.png\n?? output/live-acceptance/synthetic-front.png\n?? output/live-acceptance/synthetic-side.png\n?? output/live-acceptance/synthetic-source-sheet.png\n?? packages/core/import-review.ts\n?? scripts/import-first-round.ts\n?? scripts/live-first-round.ts\n?? tests/integration/import-review.test.ts\n?? work/active/T-002-live-provider/authorization.md\n?? work/active/T-002-live-provider/evidence.md\n?? work/active/T-002-live-provider/task.yaml\n",
+    "branch_snapshot": "+ claude/frontend-business-language b0b0b80 (/Users/a/workspaces/AForeign Trade/creative-engine) fix: report QA as passed only when explicit and keep project names distinct\n+ codex/github-private              cd90f64 (/Users/a/workspaces/AForeign Trade/creative-engine-github) [github/main: behind 4] Record successful private publication and contract Actions runs\n* codex/p7-validation-20261031      93102c2 Correct synthetic smoke interpretation and current blockers\n  main                              f0ca0a4 Add TradeCase provider contract CI and reject unsupported API versions\n  remotes/github/main               93102c2 Correct synthetic smoke interpretation and current blockers\n",
+    "p7_historical_sha256": {
+      "docs/validation/p7/go_no_go.json": "64feb2924b09e4dec3f71bedfcee02273dcac5f532c8f407f85cedf45b0eb3a3",
+      "docs/validation/p7/RV-07.md": "16c2bebb4ad6822cd256cd6ad9fe77759ea1e6e6c815ff5cb28eb9626ed0c31f",
+      "docs/validation/p7/RV-03.md": "fbd3ec3378f54f9432075d0cfc74ae5a235dbc6f1002cc460339bdf633a83990",
+      "docs/validation/p7/RV-02.md": "df6461a97dfb12efe11941bfd9faf77d6181b6306e3a36c7ca2456dae0177a90",
+      "docs/validation/p7/RV-06.md": "a0a97f755ba219ed4a1783907f55ed0f4fb182251562e89886bbef3dc57e3f57",
+      "docs/validation/p7/evidence-index.json": "a8fd6339e000f91e8dd8ae0c6a10bb002b6d71f95c82d589c7198a1ee2b4a393",
+      "docs/validation/p7/request.synthetic.json": "8447550d5b19f9ffe8f62c3d267c24def682e31429cca475da470ac6e6179483",
+      "docs/validation/p7/README.md": "47054f61452f2f87017ad5f8563a11e87897bb56d726188b8692269f3707586c",
+      "docs/validation/p7/LIVE_SMOKE.json": "d3610d03c3dfad988f3c1ee688aad362b661b8a020ff99fe33635de7f26bfb19",
+      "docs/validation/p7/KNOWN_LIMITATIONS.md": "5501ef72624b7a33349cb64bf4b7542d1a4f4a8ba279e2388a595893ccc6a240",
+      "docs/validation/p7/RV-01.md": "59f62bc873e3c1985478c7c590aa2da8392dcbcb277b4685f5a04f425332b730",
+      "docs/validation/p7/RV-05.md": "2089ca3fa026a9fa4b3f4d7f45aa3958ecbd7040ab4b301ab841bb9793b63e92",
+      "docs/validation/p7/ADR.md": "499a3a34433c43d8bbbd5ccf82bdff30aae44ba47da477a77cb77e57961c404c",
+      "docs/validation/p7/grant.disabled.example.json": "4a1e8d6d31cd0f7e4ef5b7f56663e5fde0c7e500d913d2b6519d96cfb98bd8ea",
+      "docs/validation/p7/RV-04.md": "e2fdf2ef5410fa8d8399c244490e1d75997f5b01504fa8f6eb8c53175f6990ac",
+      "docs/validation/p7/CURRENT_STATUS.md": "c88d1b180a12b71fc749b501c7d9e88839c225aebd51a72f5321b23aac35a465",
+      "docs/validation/p7/RV-00.md": "987fe19bb9279f7afc58447a6d850f17be390e27a7b21b7f9a8d27f2c0e58d4f",
+      "docs/validation/p7/evidence/release-ce-supplemental/result.json": "bbe373d5919e7baeeeec14edbaedaedc204907c79bb4098c2f305dc3869a97de",
+      "docs/validation/p7/evidence/release-ce-supplemental/subcommands.json": "2cf8fc63934915f84b3f340ee1cbf49fa6905567b72c0e95bda1000c5e9f1466",
+      "docs/validation/p7/evidence/release-ce-supplemental/output.log": "522c14439f64deeacf4ad5602d2a548c26815ec3477fe8853271805984586a60",
+      "docs/validation/p7/evidence/release-ce-check/result.json": "669e4938860e2517f1404cffda2931757ecf4bc8be2342e4961e1166432d6303",
+      "docs/validation/p7/evidence/release-ce-check/output.log": "f3707683eb77db1eaf222aec52f4deb301c91456f2dabdb8be570c82a0ba8f59",
+      "docs/validation/p7/evidence/release-lc-ce-http/result.json": "74efe0bd8874a7dd865dc212f7c612bab45ba35140322ee0cd66a1a41722702d",
+      "docs/validation/p7/evidence/release-lc-ce-http/output.log": "d8790d0c8d7e517074817ad2167cb0722fe09a9a89ce5b56c54e937667071472",
+      "docs/validation/p7/evidence/live-synthetic-20261031/result.json": "e13e5fb9b9ab75cda73ccf96bfcfb5018830c312aa1ab613a9d779ae678040ae",
+      "docs/validation/p7/evidence/live-synthetic-20261031/creative_engine-execute.log": "67d39c7812f639191224e27cdbd04dc8b9bfa1d48c71e1b281c12ab2019e159b"
+    }
+  }
+}

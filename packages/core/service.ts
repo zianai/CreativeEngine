@@ -28,9 +28,10 @@ export class Core {
   constructor(
     root = resolve(process.env.CREATIVE_DATA_DIR ?? '.creative-engine'),
     providers?: Map<string, ImageProvider>,
+    readOnly = false,
   ) {
     this.root = resolve(root);
-    this.store = new Store(this.root);
+    this.store = new Store(this.root, readOnly);
     this.providers = providers ?? createProviders(this.root);
   }
   require(kind: string, entityId: string) {
@@ -282,21 +283,38 @@ export class Core {
   }
   batch(batchId: string) {
     const b = this.require('batch', batchId);
-    const tasks = this.store.tasks(batchId), ids = new Set(tasks.map(t => t.id));
-    const attempts = this.store.list('attempt').filter(a => ids.has(a.task_id));
-    const unknown = tasks.some(t => t.status === 'reconciling') || attempts.some(a => a.status === 'unknown');
+    const tasks = this.store.tasks(batchId),
+      ids = new Set(tasks.map((t) => t.id));
+    const attempts = this.store.list('attempt').filter((a) => ids.has(a.task_id));
+    const unknown =
+      tasks.some((t) => t.status === 'reconciling') ||
+      attempts.some((a) => ['unknown', 'review_uncertain'].includes(a.status));
     const imageCost = attempts.reduce((sum, a) => sum + Number(a.image_cost_usd ?? 0), 0);
     const visionCost = attempts.reduce((sum, a) => sum + Number(a.vision_cost_usd ?? 0), 0);
     const paid = Boolean(b.authorize_paid && (b.provider !== 'mock' || b.vision_review));
-    const approved = this.store.list('asset', b.project_id).filter(a => a.batch_id === batchId && a.review_status === 'approved').length;
-    return { ...b, tasks: tasks.map((t) => this.publicTask(t)), cost_summary: {
-      charge_status: unknown ? 'unknown' : paid ? 'estimated' : 'actual',
-      actual_cost_usd: unknown || paid ? null : b.cost_usd,
-      gross_spend_estimated_usd: b.cost_usd, image_cost_estimated_usd: imageCost, vision_review_cost_estimated_usd: visionCost,
-      unknown_liability_usd: unknown ? b.reserved_usd : 0, approved_assets: approved,
-      cost_per_approved_asset: unknown || !approved ? null : b.cost_usd / approved,
-      cost_per_approved_asset_basis: unknown ? 'unknown' : paid ? 'estimated' : 'actual',
-    } };
+    const approved = this.store
+      .list('asset', b.project_id)
+      .filter((a) => a.batch_id === batchId && a.review_status === 'approved').length;
+    return {
+      ...b,
+      tasks: tasks.map((t) => this.publicTask(t)),
+      cost_summary: {
+        charge_status: unknown ? 'unknown' : paid ? 'estimated' : 'actual',
+        actual_cost_usd: unknown || paid ? null : b.cost_usd,
+        gross_spend_estimated_usd: b.cost_usd,
+        image_cost_estimated_usd: imageCost,
+        vision_review_cost_estimated_usd: visionCost,
+        unknown_liability_usd: unknown
+          ? b.reserved_usd +
+            attempts
+              .filter((a) => a.status === 'review_uncertain')
+              .reduce((sum, a) => sum + Number(a.vision_cost_usd ?? 0), 0)
+          : 0,
+        approved_assets: approved,
+        cost_per_approved_asset: unknown || !approved ? null : b.cost_usd / approved,
+        cost_per_approved_asset_basis: unknown ? 'unknown' : paid ? 'estimated' : 'actual',
+      },
+    };
   }
   publicTask(t: any) {
     const { lease_owner, lease_until, ...safe } = t;
@@ -380,12 +398,17 @@ export class Core {
     if (a.identity === 'source')
       throw new AppError('SOURCE_NOT_OUTPUT', 'Review applies to production outputs');
     const qa = this.require('qa', a.qa_id);
-    if (lstatSync(a.path).isSymbolicLink() || !realpathSync(a.path).startsWith(realpathSync(this.root) + '/') || hash(readFileSync(a.path)) !== a.sha256)
+    if (
+      lstatSync(a.path).isSymbolicLink() ||
+      !realpathSync(a.path).startsWith(realpathSync(this.root) + '/') ||
+      hash(readFileSync(a.path)) !== a.sha256
+    )
       throw new AppError('ASSET_TAMPERED', 'ASSET_TAMPERED: exact asset bytes changed; review blocked');
     if (!['pass', 'warn', 'block'].includes(qa.status))
       throw new AppError('QA_UNKNOWN', 'Unknown QA status cannot authorize a business asset');
     if (review.decision === 'approved' && qa.status === 'block')
       throw new AppError('QA_BLOCKED', 'Blocking QA issues cannot be bypassed by review');
+    if (review.decision === 'approved') this.assertCurrentAsset(a);
     return this.store.transaction(() => {
       const t = this.require('task', a.task_id);
       if (!['review_pending', 'approved'].includes(t.status))
@@ -475,6 +498,7 @@ export class Core {
     if (!assets.length)
       throw new AppError(all.length ? 'UNAPPROVED_ASSET' : 'NO_ASSETS', 'No approved assets to export');
     for (const a of assets) {
+      this.assertCurrentAsset(a);
       if (
         a.batch_id !== b.id ||
         a.review_status !== 'approved' ||
@@ -542,16 +566,22 @@ export class Core {
       zip.append(JSON.stringify(manifest, null, 2), { name: 'manifest.json' });
       void zip.finalize();
     });
-    for (const a of assets)
-      if (this.require('asset', a.id).review_status !== 'approved') {
-        await rm(path, { force: true });
-        throw new AppError('APPROVAL_REVOKED', 'Approval changed during export; package discarded');
+    try {
+      for (const a of assets) {
+        this.assertCurrentAsset(this.require('asset', a.id));
+        if (this.require('asset', a.id).review_status !== 'approved')
+          throw new AppError('APPROVAL_REVOKED', 'Approval changed during export; package discarded');
       }
+    } catch (error) {
+      await rm(path, { force: true });
+      throw error;
+    }
     const result = this.store.put('export', {
       id: exportId,
       project_id: b.project_id,
       batch_id: b.id,
       path,
+      sha256: hash(await readFile(path)),
       manifest,
       created_at: now(),
       download_url: `/v1/exports/${exportId}/file`,
@@ -633,10 +663,44 @@ export class Core {
   }
   exportReady(exportId: string) {
     const pkg = this.require('export', exportId);
-    for (const a of pkg.manifest.assets)
-      if (this.require('asset', a.id).review_status !== 'approved')
+    for (const a of pkg.manifest.assets) {
+      const current = this.require('asset', a.id);
+      this.assertCurrentAsset(current);
+      if (current.review_status !== 'approved' || current.sha256 !== a.sha256)
         throw new AppError('APPROVAL_REVOKED', 'Package contains an asset whose approval has been revoked');
+    }
+    if (!pkg.sha256 || hash(readFileSync(pkg.path)) !== pkg.sha256)
+      throw new AppError('EXPORT_TAMPERED', 'Export hash missing or changed; create a fresh package');
     return pkg;
+  }
+  /** The saved plan is immutable; current source rights and bytes are not inferred from old QA. */
+  assertCurrentAsset(asset: any) {
+    const task = this.require('task', asset.task_id),
+      plan = this.require('plan', task.plan_id);
+    validatePlan(plan, this.context(plan.project_id, plan.product.truth_snapshot_id));
+    const ids = new Set<string>([
+      ...plan.reference_asset_ids,
+      ...(plan.background_asset_id ? [plan.background_asset_id] : []),
+      ...(plan.authorized_logo_asset_id ? [plan.authorized_logo_asset_id] : []),
+      ...(plan.product.truth_snapshot_id
+        ? this.require('truth', plan.product.truth_snapshot_id).facts.map((f: any) => f.source_asset_id)
+        : []),
+    ]);
+    for (const record of [asset, ...[...ids].map((id) => this.require('asset', id))]) {
+      if (record.project_id !== asset.project_id)
+        throw new AppError('CROSS_PROJECT', 'Asset provenance belongs to another project');
+      if (record.identity === 'source' && (!record.authorized || !record.sensitive_data_cleared))
+        throw new AppError('SOURCE_STALE', 'Source rights are no longer current');
+      if (
+        lstatSync(record.path).isSymbolicLink() ||
+        !realpathSync(record.path).startsWith(realpathSync(this.root) + '/') ||
+        hash(readFileSync(record.path)) !== record.sha256
+      )
+        throw new AppError('ASSET_TAMPERED', 'Asset hash changed; approval and export blocked');
+    }
+    const qa = this.require('qa', asset.qa_id);
+    if (!['pass', 'warn'].includes(qa.status))
+      throw new AppError('QA_BLOCKED', 'Current QA does not permit approval or export');
   }
   async purgeProject(projectId: string, confirmName?: string) {
     const p = this.require('project', projectId),
@@ -713,6 +777,30 @@ export class Core {
       review_pending: assets.filter((a) => a.review_status === 'pending' && a.identity !== 'source').length,
       cost_usd: batches.reduce((sum, b) => sum + b.cost_usd, 0),
       reserved_usd: batches.reduce((sum, b) => sum + b.reserved_usd, 0),
+    };
+  }
+  operationsStatus() {
+    const tasks = this.store.tasks(),
+      attempts = this.store.list('attempt');
+    const count = (states: string[]) => tasks.filter((t) => states.includes(t.status)).length;
+    return {
+      topology: 'single_host_trusted_loopback',
+      production_ready: false,
+      queue_depth: count(['queued']),
+      running: count(['running', 'qa_pending']),
+      pending_review: count(['review_pending']),
+      reconciling: count(['reconciling']),
+      uncertain_vision: attempts.filter((a) => a.status === 'review_uncertain').length,
+      blocked: count(['blocked']),
+      failed: count(['failed']),
+      alerts: [
+        ...(count(['reconciling']) ? ['RECONCILIATION_REQUIRED'] : []),
+        ...(attempts.some((a) => a.status === 'review_uncertain') ? ['VISION_OUTCOME_UNKNOWN'] : []),
+        ...(count(['queued']) > 100 ? ['QUEUE_BACKLOG'] : []),
+        ...(count(['blocked', 'failed']) ? ['TASK_FAILURE_REVIEW'] : []),
+      ],
+      sampled_at: now(),
+      billing_actual_usd: null,
     };
   }
   close() {

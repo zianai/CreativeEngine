@@ -16,9 +16,12 @@
     "typecheck": "tsc --noEmit",
     "test": "pnpm test:contract:tradecase",
     "test:contract:tradecase": "tsx scripts/verify-tradecase-contract.ts",
-    "check": "pnpm typecheck && pnpm test:contract:tradecase && pnpm test:p7 && pnpm build",
+    "check": "pnpm typecheck && pnpm test:contract:tradecase && pnpm test:contract:launchcase && pnpm test:p7 && pnpm test:p8-p10 && pnpm build",
     "format": "prettier --write apps packages scripts rules",
-    "test:p7": "tsx --test tests/p7/*.test.ts"
+    "test:p7": "tsx --test --test-concurrency=1 tests/p7/*.test.ts",
+    "test:p8-p10": "tsx --test --test-concurrency=1 tests/p8-p10/*.test.ts",
+    "test:contract:launchcase": "tsx scripts/verify-launchcase-contract.ts",
+    "test:studio": "tsx scripts/p10-studio-e2e.ts"
   },
   "dependencies": {
     "@fastify/multipart": "10.1.6",

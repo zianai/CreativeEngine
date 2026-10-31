@@ -1,0 +1,12 @@
+# Template only. Start CE on 127.0.0.1:4310 with a dedicated runtime token.
+# No public domain, ACME request, or cloud service is configured.
+https://localhost:4443 {
+    bind 127.0.0.1
+    tls internal
+    reverse_proxy 127.0.0.1:4310
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy no-referrer
+        X-Frame-Options DENY
+    }
+}

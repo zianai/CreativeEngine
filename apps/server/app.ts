@@ -11,14 +11,25 @@ import { AppError } from '../../packages/contracts/index.js';
 import { openapi } from './openapi.js';
 import { planTradeCase, tradeCaseResult } from '../../packages/integrations/tradecase/index.js';
 import { requireProtocol } from './protocol.js';
+import { randomBytes, createHash } from 'node:crypto';
 export { openapi } from './openapi.js';
 export async function buildApp(core = new Core(), workerEnabled = true) {
   const app = Fastify({ logger: false, bodyLimit: 29 * 1024 * 1024 });
   const worker = new Worker(core);
+  const sessions = new Map<string, { tokenHash: string; expires: number }>();
+  const tokenHash = (token: string) => createHash('sha256').update(token).digest('hex');
+  let writeWindow = Date.now(),
+    writes = 0;
+  const maxWrites = Number(process.env.CREATIVE_WRITE_RATE_LIMIT ?? 120);
+  if (!Number.isSafeInteger(maxWrites) || maxWrites < 1 || maxWrites > 10000)
+    throw new Error('Invalid local write rate limit');
   app.addHook('onRequest', async (req, reply) => {
     const origin = req.headers.origin;
-    const hostname = (req.headers.host ?? '').split(':')[0];
-    if (hostname && !['localhost', '127.0.0.1', '[', '::1'].includes(hostname)) {
+    let hostname = '';
+    try {
+      hostname = new URL(`http://${req.headers.host ?? ''}`).hostname;
+    } catch {}
+    if (!['localhost', '127.0.0.1', '[::1]'].includes(hostname)) {
       reply.code(403);
       throw new AppError('HOST_REJECTED', 'Local host required', 403);
     }
@@ -27,31 +38,56 @@ export async function buildApp(core = new Core(), workerEnabled = true) {
       try {
         host = new URL(origin).hostname;
       } catch {}
-      if (!['localhost', '127.0.0.1', '[::1]'].includes(host ?? '')) {
+      if (
+        !['localhost', '127.0.0.1', '[::1]'].includes(host ?? '') ||
+        !['http:', 'https:'].includes(new URL(origin).protocol) ||
+        new URL(origin).host !== req.headers.host
+      ) {
         reply.code(403);
         throw new AppError('ORIGIN_REJECTED', 'Untrusted origin', 403);
       }
     }
     const token = process.env.CREATIVE_API_TOKEN;
-    if (token && req.url.startsWith('/v1') && req.headers.authorization !== `Bearer ${token}`)
+    if (!token && req.url.startsWith('/v1') && req.url.split('?')[0] !== '/v1/health')
+      throw new AppError('AUTH_NOT_CONFIGURED', 'A dedicated local API token must be configured', 503);
+    const sessionId = (req.headers.cookie ?? '')
+      .split(';')
+      .map((v) => v.trim())
+      .find((v) => v.startsWith('ce_session='))
+      ?.slice('ce_session='.length);
+    const session = sessionId ? sessions.get(sessionId) : undefined;
+    const sessionValid = Boolean(
+      token && session && session.expires > Date.now() && session.tokenHash === tokenHash(token),
+    );
+    if (
+      token &&
+      req.url.startsWith('/v1') &&
+      req.headers.authorization !== `Bearer ${token}` &&
+      !sessionValid
+    )
       throw new AppError('UNAUTHORIZED', 'Local API token required', 401);
     if (req.url.startsWith('/v1')) requireProtocol(req.headers['x-api-version']);
+    if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
+      if (Date.now() - writeWindow >= 60000) {
+        writeWindow = Date.now();
+        writes = 0;
+      }
+      if (++writes > maxWrites) {
+        reply.header('Retry-After', '60');
+        throw new AppError('RATE_LIMITED', 'Local write quota exceeded', 429);
+      }
+    }
+    reply.header('X-Content-Type-Options', 'nosniff').header('Referrer-Policy', 'no-referrer');
   });
   app.setErrorHandler((err: any, _req, reply) => {
     const validation = err instanceof ZodError;
-    reply
-      .code(validation ? 400 : (err.status ?? err.statusCode ?? 500))
-      .send({
-        error: {
-          code: validation ? 'VALIDATION_ERROR' : (err.code ?? 'INTERNAL_ERROR'),
-          message: validation
-            ? 'Invalid request'
-            : err.status || err.statusCode
-              ? err.message
-              : 'Internal operation failed',
-          details: validation ? err.issues : err.details,
-        },
-      });
+    reply.code(validation ? 400 : (err.status ?? err.statusCode ?? 500)).send({
+      error: {
+        code: validation ? 'VALIDATION_ERROR' : (err.code ?? 'INTERNAL_ERROR'),
+        message: validation ? 'Invalid request' : 'Request could not be completed; see error code',
+        details: validation ? err.issues.map((issue: any) => ({ code: issue.code })) : undefined,
+      },
+    });
   });
   const params = (req: any) => req.params as any;
   const list = (req: any, items: any[]) => {
@@ -69,6 +105,28 @@ export async function buildApp(core = new Core(), workerEnabled = true) {
     real_provider_status: 'See /v1/providers; mock is not live generation verification',
   }));
   app.get('/v1/dashboard', async () => core.dashboard());
+  app.post('/v1/session', async (req, reply) => {
+    const token = process.env.CREATIVE_API_TOKEN!;
+    if (req.headers.authorization !== `Bearer ${token}`)
+      throw new AppError('UNAUTHORIZED', 'Enter the local API token', 401);
+    for (const [id, s] of sessions) if (s.expires <= Date.now()) sessions.delete(id);
+    if (sessions.size >= 64) throw new AppError('SESSION_LIMIT', 'Too many active local sessions', 429);
+    const id = randomBytes(32).toString('hex');
+    sessions.set(id, { tokenHash: tokenHash(token), expires: Date.now() + 3600000 });
+    reply.header('Set-Cookie', `ce_session=${id}; HttpOnly; SameSite=Strict; Path=/v1; Max-Age=3600`);
+    return { connected: true, expires_in_seconds: 3600, scope: 'trusted_local_operator' };
+  });
+  app.post('/v1/session/end', async (req, reply) => {
+    const id = (req.headers.cookie ?? '')
+      .split(';')
+      .map((v) => v.trim())
+      .find((v) => v.startsWith('ce_session='))
+      ?.slice('ce_session='.length);
+    if (id) sessions.delete(id);
+    reply.header('Set-Cookie', 'ce_session=; HttpOnly; SameSite=Strict; Path=/v1; Max-Age=0');
+    return { connected: false };
+  });
+  app.get('/v1/operations/status', async () => core.operationsStatus());
   app.get('/v1/providers', async (req) => list(req, await core.providerList()));
   app.get('/v1/skills', async (req) => list(req, core.skills()));
   app.get('/v1/delivery-rules', async (req) => list(req, core.deliveryRules()));

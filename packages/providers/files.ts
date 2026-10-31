@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile, rename, realpath, stat, lstat } from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { ProviderError, type ProviderRequest, type ProviderResult } from './types.js';
 export const MAX_IMAGE_BYTES = 32 * 1024 * 1024;
@@ -79,7 +80,13 @@ export async function writeRaster(req: ProviderRequest, bytes: Buffer): Promise<
 export class ReceiptStore {
   constructor(readonly directory: string) {}
   async save(id: string, result: ProviderResult) {
-    await atomicJson(path.join(this.directory, `${safeId(id)}.json`), result);
+    const artifact_sha256 = createHash('sha256')
+      .update(await readFile(result.path))
+      .digest('hex');
+    await atomicJson(path.join(this.directory, `${safeId(id)}.json`), {
+      ...result,
+      metadata: { ...result.metadata, artifact_sha256, attempt_id: id },
+    });
   }
   async load(id: string): Promise<ProviderResult | null> {
     try {
@@ -87,6 +94,14 @@ export class ReceiptStore {
         await readFile(path.join(this.directory, `${safeId(id)}.json`), 'utf8'),
       ) as ProviderResult;
       await validatedRaster(result.path);
+      if (
+        result.metadata?.artifact_sha256 &&
+        result.metadata.artifact_sha256 !==
+          createHash('sha256')
+            .update(await readFile(result.path))
+            .digest('hex')
+      )
+        throw new ProviderError('ASSET_TAMPERED', 'Provider receipt image hash changed', { uncertain: true });
       return result;
     } catch (e) {
       if ((e as NodeJS.ErrnoException).code === 'ENOENT') return null;

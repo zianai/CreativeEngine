@@ -144,6 +144,8 @@ function App() {
   const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
   const [connected, setConnected] = useState(false);
+  const [connectOpen, setConnectOpen] = useState(false),
+    [localToken, setLocalToken] = useState('');
   const [compare, setCompare] = useState<string[]>([]);
   const [assetQuery, setAssetQuery] = useState(''),
     [assetState, setAssetState] = useState('all'),
@@ -366,6 +368,9 @@ function App() {
           </div>
           <div className="topbar-right">
             <span className="local-tag">LOCAL FIRST</span>
+            <button className="text-button" onClick={() => setConnectOpen(true)}>
+              连接本地服务
+            </button>
             <button className="text-button" onClick={() => void load()} aria-label="刷新数据">
               ↻ 刷新
             </button>
@@ -737,6 +742,51 @@ function App() {
           )}
         </div>
       </main>
+      {connectOpen && (
+        <Modal
+          title="连接本地服务"
+          onClose={() => {
+            setLocalToken('');
+            setConnectOpen(false);
+          }}
+        >
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              void run(async () => {
+                try {
+                  const response = await fetch('/v1/session', {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${localToken}` },
+                  });
+                  if (!response.ok) throw new Error('连接失败，请检查本地服务令牌。');
+                  setLocalToken('');
+                  window.location.reload();
+                } finally {
+                  setLocalToken('');
+                }
+              });
+            }}
+          >
+            <p className="muted">
+              使用本机服务配置的访问令牌。它不会写入浏览器存储；会话一小时后失效。此连接不授予模型付费或对外发布权限。
+            </p>
+            <Field label="本地访问令牌">
+              <input
+                type="password"
+                autoComplete="off"
+                required
+                value={localToken}
+                onChange={(e) => setLocalToken(e.target.value)}
+              />
+            </Field>
+            {error && <p role="alert">{error}</p>}
+            <button className="primary" disabled={busy || !localToken}>
+              连接
+            </button>
+          </form>
+        </Modal>
+      )}
       {newProject && (
         <ProjectModal
           error={error}
@@ -852,7 +902,8 @@ function Modal({
   onClose: () => void;
   wide?: boolean;
 }) {
-  const dialog = React.useRef<HTMLDialogElement>(null);
+  const dialog = React.useRef<HTMLDialogElement>(null),
+    titleId = React.useId();
   useEffect(() => {
     dialog.current?.showModal();
     return () => {
@@ -862,6 +913,7 @@ function Modal({
   return (
     <dialog
       ref={dialog}
+      aria-labelledby={titleId}
       className={`modal ${wide ? 'wide' : ''}`}
       onCancel={(e) => {
         e.preventDefault();
@@ -869,7 +921,7 @@ function Modal({
       }}
     >
       <div className="modal-heading">
-        <h2>{title}</h2>
+        <h2 id={titleId}>{title}</h2>
         <button onClick={onClose} className="icon-button" aria-label="关闭弹窗">
           ×
         </button>
@@ -1897,6 +1949,9 @@ function AssetModal({
             <>
               <div className="form-separator" />
               <h3>人工审核</h3>
+              <p className="fine-print">
+                此操作仅审核当前图片，不确认产品事实、业务试点或对外发布许可。合成测试审核不构成人工业务验收。
+              </p>
               <Field label="审核人">
                 <input
                   required

@@ -92,6 +92,10 @@ test('worker death after reservation without receipt reconciles after restart', 
   try {
     const worker = new Worker(f.core);
     const claimed = worker.claim();
+    f.core.store.put('attempt', {
+      ...f.core.require('attempt', claimed.attempt_id),
+      submission_state: 'started',
+    });
     f.core.store.saveTask({ ...claimed, lease_until: 0 });
     await new Worker(f.core).recover();
     assert.equal(f.core.require('task', claimed.id).status, 'reconciling');

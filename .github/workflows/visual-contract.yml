@@ -41,6 +41,10 @@ jobs:
         run: python -m pytest contracts/visual-task/test_verifier.py -q
       - name: P7 zero-cost authorization and recovery regressions
         run: pnpm test:p7
+      - name: P8-P10 isolated safety, process-crash and restore regressions
+        env:
+          ALLOW_TEST_LIVE: "off"
+        run: pnpm test:p8-p10 && pnpm test:contract:launchcase
       - name: Verify real provider HTTP with zero-cost fixtures
         run: |
           set -o pipefail

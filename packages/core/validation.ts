@@ -33,6 +33,40 @@ export class ValidationRunPolicy {
   context(): any {
     return JSON.parse(this.read('context.json').toString());
   }
+  /** An approved target must match before opening any existing workspace database. */
+  evaluationTarget(dataRoot: string, batchId: string, classification: string): any {
+    const context = this.context();
+    this.validate({ ...context, action: 'inspect_customer_data', data_classification: classification }, 0);
+    const raw = this.read('grant.json');
+    if (sha(raw) !== this.approvedSha) return denied('APPROVAL_HASH_MISMATCH');
+    const target = JSON.parse(raw.toString()).evaluation_subject;
+    if (
+      !target ||
+      target.data_root !== resolve(dataRoot) ||
+      target.batch_id !== batchId ||
+      !target.project_id ||
+      !target.plan_id
+    )
+      return denied('EVALUATION_TARGET_MISMATCH');
+    return target;
+  }
+  workerTarget(dataRoot: string, batchId: string): any {
+    const context = this.context();
+    this.validate({ ...context, action: 'inspect_customer_data' }, 0);
+    const raw = this.read('grant.json');
+    if (sha(raw) !== this.approvedSha) return denied('APPROVAL_HASH_MISMATCH');
+    const target = JSON.parse(raw.toString()).worker_subject;
+    if (
+      !target ||
+      target.data_root !== resolve(dataRoot) ||
+      target.batch_id !== batchId ||
+      !target.project_id ||
+      !target.plan_id ||
+      !target.task_id
+    )
+      return denied('WORKER_TARGET_MISMATCH');
+    return target;
+  }
   validate(request: any, upperUsd: unknown): any {
     if (
       !['read_external', 'submit_model', 'generate_image', 'vision_review', 'inspect_customer_data'].includes(

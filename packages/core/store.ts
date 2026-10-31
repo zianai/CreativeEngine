@@ -7,7 +7,15 @@ export const now = () => new Date().toISOString();
 export class Store {
   db: DatabaseSync;
   private depth = 0;
-  constructor(readonly root: string) {
+  constructor(
+    readonly root: string,
+    readOnly = false,
+  ) {
+    if (readOnly) {
+      this.db = new DatabaseSync(join(root, 'creative.sqlite'), { readOnly: true });
+      this.db.exec('PRAGMA query_only=ON; PRAGMA busy_timeout=5000;');
+      return;
+    }
     mkdirSync(root, { recursive: true, mode: 0o700 });
     this.db = new DatabaseSync(join(root, 'creative.sqlite'));
     this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;
