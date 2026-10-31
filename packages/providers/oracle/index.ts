@@ -7,13 +7,29 @@ import path from 'node:path';
 import os from 'node:os';
 import { containedFile, ReceiptStore, validateRequest, validatedRaster, writeRaster } from '../files.js';
 import { ProviderError, type ImageProvider, type ProviderRequest, type ProviderResult } from '../types.js';
-/** Explicit tool intent prevents a text-only concept brief from being treated as an image edit. */
-export function oracleImagePrompt(prompt: string, editing: boolean, hasReferences = false): string {
+/** Declares the image operation while preserving the complete Core audit text. */
+export function oracleImagePrompt(
+  prompt: string,
+  editing: boolean,
+  hasReferences = false,
+  aspectRatio = '1:1',
+): string {
+  // Only recognize a complete leading instruction, never a phrase inside Core JSON/business data.
+  // Keeping this narrow also preserves an already explicit square request byte for byte.
+  if (
+    !editing &&
+    !hasReferences &&
+    aspectRatio === '1:1' &&
+    /^Generate exactly one square image FROM SCRATCH using text-to-image\.(?:\s|$)/i.test(prompt)
+  )
+    return prompt;
+  const image = aspectRatio === '1:1' ? 'square image' : 'image';
   const intent = editing
-    ? 'Edit exactly one image using the attached reference image(s). Preserve the supplied constraints. Do not invent product facts or approval.'
+    ? `Edit exactly one ${image} using the attached reference image(s). Preserve the supplied constraints. Do not invent product facts or approval.`
     : hasReferences
-      ? 'Generate exactly one NEW image from scratch, using the attached references only as visual constraints. Do not require an existing image target.'
-      : 'Generate exactly one NEW image FROM SCRATCH. There is NO reference image and NO existing image target. Use text-to-image generation, not image editing. Follow the fictional concept brief below; do not invent product facts or approval.';
+      ? `Generate exactly one NEW ${image} FROM SCRATCH, using the attached references only as visual constraints. Do not require an existing image target.`
+      : `Generate exactly one ${image} FROM SCRATCH using text-to-image.`;
+  // The complete Core policy, Skill template, JSON and revision remain untouched.
   return `${intent}\n\n${prompt}`;
 }
 export function oracleAspectRatio(width: number, height: number): string {
@@ -95,7 +111,7 @@ export class OracleProvider implements ImageProvider {
   configuration() {
     const runtime = this.runtime();
     return {
-      version: 'chatgpt_image-authorized-worker-v2',
+      version: 'chatgpt_image-authorized-worker-v3',
       enabled:
         Boolean(this.config.connection) || (this.config.enabled ?? process.env.ORACLE_ENABLED === 'true'),
       transport_sha256: sha(
@@ -110,9 +126,9 @@ export class OracleProvider implements ImageProvider {
       ),
       model_identity: this.model,
       browser_model_strategy: 'current',
-      browser_thinking_time: 'medium',
-      prompt_protocol: 'explicit_generate_or_edit_v1',
-      aspect_ratio_protocol: 'reduced_integer_ratio_v1',
+      browser_thinking_time: 'current_unmodified',
+      prompt_protocol: 'explicit_intent_preserve_core_v2',
+      aspect_ratio_protocol: 'square_intent_else_reduced_ratio_v2',
       authorization: 'fresh_pinned_one_shot_grant',
       api_cost_usd: 0,
       subscription_cost: 'unmetered',
@@ -226,7 +242,9 @@ export class OracleProvider implements ImageProvider {
     validateRequest(req);
     const previous = await this.getResult(req.attemptId);
     const refs = await Promise.all(req.referencePaths.map(async (file) => sha(await readFile(file))));
-    const submittedPrompt = oracleImagePrompt(req.prompt, editing, req.referencePaths.length > 0);
+    const aspectRatio = oracleAspectRatio(req.width, req.height),
+      submittedPrompt = oracleImagePrompt(req.prompt, editing, req.referencePaths.length > 0, aspectRatio),
+      squareIntent = /^(?:Generate|Edit) exactly one (?:NEW )?square image\b/i.test(submittedPrompt);
     const inputHash = sha(
       JSON.stringify({
         prompt: submittedPrompt,
@@ -319,11 +337,10 @@ export class OracleProvider implements ImageProvider {
             arguments: {
               prompt: submittedPrompt,
               files: snapshotPaths,
-              aspectRatio: oracleAspectRatio(req.width, req.height),
+              ...(aspectRatio === '1:1' && squareIntent ? {} : { aspectRatio }),
               slug: req.attemptId,
               outputPath: path.join(this.generatedRoot, `${req.attemptId}.png`),
               browserModelStrategy: 'current',
-              browserThinkingTime: 'medium',
               browserArchive: 'never',
               browserKeepBrowser: true,
               browserAttachments: req.referencePaths.length ? 'always' : 'never',

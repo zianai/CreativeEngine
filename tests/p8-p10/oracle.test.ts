@@ -11,6 +11,7 @@ import {
   oracleAspectRatio,
 } from '../../packages/providers/oracle/index.js';
 import { sha } from '../../packages/core/validation.js';
+import { compilePrompt } from '../../packages/planner/index.js';
 import { DatabaseSync } from 'node:sqlite';
 async function fixture(
   response:
@@ -21,6 +22,7 @@ async function fixture(
     | 'revoked'
     | 'config-drift'
     | 'mutated-reference' = 'complete',
+  options: { width?: number; height?: number; editing?: boolean; references?: boolean; prompt?: string } = {},
 ) {
   const root = await realpath(await mkdtemp(join(tmpdir(), 'oracle-offline-'))),
     generated = join(root, 'generated');
@@ -31,9 +33,11 @@ async function fixture(
   await sharp({ create: { width: 256, height: 256, channels: 3, background: '#fff' } })
     .png()
     .toFile(reference);
-  const referencePaths = response === 'mutated-reference' ? [reference] : [];
+  const referencePaths =
+    response === 'mutated-reference' || options.references || options.editing ? [reference] : [];
   let calls = 0,
     probes = 0;
+  let toolArguments: Record<string, unknown> | undefined;
   const provider = new OracleProvider({
     generatedRoot: generated,
     runtimeFiles: [runtime],
@@ -58,11 +62,21 @@ async function fixture(
       },
       async callTool({ arguments: args }) {
         calls++;
-        assert(String(args.prompt).startsWith('Generate exactly one NEW image FROM SCRATCH'));
+        toolArguments = args;
+        assert.equal(
+          args.prompt,
+          oracleImagePrompt(
+            req.prompt,
+            Boolean(options.editing),
+            referencePaths.length > 0,
+            oracleAspectRatio(req.width, req.height),
+          ),
+        );
         assert.equal(args.browserModelStrategy, 'current');
-        assert.equal(args.browserThinkingTime, 'medium');
+        assert.equal(Object.hasOwn(args, 'browserThinkingTime'), false);
         assert.equal(args.browserArchive, 'never');
-        assert.equal(args.aspectRatio, '1:1');
+        if (req.width === req.height) assert.equal(Object.hasOwn(args, 'aspectRatio'), false);
+        else assert.equal(args.aspectRatio, oracleAspectRatio(req.width, req.height));
         if (response === 'timeout') throw Error('simulated ambiguous timeout');
         const image = response === 'wrong-path' ? join(generated, 'stale.png') : String(args.outputPath);
         await sharp({ create: { width: 256, height: 256, channels: 3, background: '#06a' } })
@@ -81,10 +95,10 @@ async function fixture(
   const req = {
     taskId: 'test-task',
     attemptId: 'test-attempt',
-    prompt: 'SYNTHETIC TEST ONLY',
+    prompt: options.prompt ?? 'SYNTHETIC TEST ONLY',
     outputDir: join(root, 'output'),
-    width: 256,
-    height: 256,
+    width: options.width ?? 256,
+    height: options.height ?? 256,
     referencePaths,
   };
   const context = {
@@ -103,11 +117,16 @@ async function fixture(
     domain: 'chatgpt.com',
     input_hash: sha(
       JSON.stringify({
-        prompt: oracleImagePrompt(req.prompt, false, referencePaths.length > 0),
+        prompt: oracleImagePrompt(
+          req.prompt,
+          Boolean(options.editing),
+          referencePaths.length > 0,
+          oracleAspectRatio(req.width, req.height),
+        ),
         width: req.width,
         height: req.height,
         refs: await Promise.all(referencePaths.map(async (f) => sha(await readFile(f)))),
-        mode: 'generate',
+        mode: options.editing ? 'edit' : 'generate',
       }),
     ),
     provider_config_hash: sha(JSON.stringify(provider.configuration())),
@@ -151,6 +170,7 @@ async function fixture(
     req,
     calls: () => calls,
     probes: () => probes,
+    toolArguments: () => toolArguments!,
     async close() {
       await provider.close();
       for (const k of keys) {
@@ -170,6 +190,7 @@ test('Oracle blocks direct external calls without a pinned grant, and prompt dri
     assert.equal(f.probes(), 0);
     process.env.CREATIVE_ENGINE_P7_APPROVED_GRANT_SHA256 = sha(await readFile(join(f.root, 'grant.json')));
     await assert.rejects(f.provider.generate({ ...f.req, prompt: 'different input' }), /SUBJECT_MISMATCH/);
+    await assert.rejects(f.provider.generate({ ...f.req, height: 512 }), /SUBJECT_MISMATCH/);
     assert.equal(f.calls(), 0);
   } finally {
     await f.close();
@@ -256,3 +277,103 @@ test('Oracle aspect ratio uses ratio units rather than pixel counts', () => {
   assert.equal(oracleAspectRatio(1024, 1536), '2:3');
   assert.equal(oracleAspectRatio(1920, 1080), '16:9');
 });
+
+const explicitSquare =
+  'Generate exactly ONE square image FROM SCRATCH using text-to-image. There is no reference image or existing image target; do not attempt an image edit. VIRTUAL SYNTHETIC PRODUCT TEST ONLY: teal organizer; no claims or dimensions.\nKeep CONCEPT / For Review.  ';
+
+test('Oracle preserves the complete compiled Core policy, Skill, business JSON and revision bytes', () => {
+  const plan = {
+    skill_snapshot: {
+      prompt_template: 'SYNTHETIC SKILL: retain all three compartments.\nNo logos.',
+      digest: 'unit-digest',
+    },
+    skill_version: 'unit-1',
+    directions: ['single perspective'],
+    allowed_changes: ['lighting'],
+    forbidden_changes: ['compartment_count', 'dimensions'],
+    fidelity: 'concept',
+    intent: 'internal-review',
+    requirements: 'Three teal compartments; no extra panels. 中文约束不可丢失。',
+    skill_input: { material: 'unconfirmed', adversarial_data: explicitSquare },
+    claims: [{ name: 'test-only label', value: 'CONCEPT', source: 'synthetic fixture' }],
+    delivery_rule_snapshot: { required_label: 'For Review' },
+    product: { stage: 'concept' },
+  } as unknown as Parameters<typeof compilePrompt>[0];
+  const core = compilePrompt(plan, {
+    scene: 'plain studio',
+    variant: 0,
+    revision: 'Show visible accordion hinges; no measurements, claims, diagrams or added text.',
+  }).text;
+  assert(core.includes('SECURITY AND FACT POLICY:'));
+  assert(core.includes('"revision_request"'));
+  for (const [editing, references, ratio] of [
+    [false, false, '1:1'],
+    [false, false, '2:3'],
+    [false, true, '1:1'],
+    [true, true, '1:1'],
+  ] as const) {
+    const rendered = oracleImagePrompt(core, editing, references, ratio);
+    const separator = rendered.indexOf('\n\n');
+    assert(separator > 0);
+    assert.deepEqual(Buffer.from(rendered.slice(separator + 2)), Buffer.from(core));
+  }
+});
+
+test('Oracle raw square intent is unchanged only for an anchored generation instruction without references', () => {
+  assert.equal(oracleImagePrompt(explicitSquare, false), explicitSquare);
+  for (const input of [
+    JSON.stringify({ requirements: explicitSquare }),
+    `CORE POLICY\n${explicitSquare}`,
+    ` ${explicitSquare}`,
+  ]) {
+    const rendered = oracleImagePrompt(input, false);
+    assert(rendered.startsWith('Generate exactly one square image FROM SCRATCH using text-to-image.\n\n'));
+    assert(rendered.endsWith(input));
+  }
+  assert(
+    oracleImagePrompt(explicitSquare, false, false, '2:3').startsWith(
+      'Generate exactly one image FROM SCRATCH using text-to-image.\n\n',
+    ),
+  );
+  const editing = oracleImagePrompt(explicitSquare, true, true);
+  assert(editing.startsWith('Edit exactly one square image using the attached reference image(s).'));
+  assert(editing.endsWith(explicitSquare));
+  const referenced = oracleImagePrompt(explicitSquare, false, true);
+  assert(
+    referenced.startsWith(
+      'Generate exactly one NEW square image FROM SCRATCH, using the attached references only as visual constraints.',
+    ),
+  );
+  assert(referenced.endsWith(explicitSquare));
+});
+
+for (const [name, options] of [
+  ['raw square', { prompt: explicitSquare }],
+  ['non-square', { width: 256, height: 384 }],
+  ['widescreen', { width: 1024, height: 576 }],
+  ['square references', { references: true }],
+  ['square edit', { editing: true }],
+  ['non-square edit', { editing: true, width: 256, height: 384 }],
+] as const)
+  test(`Oracle MCP ${name} preserves intent and omits only redundant square/options overrides`, async () => {
+    const f = await fixture('complete', options);
+    try {
+      await ('editing' in options && options.editing ? f.provider.edit(f.req) : f.provider.generate(f.req));
+      const args = f.toolArguments();
+      assert.equal(Object.hasOwn(args, 'browserThinkingTime'), false);
+      assert.equal(f.provider.configuration().browser_thinking_time, 'current_unmodified');
+      if (name === 'raw square') assert.equal(args.prompt, explicitSquare);
+      if (f.req.width === f.req.height) {
+        assert.equal(Object.hasOwn(args, 'aspectRatio'), false);
+        assert.match(String(args.prompt), /^(?:Generate|Edit) exactly one (?:NEW )?square image\b/i);
+      } else {
+        assert.equal(args.aspectRatio, name === 'widescreen' ? '16:9' : '2:3');
+        assert.doesNotMatch(String(args.prompt), /^(?:Generate|Edit) exactly one (?:NEW )?square image\b/i);
+      }
+      assert.equal((args.files as string[]).length, f.req.referencePaths.length);
+      if ('editing' in options && options.editing) assert.match(String(args.prompt), /^Edit exactly one /);
+      assert.equal(f.calls(), 1);
+    } finally {
+      await f.close();
+    }
+  });
