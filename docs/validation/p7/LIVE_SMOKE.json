@@ -1,0 +1,17 @@
+{
+  "system": "creative-engine",
+  "run_id": "live-synthetic-20261031T080134Z",
+  "environment": "E2",
+  "data_classification": "synthetic",
+  "actual_api_smoke": "succeeded",
+  "business_pilot_reviewed": false,
+  "business_validation": "not_evaluable",
+  "billing_actual_usd": null,
+  "external_business_writes": 0,
+  "user_authorization": "2026-10-31: synthetic paid three-system smoke, total <= USD 10, no business writes",
+  "source_sha_at_live_call": "135e4986cbf67009f4af6f61f50fd0c8037a16a5",
+  "limitations": [
+    "Synthetic smoke only; no human business assessment or real-case validation.",
+    "Native image provider call only; no full Worker integration or Vision review. Human visual inspection found text despite no-text prompt."
+  ]
+}
